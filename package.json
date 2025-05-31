@@ -1,0 +1,40 @@
+{
+  "name": "knowledge",
+  "version": "1.0.0",
+  "description": "A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun run src/cli.ts build",
+    "dev": "bun run src/cli.ts dev",
+    "serve": "bun run src/cli.ts serve",
+    "start": "bun run index.ts"
+  },
+  "keywords": [
+    "documentation",
+    "markdown",
+    "static-site",
+    "generator"
+  ],
+  "author": {
+    "name": "Ciro Cesar Maciel",
+    "email": "maciel.ciro@icloud.com",
+    "url": "https://riligar.click"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "commander": "^14.0.0",
+    "fs-extra": "^11.3.0",
+    "highlight.js": "^11.11.1",
+    "lunr": "^2.3.9",
+    "marked": "^15.0.12"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.15",
+    "@types/fs-extra": "^11.0.4",
+    "@types/lunr": "^2.3.7",
+    "@types/marked": "^6.0.0",
+    "typescript": "^5.8.3"
+  }
+}

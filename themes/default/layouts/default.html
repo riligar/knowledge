@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - {{site.title}}</title>
+    <meta name="description" content="{{site.description}}">
+    <meta name="author" content="{{site.author}}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{site.baseUrl}}">
+    <meta property="og:title" content="{{title}} - {{site.title}}">
+    <meta property="og:description" content="{{site.description}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{site.baseUrl}}">
+    <meta property="twitter:title" content="{{title}} - {{site.title}}">
+    <meta property="twitter:description" content="{{site.description}}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{baseUrl}}favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{baseUrl}}assets/css/style.css">
+    <link rel="stylesheet" href="{{baseUrl}}assets/css/highlight.css">
+    <link rel="stylesheet" href="{{baseUrl}}assets/css/search.css">
+    <link rel="stylesheet" href="{{baseUrl}}assets/css/page-highlighter.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo/Title -->
+            <div class="header-left">
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <h1 class="site-title">
+                    <a href="{{baseUrl}}">{{site.title}}</a>
+                </h1>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="header-center">
+                <div class="search-container search-enhanced">
+                    <input type="text" class="search-input" id="global-search"
+                        placeholder="Buscar na documentação... (Ctrl+K)" autocomplete="off">
+                    <button class="search-button" type="button" aria-label="Buscar">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side (for future elements like theme toggle, etc.) -->
+            <div class="header-right">
+                <button class="theme-toggle-header" aria-label="Toggle dark mode">
+                    <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <path
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                    <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout Container with Flexbox -->
+    <div class="main-container">
+        <!-- Left Sidebar - Menu Principal -->
+        <aside class="main-sidebar">
+            <!-- Mobile Header Section -->
+            <div class="mobile-sidebar-header">
+                <div class="mobile-logo">
+                    <!-- <img src="{{baseUrl}}assets/images/k2-logo-ico.png" alt="K2 Logo" class="mobile-logo-img"> -->
+                    <h2 class="mobile-title">{{site.title}}</h2>
+                </div>
+                <!-- Mobile Close Button -->
+                <button class="mobile-menu-close" aria-label="Close navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="navigation" role="navigation" aria-label="Documentation navigation">
+                <ul>{{navigation}}</ul>
+            </nav>
+        </aside>
+
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay"></div>
+
+        <!-- Center Content -->
+        <main class="main-content" id="main-content" role="main">
+            <div class="content-wrapper">
+                <article>
+                    {{content}}
+                </article>
+            </div>
+        </main>
+
+        <!-- Right Sidebar - Menu do Artigo -->
+        <aside class="article-sidebar">
+            <div class="content-menu">
+                <div class="content-menu-dropdown" id="content-menu-dropdown">
+                    <!-- Menu items will be dynamically generated based on page headings -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{baseUrl}}assets/js/main.js"></script>
+    <script src="{{baseUrl}}assets/js/search.js"></script>
+    <script src="{{baseUrl}}assets/js/page-highlighter.js"></script>
+</body>
+
+</html>

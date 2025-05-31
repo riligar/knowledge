@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Guia de Instalação e Configuração - Knowledge</title>
+    <meta name="description" content="A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.">
+    <meta name="author" content="Ciro Cesar Maciel">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/">
+    <meta property="og:title" content="🚀 Guia de Instalação e Configuração - Knowledge">
+    <meta property="og:description" content="A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="/">
+    <meta property="twitter:title" content="🚀 Guia de Instalação e Configuração - Knowledge">
+    <meta property="twitter:description" content="A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/highlight.css">
+    <link rel="stylesheet" href="/assets/css/search.css">
+    <link rel="stylesheet" href="/assets/css/page-highlighter.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo/Title -->
+            <div class="header-left">
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <h1 class="site-title">
+                    <a href="/">Knowledge</a>
+                </h1>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="header-center">
+                <div class="search-container search-enhanced">
+                    <input type="text" class="search-input" id="global-search"
+                        placeholder="Buscar na documentação... (Ctrl+K)" autocomplete="off">
+                    <button class="search-button" type="button" aria-label="Buscar">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side (for future elements like theme toggle, etc.) -->
+            <div class="header-right">
+                <button class="theme-toggle-header" aria-label="Toggle dark mode">
+                    <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <path
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                    <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout Container with Flexbox -->
+    <div class="main-container">
+        <!-- Left Sidebar - Menu Principal -->
+        <aside class="main-sidebar">
+            <!-- Mobile Header Section -->
+            <div class="mobile-sidebar-header">
+                <div class="mobile-logo">
+                    <!-- <img src="/assets/images/k2-logo-ico.png" alt="K2 Logo" class="mobile-logo-img"> -->
+                    <h2 class="mobile-title">Knowledge</h2>
+                </div>
+                <!-- Mobile Close Button -->
+                <button class="mobile-menu-close" aria-label="Close navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="navigation" role="navigation" aria-label="Documentation navigation">
+                <ul><li><a href="/architecture.html">🏗️ Arquitetura do Sistema Knowledge</a></li><li><a href="/reference.html">📖 Referência da API</a></li><li><a href="/search.html">🔍 Sistema de Busca Full-Text - Implementação Detalhada</a></li><li><a href="/installation.html">🚀 Guia de Instalação e Configuração</a></li><li><a href="/development.html">🛠️ Guia de Desenvolvimento</a></li><li><a href="/index.html">Índice da Documentação - Knowledge</a></li><li><a href="/readme.html">Knowledge - Sistema de Documentação Moderno</a></li></ul>
+            </nav>
+        </aside>
+
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay"></div>
+
+        <!-- Center Content -->
+        <main class="main-content" id="main-content" role="main">
+            <div class="content-wrapper">
+                <article>
+                    <h1>🚀 Guia de Instalação e Configuração</h1>
+<h2>📋 Visão Geral</h2>
+<p>Este guia fornece instruções detalhadas para instalar, configurar e começar a usar o Knowledge em diferentes ambientes e cenários.</p>
+<h2>🔧 Pré-requisitos</h2>
+<h3>Requisitos Mínimos</h3>
+<ul>
+<li><strong>Bun.js</strong>: v1.0.0 ou superior (recomendado)</li>
+<li><strong>Node.js</strong>: v18.0.0 ou superior (alternativo)</li>
+<li><strong>Sistema Operacional</strong>: Windows 10+, macOS 10.15+, Linux (Ubuntu 20.04+)</li>
+<li><strong>Memória RAM</strong>: 2GB mínimo, 4GB recomendado</li>
+<li><strong>Espaço em Disco</strong>: 500MB para instalação + espaço para documentação</li>
+</ul>
+<h3>Ferramentas Opcionais</h3>
+<ul>
+<li><strong>Git</strong>: Para controle de versão</li>
+<li><strong>VS Code</strong>: Editor recomendado com extensões TypeScript</li>
+<li><strong>Docker</strong>: Para deployment em containers</li>
+</ul>
+<h2>📦 Instalação</h2>
+<h3>Método 1: Instalação com Bun (Recomendado)</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 1. Instalar Bun.js (se não estiver instalado)</span>
+curl -fsSL https://bun.sh/install | bash
+
+<span class="hljs-comment"># 2. Clonar o repositório</span>
+git <span class="hljs-built_in">clone</span> https://github.com/riligar/knowledge.git
+<span class="hljs-built_in">cd</span> knowledge
+
+<span class="hljs-comment"># 3. Instalar dependências</span>
+bun install
+
+<span class="hljs-comment"># 4. Verificar instalação</span>
+bun run --version
+</code></pre>
+<h3>Método 2: Instalação com npm/yarn</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 1. Clonar o repositório</span>
+git <span class="hljs-built_in">clone</span> https://github.com/riligar/knowledge.git
+<span class="hljs-built_in">cd</span> knowledge
+
+<span class="hljs-comment"># 2. Instalar dependências</span>
+npm install
+<span class="hljs-comment"># ou</span>
+yarn install
+
+<span class="hljs-comment"># 3. Verificar instalação</span>
+npm run build --dry-run
+</code></pre>
+<h3>Método 3: Instalação Global</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Instalar globalmente (futuro)</span>
+npm install -g @riligar/knowledge
+
+<span class="hljs-comment"># Usar em qualquer diretório</span>
+knowledge init my-docs
+<span class="hljs-built_in">cd</span> my-docs
+knowledge dev
+</code></pre>
+<h2>⚙️ Configuração Inicial</h2>
+<h3>1. Inicializar Projeto</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Criar novo projeto de documentação</span>
+bun run init
+
+<span class="hljs-comment"># Ou especificar diretório</span>
+bun run init --<span class="hljs-built_in">dir</span> ./minha-documentacao
+</code></pre>
+<p>Isso criará a seguinte estrutura:</p>
+<pre><code>minha-documentacao/
+├── docs/                    # Documentação fonte
+│   └── README.md           # Página inicial
+├── docforge.config.ts      # Configuração principal
+├── package.json            # Dependências do projeto
+└── .gitignore             # Arquivos ignorados pelo Git
+</code></pre>
+<h3>2. Configuração Básica</h3>
+<p>Edite o arquivo <code>docforge.config.ts</code>:</p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> { <span class="hljs-title class_">DocForgeConfig</span> } <span class="hljs-keyword">from</span> &amp;#<span class="hljs-number">39</span>;./src/config.<span class="hljs-property">js</span>&amp;#<span class="hljs-number">39</span>;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-comment">// Diretórios</span>
+    <span class="hljs-attr">inputDir</span>: &amp;#<span class="hljs-number">39</span>;./docs&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">outputDir</span>: &amp;#<span class="hljs-number">39</span>;./dist&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">themesDir</span>: &amp;#<span class="hljs-number">39</span>;./themes&amp;#<span class="hljs-number">39</span>;,
+
+    <span class="hljs-comment">// Informações do site</span>
+    <span class="hljs-attr">site</span>: {
+        <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Minha</span> <span class="hljs-title class_">Documenta</span>ção&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">description</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Documenta</span>ção completa <span class="hljs-keyword">do</span> meu projeto&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">baseUrl</span>: &amp;#<span class="hljs-number">39</span>;/&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">author</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Seu</span> <span class="hljs-title class_">Nome</span>&amp;#<span class="hljs-number">39</span>;
+    },
+
+    <span class="hljs-comment">// Tema e layout</span>
+    <span class="hljs-attr">theme</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-keyword">default</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">layout</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-keyword">default</span>&amp;#<span class="hljs-number">39</span>;,
+
+    <span class="hljs-comment">// Navegação</span>
+    <span class="hljs-attr">navigation</span>: {
+        <span class="hljs-attr">auto</span>: <span class="hljs-literal">true</span>,  <span class="hljs-comment">// Geração automática baseada na estrutura de arquivos</span>
+        <span class="hljs-comment">// items: []  // Navegação manual (opcional)</span>
+    },
+
+    <span class="hljs-comment">// Funcionalidades</span>
+    <span class="hljs-attr">features</span>: {
+        <span class="hljs-attr">search</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">syntaxHighlight</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">darkMode</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">tableOfContents</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">breadcrumbs</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">editOnGithub</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-attr">https</span>:<span class="hljs-comment">//github.com/seu-usuario/seu-repo&amp;#39;</span>
+    },
+
+    <span class="hljs-comment">// Processamento Markdown</span>
+    <span class="hljs-attr">markdown</span>: {
+        <span class="hljs-attr">breaks</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">linkify</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">typographer</span>: <span class="hljs-literal">true</span>
+    },
+
+    <span class="hljs-comment">// Servidor de desenvolvimento</span>
+    <span class="hljs-attr">dev</span>: {
+        <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span>,
+        <span class="hljs-attr">host</span>: &amp;#<span class="hljs-number">39</span>;localhost&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">livereload</span>: <span class="hljs-literal">true</span>
+    }
+} <span class="hljs-keyword">as</span> <span class="hljs-title class_">DocForgeConfig</span>;
+</code></pre>
+<h3>3. Estrutura de Documentação</h3>
+<p>Organize seus arquivos Markdown na pasta <code>docs/</code>:</p>
+<pre><code>docs/
+├── README.md                # Página inicial (obrigatório)
+├── getting-started/
+│   ├── installation.md
+│   ├── quick-start.md
+│   └── configuration.md
+├── guides/
+│   ├── user-guide.md
+│   ├── admin-guide.md
+│   └── developer-guide.md
+├── api/
+│   ├── overview.md
+│   ├── authentication.md
+│   └── endpoints.md
+└── assets/
+    ├── images/
+    └── files/
+</code></pre>
+<h2>🎯 Configurações Avançadas</h2>
+<h3>Configuração de Site</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-attr">site</span>: {
+    <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Knowledge</span> <span class="hljs-title class_">Base</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">description</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Documenta</span>ção técnica completa&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">baseUrl</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/&amp;#39;,  /</span><span class="hljs-regexp">/ Para GitHub Pages: &amp;#39;/</span>nome-<span class="hljs-keyword">do</span>-repo/&amp;#<span class="hljs-number">39</span>;
+    <span class="hljs-attr">author</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Equipe</span> de <span class="hljs-title class_">Desenvolvimento</span>&amp;#<span class="hljs-number">39</span>;,
+    
+    <span class="hljs-comment">// Metadados adicionais</span>
+    <span class="hljs-attr">keywords</span>: [&amp;#<span class="hljs-number">39</span>;documentação&amp;#<span class="hljs-number">39</span>;, &amp;#<span class="hljs-number">39</span>;api&amp;#<span class="hljs-number">39</span>;, &amp;#<span class="hljs-number">39</span>;guias&amp;#<span class="hljs-number">39</span>;],
+    <span class="hljs-attr">language</span>: &amp;#<span class="hljs-number">39</span>;pt-<span class="hljs-variable constant_">BR</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">favicon</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/assets/</span>favicon.<span class="hljs-property">ico</span>&amp;#<span class="hljs-number">39</span>;,
+    
+    <span class="hljs-comment">// SEO e Social</span>
+    <span class="hljs-attr">ogImage</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/assets/</span>og-image.<span class="hljs-property">png</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">twitterCard</span>: &amp;#<span class="hljs-number">39</span>;summary_large_image&amp;#<span class="hljs-number">39</span>;,
+    
+    <span class="hljs-comment">// Analytics</span>
+    <span class="hljs-attr">googleAnalytics</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-variable constant_">GA_MEASUREMENT_ID</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">gtag</span>: &amp;#<span class="hljs-number">39</span>;G-<span class="hljs-variable constant_">XXXXXXXXXX</span>&amp;#<span class="hljs-number">39</span>;
+}
+</code></pre>
+<h3>Configuração de Navegação Manual</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-attr">navigation</span>: {
+    <span class="hljs-attr">auto</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">items</span>: [
+        {
+            <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">In</span>ício&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;/&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">icon</span>: &amp;#<span class="hljs-number">39</span>;home&amp;#<span class="hljs-number">39</span>;
+        },
+        {
+            <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Guias</span>&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">children</span>: [
+                { <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Instala</span>ção&amp;#<span class="hljs-number">39</span>;, <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/guides/i</span>nstallation.<span class="hljs-property">html</span>&amp;#<span class="hljs-number">39</span>; },
+                { <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Configura</span>ção&amp;#<span class="hljs-number">39</span>;, <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/guides/</span>configuration.<span class="hljs-property">html</span>&amp;#<span class="hljs-number">39</span>; },
+                { <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Uso</span> Básico&amp;#<span class="hljs-number">39</span>;, <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/guides/</span>basic-usage.<span class="hljs-property">html</span>&amp;#<span class="hljs-number">39</span>; }
+            ]
+        },
+        {
+            <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-variable constant_">API</span>&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">children</span>: [
+                { <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Vis</span>ão <span class="hljs-title class_">Geral</span>&amp;#<span class="hljs-number">39</span>;, <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/api/</span>overview.<span class="hljs-property">html</span>&amp;#<span class="hljs-number">39</span>; },
+                { <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Autentica</span>ção&amp;#<span class="hljs-number">39</span>;, <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/api/</span>auth.<span class="hljs-property">html</span>&amp;#<span class="hljs-number">39</span>; },
+                { <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Endpoints</span>&amp;#<span class="hljs-number">39</span>;, <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/api/</span>endpoints.<span class="hljs-property">html</span>&amp;#<span class="hljs-number">39</span>; }
+            ]
+        },
+        {
+            <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">GitHub</span>&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-attr">https</span>:<span class="hljs-comment">//github.com/riligar/knowledge&amp;#39;,</span>
+            <span class="hljs-attr">external</span>: <span class="hljs-literal">true</span>
+        }
+    ]
+}
+</code></pre>
+<h3>Configuração de Funcionalidades</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-attr">features</span>: {
+    <span class="hljs-comment">// Busca</span>
+    <span class="hljs-attr">search</span>: {
+        <span class="hljs-attr">enabled</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">placeholder</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Buscar</span> na documentação...&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">noResultsText</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Nenhum</span> resultado encontrado&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">indexFields</span>: {
+            <span class="hljs-attr">title</span>: { <span class="hljs-attr">boost</span>: <span class="hljs-number">10</span> },
+            <span class="hljs-attr">excerpt</span>: { <span class="hljs-attr">boost</span>: <span class="hljs-number">5</span> },
+            <span class="hljs-attr">content</span>: { <span class="hljs-attr">boost</span>: <span class="hljs-number">1</span> }
+        }
+    },
+    
+    <span class="hljs-comment">// Syntax highlighting</span>
+    <span class="hljs-attr">syntaxHighlight</span>: {
+        <span class="hljs-attr">enabled</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">theme</span>: &amp;#<span class="hljs-number">39</span>;github&amp;#<span class="hljs-number">39</span>;,  <span class="hljs-comment">// github, monokai, dracula, etc.</span>
+        <span class="hljs-attr">showLineNumbers</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">copyButton</span>: <span class="hljs-literal">true</span>
+    },
+    
+    <span class="hljs-comment">// Modo escuro</span>
+    <span class="hljs-attr">darkMode</span>: {
+        <span class="hljs-attr">enabled</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">defaultTheme</span>: &amp;#<span class="hljs-number">39</span>;auto&amp;#<span class="hljs-number">39</span>;,  <span class="hljs-comment">// light, dark, auto</span>
+        <span class="hljs-attr">storageKey</span>: &amp;#<span class="hljs-number">39</span>;knowledge-theme&amp;#<span class="hljs-number">39</span>;
+    },
+    
+    <span class="hljs-comment">// Índice de conteúdo</span>
+    <span class="hljs-attr">tableOfContents</span>: {
+        <span class="hljs-attr">enabled</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">levels</span>: [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>],  <span class="hljs-comment">// h2, h3, h4</span>
+        <span class="hljs-attr">position</span>: &amp;#<span class="hljs-number">39</span>;right&amp;#<span class="hljs-number">39</span>;   <span class="hljs-comment">// left, right, inline</span>
+    },
+    
+    <span class="hljs-comment">// Breadcrumbs</span>
+    <span class="hljs-attr">breadcrumbs</span>: {
+        <span class="hljs-attr">enabled</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">separator</span>: &amp;#<span class="hljs-number">39</span>;/&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">showHome</span>: <span class="hljs-literal">true</span>
+    },
+    
+    <span class="hljs-comment">// Editar no GitHub</span>
+    <span class="hljs-attr">editOnGithub</span>: {
+        <span class="hljs-attr">enabled</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">baseUrl</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-attr">https</span>:<span class="hljs-comment">//github.com/seu-usuario/seu-repo&amp;#39;,</span>
+        <span class="hljs-attr">branch</span>: &amp;#<span class="hljs-number">39</span>;main&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">text</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Editar</span> esta página&amp;#<span class="hljs-number">39</span>;
+    }
+}
+</code></pre>
+<h3>Configuração de Markdown</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-attr">markdown</span>: {
+    <span class="hljs-comment">// Configurações básicas</span>
+    <span class="hljs-attr">breaks</span>: <span class="hljs-literal">true</span>,        <span class="hljs-comment">// Quebras de linha automáticas</span>
+    <span class="hljs-attr">linkify</span>: <span class="hljs-literal">true</span>,       <span class="hljs-comment">// URLs automáticos</span>
+    <span class="hljs-attr">typographer</span>: <span class="hljs-literal">true</span>,   <span class="hljs-comment">// Aspas e travessões inteligentes</span>
+    
+    <span class="hljs-comment">// Extensões</span>
+    <span class="hljs-attr">extensions</span>: {
+        <span class="hljs-attr">tables</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">strikethrough</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">tasklists</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">footnotes</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">math</span>: <span class="hljs-literal">true</span>,          <span class="hljs-comment">// Suporte a LaTeX</span>
+        <span class="hljs-attr">mermaid</span>: <span class="hljs-literal">true</span>,       <span class="hljs-comment">// Diagramas Mermaid</span>
+        <span class="hljs-attr">emoji</span>: <span class="hljs-literal">true</span>          <span class="hljs-comment">// Emojis :smile:</span>
+    },
+    
+    <span class="hljs-comment">// Plugins customizados</span>
+    <span class="hljs-attr">plugins</span>: [
+        &amp;#<span class="hljs-number">39</span>;markdown-it-container&amp;#<span class="hljs-number">39</span>;,
+        &amp;#<span class="hljs-number">39</span>;markdown-it-deflist&amp;#<span class="hljs-number">39</span>;,
+        &amp;#<span class="hljs-number">39</span>;markdown-it-abbr&amp;#<span class="hljs-number">39</span>;
+    ]
+}
+</code></pre>
+<h2>🎨 Personalização de Tema</h2>
+<h3>Tema Customizado</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Criar tema personalizado</span>
+<span class="hljs-built_in">mkdir</span> -p themes/meu-tema/layouts
+<span class="hljs-built_in">mkdir</span> -p themes/meu-tema/assets/css
+<span class="hljs-built_in">mkdir</span> -p themes/meu-tema/assets/js
+
+<span class="hljs-comment"># Copiar tema padrão como base</span>
+<span class="hljs-built_in">cp</span> -r themes/default/* themes/meu-tema/
+</code></pre>
+<h3>Customização de CSS</h3>
+<pre><code class="hljs language-css"><span class="hljs-comment">/* themes/meu-tema/assets/css/custom.css */</span>
+
+<span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-comment">/* Cores primárias */</span>
+    <span class="hljs-attr">--primary-color</span>: <span class="hljs-number">#007acc</span>;
+    <span class="hljs-attr">--secondary-color</span>: <span class="hljs-number">#6c757d</span>;
+    <span class="hljs-attr">--accent-color</span>: <span class="hljs-number">#28a745</span>;
+    
+    <span class="hljs-comment">/* Tipografia */</span>
+    <span class="hljs-attr">--font-family</span>: &amp;#<span class="hljs-number">39</span>;Inter&amp;<span class="hljs-selector-id">#39</span>;, -apple-system, sans-serif;
+    <span class="hljs-attr">--font-size-base</span>: <span class="hljs-number">16px</span>;
+    <span class="hljs-attr">--line-height-base</span>: <span class="hljs-number">1.6</span>;
+    
+    <span class="hljs-comment">/* Espaçamento */</span>
+    <span class="hljs-attr">--spacing-unit</span>: <span class="hljs-number">8px</span>;
+    <span class="hljs-attr">--container-max-width</span>: <span class="hljs-number">1200px</span>;
+    
+    <span class="hljs-comment">/* Modo escuro */</span>
+    <span class="hljs-attr">--dark-bg</span>: <span class="hljs-number">#1a1a1a</span>;
+    <span class="hljs-attr">--dark-text</span>: <span class="hljs-number">#e0e0e0</span>;
+    <span class="hljs-attr">--dark-border</span>: <span class="hljs-number">#333</span>;
+}
+
+<span class="hljs-comment">/* Customizações específicas */</span>
+<span class="hljs-selector-class">.header</span> {
+    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, <span class="hljs-built_in">var</span>(--primary-color), <span class="hljs-built_in">var</span>(--accent-color));
+}
+
+<span class="hljs-selector-class">.sidebar</span> {
+    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">2px</span> solid <span class="hljs-built_in">var</span>(--primary-color);
+}
+
+<span class="hljs-selector-class">.content</span> {
+    <span class="hljs-attribute">font-family</span>: <span class="hljs-built_in">var</span>(--font-family);
+    <span class="hljs-attribute">line-height</span>: <span class="hljs-built_in">var</span>(--line-height-base);
+}
+</code></pre>
+<h3>Layout Personalizado</h3>
+<pre><code class="hljs language-html"><span class="hljs-symbol">&amp;lt;</span>!-- themes/meu-tema/layouts/default.html --<span class="hljs-symbol">&amp;gt;</span>
+<span class="hljs-symbol">&amp;lt;</span>!DOCTYPE html<span class="hljs-symbol">&amp;gt;</span>
+<span class="hljs-symbol">&amp;lt;</span>html lang=<span class="hljs-symbol">&amp;quot;</span>{{site.language}}<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+<span class="hljs-symbol">&amp;lt;</span>head<span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>meta charset=<span class="hljs-symbol">&amp;quot;</span>UTF-8<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>meta name=<span class="hljs-symbol">&amp;quot;</span>viewport<span class="hljs-symbol">&amp;quot;</span> content=<span class="hljs-symbol">&amp;quot;</span>width=device-width, initial-scale=1.0<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>title<span class="hljs-symbol">&amp;gt;</span>{{page.title}} - Knowledge<span class="hljs-symbol">&amp;lt;</span>/title<span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>meta name=<span class="hljs-symbol">&amp;quot;</span>description<span class="hljs-symbol">&amp;quot;</span> content=<span class="hljs-symbol">&amp;quot;</span>{{page.description || site.description}}<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+    
+    <span class="hljs-symbol">&amp;lt;</span>!-- CSS --<span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>link rel=<span class="hljs-symbol">&amp;quot;</span>stylesheet<span class="hljs-symbol">&amp;quot;</span> href=<span class="hljs-symbol">&amp;quot;</span>/assets/css/style.css<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>link rel=<span class="hljs-symbol">&amp;quot;</span>stylesheet<span class="hljs-symbol">&amp;quot;</span> href=<span class="hljs-symbol">&amp;quot;</span>/assets/css/custom.css<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+    
+    <span class="hljs-symbol">&amp;lt;</span>!-- Favicon --<span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>link rel=<span class="hljs-symbol">&amp;quot;</span>icon<span class="hljs-symbol">&amp;quot;</span> href=<span class="hljs-symbol">&amp;quot;</span>{{site.favicon}}<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+<span class="hljs-symbol">&amp;lt;</span>/head<span class="hljs-symbol">&amp;gt;</span>
+<span class="hljs-symbol">&amp;lt;</span>body<span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>div class=<span class="hljs-symbol">&amp;quot;</span>layout<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+        <span class="hljs-symbol">&amp;lt;</span>!-- Header --<span class="hljs-symbol">&amp;gt;</span>
+        <span class="hljs-symbol">&amp;lt;</span>header class=<span class="hljs-symbol">&amp;quot;</span>header<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+            <span class="hljs-symbol">&amp;lt;</span>div class=<span class="hljs-symbol">&amp;quot;</span>container<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+                <span class="hljs-symbol">&amp;lt;</span>h1 class=<span class="hljs-symbol">&amp;quot;</span>site-title<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>Knowledge<span class="hljs-symbol">&amp;lt;</span>/h1<span class="hljs-symbol">&amp;gt;</span>
+                <span class="hljs-symbol">&amp;lt;</span>nav class=<span class="hljs-symbol">&amp;quot;</span>main-nav<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span><li><a href="/architecture.html">🏗️ Arquitetura do Sistema Knowledge</a></li><li><a href="/reference.html">📖 Referência da API</a></li><li><a href="/search.html">🔍 Sistema de Busca Full-Text - Implementação Detalhada</a></li><li><a href="/installation.html">🚀 Guia de Instalação e Configuração</a></li><li><a href="/development.html">🛠️ Guia de Desenvolvimento</a></li><li><a href="/index.html">Índice da Documentação - Knowledge</a></li><li><a href="/readme.html">Knowledge - Sistema de Documentação Moderno</a></li><span class="hljs-symbol">&amp;lt;</span>/nav<span class="hljs-symbol">&amp;gt;</span>
+            <span class="hljs-symbol">&amp;lt;</span>/div<span class="hljs-symbol">&amp;gt;</span>
+        <span class="hljs-symbol">&amp;lt;</span>/header<span class="hljs-symbol">&amp;gt;</span>
+        
+        <span class="hljs-symbol">&amp;lt;</span>!-- Main Content --<span class="hljs-symbol">&amp;gt;</span>
+        <span class="hljs-symbol">&amp;lt;</span>main class=<span class="hljs-symbol">&amp;quot;</span>main<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+            <span class="hljs-symbol">&amp;lt;</span>aside class=<span class="hljs-symbol">&amp;quot;</span>sidebar<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>{{sidebar}}<span class="hljs-symbol">&amp;lt;</span>/aside<span class="hljs-symbol">&amp;gt;</span>
+            <span class="hljs-symbol">&amp;lt;</span>article class=<span class="hljs-symbol">&amp;quot;</span>content<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+                {{content}}
+            <span class="hljs-symbol">&amp;lt;</span>/article<span class="hljs-symbol">&amp;gt;</span>
+            <span class="hljs-symbol">&amp;lt;</span>aside class=<span class="hljs-symbol">&amp;quot;</span>toc<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>{{tableOfContents}}<span class="hljs-symbol">&amp;lt;</span>/aside<span class="hljs-symbol">&amp;gt;</span>
+        <span class="hljs-symbol">&amp;lt;</span>/main<span class="hljs-symbol">&amp;gt;</span>
+        
+        <span class="hljs-symbol">&amp;lt;</span>!-- Footer --<span class="hljs-symbol">&amp;gt;</span>
+        <span class="hljs-symbol">&amp;lt;</span>footer class=<span class="hljs-symbol">&amp;quot;</span>footer<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+            <span class="hljs-symbol">&amp;lt;</span>div class=<span class="hljs-symbol">&amp;quot;</span>container<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>
+                <span class="hljs-symbol">&amp;lt;</span>p<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;amp;</span>copy; {{currentYear}} Ciro Cesar Maciel<span class="hljs-symbol">&amp;lt;</span>/p<span class="hljs-symbol">&amp;gt;</span>
+            <span class="hljs-symbol">&amp;lt;</span>/div<span class="hljs-symbol">&amp;gt;</span>
+        <span class="hljs-symbol">&amp;lt;</span>/footer<span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>/div<span class="hljs-symbol">&amp;gt;</span>
+    
+    <span class="hljs-symbol">&amp;lt;</span>!-- JavaScript --<span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>script src=<span class="hljs-symbol">&amp;quot;</span>/assets/js/main.js<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;lt;</span>/script<span class="hljs-symbol">&amp;gt;</span>
+    <span class="hljs-symbol">&amp;lt;</span>script src=<span class="hljs-symbol">&amp;quot;</span>/assets/js/search.js<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;lt;</span>/script<span class="hljs-symbol">&amp;gt;</span>
+<span class="hljs-symbol">&amp;lt;</span>/body<span class="hljs-symbol">&amp;gt;</span>
+<span class="hljs-symbol">&amp;lt;</span>/html<span class="hljs-symbol">&amp;gt;</span>
+</code></pre>
+<h2>🔧 Comandos e Scripts</h2>
+<h3>Scripts de Desenvolvimento</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  &amp;quot;scripts&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    &amp;quot;dev&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun run src/cli.ts dev&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;build&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun run src/cli.ts build&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;serve&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun run src/cli.ts serve&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;clean&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;rm -rf dist&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;lint&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;eslint src<span class="hljs-comment">/**/</span>*.ts&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;type-check&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;tsc --noEmit&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;preview&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun run build &amp;amp;&amp;amp; bun run serve&amp;quot;
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3>Comandos Úteis</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Desenvolvimento</span>
+bun run dev                    <span class="hljs-comment"># Servidor de desenvolvimento</span>
+bun run dev --port 4000       <span class="hljs-comment"># Porta customizada</span>
+bun run dev --host 0.0.0.0    <span class="hljs-comment"># Acessível externamente</span>
+
+<span class="hljs-comment"># Build</span>
+bun run build                  <span class="hljs-comment"># Build completo</span>
+bun run build --config custom.config.ts  <span class="hljs-comment"># Configuração customizada</span>
+
+<span class="hljs-comment"># Servir</span>
+bun run serve                  <span class="hljs-comment"># Servir dist/</span>
+bun run serve --port 8080     <span class="hljs-comment"># Porta customizada</span>
+bun run serve --<span class="hljs-built_in">dir</span> ./build   <span class="hljs-comment"># Diretório customizado</span>
+
+<span class="hljs-comment"># Limpeza</span>
+bun run clean                  <span class="hljs-comment"># Limpar dist/</span>
+<span class="hljs-built_in">rm</span> -rf node_modules &amp;amp;&amp;amp; bun install  <span class="hljs-comment"># Reinstalar dependências</span>
+</code></pre>
+<h2>🐳 Deploy com Docker</h2>
+<h3>Dockerfile</h3>
+<pre><code class="hljs language-dockerfile"><span class="hljs-comment"># Dockerfile</span>
+<span class="hljs-keyword">FROM</span> oven/bun:<span class="hljs-number">1</span> as builder
+
+<span class="hljs-keyword">WORKDIR</span><span class="language-bash"> /app</span>
+<span class="hljs-keyword">COPY</span><span class="language-bash"> package.json bun.lock ./</span>
+<span class="hljs-keyword">RUN</span><span class="language-bash"> bun install</span>
+
+<span class="hljs-keyword">COPY</span><span class="language-bash"> . .</span>
+<span class="hljs-keyword">RUN</span><span class="language-bash"> bun run build</span>
+
+<span class="hljs-keyword">FROM</span> nginx:alpine
+<span class="hljs-keyword">COPY</span><span class="language-bash"> --from=builder /app/dist /usr/share/nginx/html</span>
+<span class="hljs-keyword">COPY</span><span class="language-bash"> nginx.conf /etc/nginx/nginx.conf</span>
+
+<span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">80</span>
+<span class="hljs-keyword">CMD</span><span class="language-bash"> [&amp;quot;nginx&amp;quot;, &amp;quot;-g&amp;quot;, &amp;quot;daemon off;&amp;quot;]</span>
+</code></pre>
+<h3>Docker Compose</h3>
+<pre><code class="hljs language-yaml"><span class="hljs-comment"># docker-compose.yml</span>
+<span class="hljs-attr">version:</span> <span class="hljs-string">&amp;#39;3.8&amp;#39;</span>
+
+<span class="hljs-attr">services:</span>
+  <span class="hljs-attr">knowledge:</span>
+    <span class="hljs-attr">build:</span> <span class="hljs-string">.</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;quot;80:80&amp;quot;</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">./docs:/app/docs:ro</span>
+    <span class="hljs-attr">environment:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">NODE_ENV=production</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">unless-stopped</span>
+
+  <span class="hljs-comment"># Desenvolvimento</span>
+  <span class="hljs-attr">knowledge-dev:</span>
+    <span class="hljs-attr">build:</span>
+      <span class="hljs-attr">context:</span> <span class="hljs-string">.</span>
+      <span class="hljs-attr">target:</span> <span class="hljs-string">builder</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;quot;3000:3000&amp;quot;</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">.:/app</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">/app/node_modules</span>
+    <span class="hljs-attr">command:</span> <span class="hljs-string">bun</span> <span class="hljs-string">run</span> <span class="hljs-string">dev</span>
+    <span class="hljs-attr">environment:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">NODE_ENV=development</span>
+</code></pre>
+<h3>Comandos Docker</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Build da imagem</span>
+docker build -t knowledge .
+
+<span class="hljs-comment"># Executar container</span>
+docker run -p 80:80 knowledge
+
+<span class="hljs-comment"># Com Docker Compose</span>
+docker-compose up -d
+
+<span class="hljs-comment"># Desenvolvimento</span>
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+</code></pre>
+<h2>🌐 Deploy em Produção</h2>
+<h3>GitHub Pages</h3>
+<pre><code class="hljs language-yaml"><span class="hljs-comment"># .github/workflows/deploy.yml</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">to</span> <span class="hljs-string">GitHub</span> <span class="hljs-string">Pages</span>
+
+<span class="hljs-attr">on:</span>
+  <span class="hljs-attr">push:</span>
+    <span class="hljs-attr">branches:</span> [ <span class="hljs-string">main</span> ]
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">deploy:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+    <span class="hljs-attr">steps:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v3</span>
+    
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Bun</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">oven-sh/setup-bun@v1</span>
+      <span class="hljs-attr">with:</span>
+        <span class="hljs-attr">bun-version:</span> <span class="hljs-string">latest</span>
+    
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">dependencies</span>
+      <span class="hljs-attr">run:</span> <span class="hljs-string">bun</span> <span class="hljs-string">install</span>
+    
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span>
+      <span class="hljs-attr">run:</span> <span class="hljs-string">bun</span> <span class="hljs-string">run</span> <span class="hljs-string">build</span>
+    
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">to</span> <span class="hljs-string">GitHub</span> <span class="hljs-string">Pages</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">peaceiris/actions-gh-pages@v3</span>
+      <span class="hljs-attr">with:</span>
+        <span class="hljs-attr">github_token:</span> <span class="hljs-string">${{</span> <span class="hljs-string">secrets.GITHUB_TOKEN</span> <span class="hljs-string">}}</span>
+        <span class="hljs-attr">publish_dir:</span> <span class="hljs-string">./dist</span>
+</code></pre>
+<h3>Netlify</h3>
+<pre><code class="hljs language-toml"><span class="hljs-comment"># netlify.toml</span>
+<span class="hljs-section">[build]</span>
+  <span class="hljs-attr">command</span> = &amp;quot<span class="hljs-comment">;bun install &amp;amp;&amp;amp; bun run build&amp;quot;</span>
+  <span class="hljs-attr">publish</span> = &amp;quot<span class="hljs-comment">;dist&amp;quot;</span>
+
+<span class="hljs-section">[build.environment]</span>
+  <span class="hljs-attr">NODE_VERSION</span> = &amp;quot<span class="hljs-comment">;18&amp;quot;</span>
+
+<span class="hljs-section">[[redirects]]</span>
+  <span class="hljs-attr">from</span> = &amp;quot<span class="hljs-comment">;/*&amp;quot;</span>
+  <span class="hljs-attr">to</span> = &amp;quot<span class="hljs-comment">;/index.html&amp;quot;</span>
+  <span class="hljs-attr">status</span> = <span class="hljs-number">200</span>
+</code></pre>
+<h3>Vercel</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  &amp;quot;version&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+  &amp;quot;builds&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">{</span>
+      &amp;quot;src&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;package.json&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;use&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;@vercel/static-build&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;config&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        &amp;quot;distDir&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;dist&amp;quot;
+      <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  &amp;quot;routes&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">{</span>
+      &amp;quot;handle&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;filesystem&amp;quot;
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">{</span>
+      &amp;quot;src&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;/(.*)&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;dest&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;/index.html&amp;quot;
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h2>🔍 Troubleshooting</h2>
+<h3>Problemas Comuns</h3>
+<h4>1. Erro de Instalação</h4>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Limpar cache</span>
+bun pm cache <span class="hljs-built_in">rm</span>
+<span class="hljs-built_in">rm</span> -rf node_modules bun.lock
+bun install
+
+<span class="hljs-comment"># Verificar versão do Bun</span>
+bun --version
+
+<span class="hljs-comment"># Atualizar Bun</span>
+curl -fsSL https://bun.sh/install | bash
+</code></pre>
+<h4>2. Build Falha</h4>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Verificar configuração</span>
+bun run src/cli.ts build --verbose
+
+<span class="hljs-comment"># Verificar arquivos Markdown</span>
+find docs -name &amp;quot;*.md&amp;quot; -<span class="hljs-built_in">exec</span> <span class="hljs-built_in">echo</span> &amp;quot;Checking: {}&amp;quot; \; -<span class="hljs-built_in">exec</span> <span class="hljs-built_in">head</span> -1 {} \;
+
+<span class="hljs-comment"># Verificar sintaxe do config</span>
+bun run -e &amp;quot;import(&amp;#39;./docforge.config.ts&amp;#39;)&amp;quot;
+</code></pre>
+<h4>3. Servidor Não Inicia</h4>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Verificar porta em uso</span>
+lsof -i :3000
+
+<span class="hljs-comment"># Usar porta diferente</span>
+bun run dev --port 3001
+
+<span class="hljs-comment"># Verificar permissões</span>
+<span class="hljs-built_in">ls</span> -la src/
+</code></pre>
+<h4>4. Assets Não Carregam</h4>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Verificar estrutura de temas</span>
+<span class="hljs-built_in">ls</span> -la themes/default/assets/
+
+<span class="hljs-comment"># Verificar caminhos no HTML</span>
+grep -r &amp;quot;assets/&amp;quot; dist/
+
+<span class="hljs-comment"># Verificar servidor estático</span>
+curl -I http://localhost:3000/assets/css/style.css
+</code></pre>
+<h3>Logs de Debug</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Habilitar logs detalhados</span>
+DEBUG=knowledge:* bun run dev
+
+<span class="hljs-comment"># Logs específicos</span>
+DEBUG=knowledge:generator bun run build
+DEBUG=knowledge:search bun run build
+DEBUG=knowledge:markdown bun run build
+</code></pre>
+<h3>Verificação de Saúde</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Script de verificação</span>
+<span class="hljs-comment">#!/bin/bash</span>
+<span class="hljs-built_in">echo</span> &amp;quot;🔍 Verificando instalação <span class="hljs-keyword">do</span> Knowledge...&amp;quot;
+
+<span class="hljs-comment"># Verificar Bun</span>
+<span class="hljs-keyword">if</span> <span class="hljs-built_in">command</span> -v bun &amp;amp;&amp;gt; /dev/null; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> &amp;quot;✅ Bun: $(bun --version)&amp;quot;
+<span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> &amp;quot;❌ Bun não encontrado&amp;quot;
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># Verificar dependências</span>
+<span class="hljs-keyword">if</span> [ -f &amp;quot;package.json&amp;quot; ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> &amp;quot;✅ package.json encontrado&amp;quot;
+    bun run --dry-run build &amp;amp;&amp;amp; <span class="hljs-built_in">echo</span> &amp;quot;✅ Scripts funcionando&amp;quot;
+<span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> &amp;quot;❌ package.json não encontrado&amp;quot;
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># Verificar configuração</span>
+<span class="hljs-keyword">if</span> [ -f &amp;quot;docforge.config.ts&amp;quot; ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> &amp;quot;✅ Configuração encontrada&amp;quot;
+<span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> &amp;quot;⚠️  Configuração não encontrada - execute &amp;#39;bun run init&amp;#39;&amp;quot;
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># Verificar documentação</span>
+<span class="hljs-keyword">if</span> [ -d &amp;quot;docs&amp;quot; ] &amp;amp;&amp;amp; [ -f &amp;quot;docs/README.md&amp;quot; ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> &amp;quot;✅ Documentação encontrada&amp;quot;
+    <span class="hljs-built_in">echo</span> &amp;quot;📄 Arquivos: $(find docs -name &amp;quot;*.md&amp;quot; | <span class="hljs-built_in">wc</span> -l) arquivos Markdown&amp;quot;
+<span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> &amp;quot;❌ Pasta docs/ ou README.md não encontrado&amp;quot;
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-built_in">echo</span> &amp;quot;🎉 Verificação concluída!&amp;quot;
+</code></pre>
+<h2>📚 Próximos Passos</h2>
+<p>Após a instalação e configuração:</p>
+<ol>
+<li><strong>Criar Conteúdo</strong>: Adicione seus arquivos Markdown na pasta <code>docs/</code></li>
+<li><strong>Personalizar Tema</strong>: Customize cores, fontes e layout</li>
+<li><strong>Configurar Deploy</strong>: Configure CI/CD para deploy automático</li>
+<li><strong>Otimizar SEO</strong>: Configure metadados e sitemap</li>
+<li><strong>Monitorar Performance</strong>: Configure analytics e métricas</li>
+</ol>
+<h2>🆘 Suporte</h2>
+<ul>
+<li>📖 <strong>Documentação</strong>: <a href="https://knowledge.dev">knowledge.dev</a></li>
+<li>🐛 <strong>Issues</strong>: <a href="https://github.com/riligar/knowledge/issues">GitHub Issues</a></li>
+<li>💬 <strong>Discussões</strong>: <a href="https://github.com/riligar/knowledge/discussions">GitHub Discussions</a></li>
+<li>📧 <strong>Email</strong>: <a href="mailto:suporte@riligar.click">suporte@riligar.click</a></li>
+</ul>
+<hr>
+<p><strong>Pronto para começar!</strong> 🚀 Sua documentação moderna está a apenas alguns comandos de distância. </p>
+
+                </article>
+            </div>
+        </main>
+
+        <!-- Right Sidebar - Menu do Artigo -->
+        <aside class="article-sidebar">
+            <div class="content-menu">
+                <div class="content-menu-dropdown" id="content-menu-dropdown">
+                    <!-- Menu items will be dynamically generated based on page headings -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/page-highlighter.js"></script>
+</body>
+
+</html>

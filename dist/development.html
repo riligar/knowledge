@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ Guia de Desenvolvimento - Knowledge</title>
+    <meta name="description" content="A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.">
+    <meta name="author" content="Ciro Cesar Maciel">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/">
+    <meta property="og:title" content="🛠️ Guia de Desenvolvimento - Knowledge">
+    <meta property="og:description" content="A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="/">
+    <meta property="twitter:title" content="🛠️ Guia de Desenvolvimento - Knowledge">
+    <meta property="twitter:description" content="A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/highlight.css">
+    <link rel="stylesheet" href="/assets/css/search.css">
+    <link rel="stylesheet" href="/assets/css/page-highlighter.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo/Title -->
+            <div class="header-left">
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <h1 class="site-title">
+                    <a href="/">Knowledge</a>
+                </h1>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="header-center">
+                <div class="search-container search-enhanced">
+                    <input type="text" class="search-input" id="global-search"
+                        placeholder="Buscar na documentação... (Ctrl+K)" autocomplete="off">
+                    <button class="search-button" type="button" aria-label="Buscar">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side (for future elements like theme toggle, etc.) -->
+            <div class="header-right">
+                <button class="theme-toggle-header" aria-label="Toggle dark mode">
+                    <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <path
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                    <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout Container with Flexbox -->
+    <div class="main-container">
+        <!-- Left Sidebar - Menu Principal -->
+        <aside class="main-sidebar">
+            <!-- Mobile Header Section -->
+            <div class="mobile-sidebar-header">
+                <div class="mobile-logo">
+                    <!-- <img src="/assets/images/k2-logo-ico.png" alt="K2 Logo" class="mobile-logo-img"> -->
+                    <h2 class="mobile-title">Knowledge</h2>
+                </div>
+                <!-- Mobile Close Button -->
+                <button class="mobile-menu-close" aria-label="Close navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="navigation" role="navigation" aria-label="Documentation navigation">
+                <ul><li><a href="/architecture.html">🏗️ Arquitetura do Sistema Knowledge</a></li><li><a href="/reference.html">📖 Referência da API</a></li><li><a href="/search.html">🔍 Sistema de Busca Full-Text - Implementação Detalhada</a></li><li><a href="/installation.html">🚀 Guia de Instalação e Configuração</a></li><li><a href="/development.html">🛠️ Guia de Desenvolvimento</a></li><li><a href="/index.html">Índice da Documentação - Knowledge</a></li><li><a href="/readme.html">Knowledge - Sistema de Documentação Moderno</a></li></ul>
+            </nav>
+        </aside>
+
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay"></div>
+
+        <!-- Center Content -->
+        <main class="main-content" id="main-content" role="main">
+            <div class="content-wrapper">
+                <article>
+                    <h1>🛠️ Guia de Desenvolvimento</h1>
+<h2>📋 Visão Geral</h2>
+<p>Este guia fornece informações detalhadas para desenvolvedores que desejam contribuir com o projeto Knowledge, incluindo configuração do ambiente de desenvolvimento, padrões de código, arquitetura e processo de contribuição.</p>
+<h2>🚀 Configuração do Ambiente</h2>
+<h3>Pré-requisitos para Desenvolvimento</h3>
+<ul>
+<li><strong>Bun.js</strong>: v1.0.0+ (runtime principal)</li>
+<li><strong>Node.js</strong>: v18.0.0+ (compatibilidade)</li>
+<li><strong>Git</strong>: Para controle de versão</li>
+<li><strong>VS Code</strong>: Editor recomendado</li>
+<li><strong>TypeScript</strong>: Conhecimento básico necessário</li>
+</ul>
+<h3>Configuração Inicial</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 1. Fork e clone o repositório</span>
+git <span class="hljs-built_in">clone</span> https://github.com/seu-usuario/knowledge.git
+<span class="hljs-built_in">cd</span> knowledge
+
+<span class="hljs-comment"># 2. Instalar dependências</span>
+bun install
+
+<span class="hljs-comment"># 3. Configurar hooks do Git</span>
+bun run prepare
+
+<span class="hljs-comment"># 4. Executar testes</span>
+bun <span class="hljs-built_in">test</span>
+
+<span class="hljs-comment"># 5. Iniciar desenvolvimento</span>
+bun run dev
+</code></pre>
+<h3>Extensões Recomendadas para VS Code</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  &amp;quot;recommendations&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    &amp;quot;ms-vscode.vscode-typescript-next&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;bradlc.vscode-tailwindcss&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;esbenp.prettier-vscode&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;dbaeumer.vscode-eslint&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;ms-vscode.vscode-json&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;redhat.vscode-yaml&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;yzhang.markdown-all-in-one&amp;quot;
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3>Configuração do VS Code</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  &amp;quot;typescript.preferences.importModuleSpecifier&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;relative&amp;quot;<span class="hljs-punctuation">,</span>
+  &amp;quot;typescript.suggest.autoImports&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+  &amp;quot;editor.formatOnSave&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+  &amp;quot;editor.codeActionsOnSave&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    &amp;quot;source.fixAll.eslint&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+    &amp;quot;source.organizeImports&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  &amp;quot;files.associations&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    &amp;quot;*.md&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;markdown&amp;quot;
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h2>🏗️ Estrutura do Projeto</h2>
+<h3>Organização de Código</h3>
+<pre><code>knowledge/
+├── src/                        # Código fonte principal
+│   ├── cli.ts                 # Interface CLI
+│   ├── generator.ts           # Gerador de documentação
+│   ├── search.ts              # Sistema de busca
+│   ├── markdown.ts            # Processador Markdown
+│   ├── config.ts              # Configurações e tipos
+│   └── dev-server.ts          # Servidor de desenvolvimento
+├── themes/                     # Sistema de temas
+│   └── default/               # Tema padrão
+│       ├── layouts/           # Templates HTML
+│       └── assets/            # CSS, JS, imagens
+├── tests/                      # Testes automatizados
+│   ├── unit/                  # Testes unitários
+│   ├── integration/           # Testes de integração
+│   └── e2e/                   # Testes end-to-end
+├── docs/                       # Documentação do projeto
+├── examples/                   # Exemplos de uso
+└── scripts/                    # Scripts de build e deploy
+</code></pre>
+<h3>Convenções de Nomenclatura</h3>
+<ul>
+<li><strong>Arquivos</strong>: kebab-case (<code>search-index.ts</code>)</li>
+<li><strong>Classes</strong>: PascalCase (<code>DocumentationGenerator</code>)</li>
+<li><strong>Funções</strong>: camelCase (<code>generateNavigation</code>)</li>
+<li><strong>Constantes</strong>: UPPER_SNAKE_CASE (<code>DEFAULT_CONFIG</code>)</li>
+<li><strong>Interfaces</strong>: PascalCase com prefixo I (<code>ISearchResult</code>)</li>
+<li><strong>Types</strong>: PascalCase (<code>DocForgeConfig</code>)</li>
+</ul>
+<h2>📝 Padrões de Código</h2>
+<h3>TypeScript Guidelines</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// ✅ Bom: Tipagem explícita e interfaces bem definidas</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">SearchDocument</span> {
+    <span class="hljs-keyword">readonly</span> <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-keyword">readonly</span> <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-keyword">readonly</span> <span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-keyword">readonly</span> <span class="hljs-attr">excerpt</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-keyword">readonly</span> <span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SearchIndexGenerator</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">documents</span>: <span class="hljs-title class_">SearchDocument</span>[] = []
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">addPage</span>(<span class="hljs-attr">page</span>: <span class="hljs-title class_">DocumentPage</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-comment">// Implementação...</span>
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> <span class="hljs-title function_">buildIndex</span>(): <span class="hljs-title class_">Promise</span>&amp;lt;lunr.<span class="hljs-property">Index</span>&amp;gt; {
+        <span class="hljs-comment">// Implementação assíncrona...</span>
+    }
+}
+
+<span class="hljs-comment">// ❌ Evitar: Tipos any e mutabilidade desnecessária</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BadExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-attr">data</span>: <span class="hljs-built_in">any</span>[] = []
+    
+    <span class="hljs-title function_">addItem</span>(<span class="hljs-params"><span class="hljs-attr">item</span>: <span class="hljs-built_in">any</span></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-title function_">push</span>(item)
+    }
+}
+</code></pre>
+<h3>Padrões de Async/Await</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// ✅ Bom: Tratamento de erros e async/await</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">processMarkdownFiles</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-title class_">DocumentPage</span>[]&amp;gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> files = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">findMarkdownFiles</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">inputDir</span>)
+        <span class="hljs-keyword">const</span> pages = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(
+            files.<span class="hljs-title function_">map</span>(file =&amp;gt; <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">processFile</span>(file))
+        )
+        <span class="hljs-keyword">return</span> pages.<span class="hljs-title function_">filter</span>(page =&amp;gt; page !== <span class="hljs-literal">null</span>)
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(&amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Erro</span> ao processar <span class="hljs-attr">arquivos</span>:&amp;#<span class="hljs-number">39</span>;, error)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`Falha no processamento: <span class="hljs-subst">${error.message}</span>`</span>)
+    }
+}
+
+<span class="hljs-comment">// ❌ Evitar: Promises aninhadas e falta de tratamento de erro</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">badAsyncExample</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>((resolve, reject) =&amp;gt; {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">findMarkdownFiles</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">inputDir</span>).<span class="hljs-title function_">then</span>(files =&amp;gt; {
+            files.<span class="hljs-title function_">forEach</span>(file =&amp;gt; {
+                <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">processFile</span>(file).<span class="hljs-title function_">then</span>(page =&amp;gt; {
+                    <span class="hljs-comment">// Lógica aninhada...</span>
+                })
+            })
+        })
+    })
+}
+</code></pre>
+<h3>Padrões de Error Handling</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// ✅ Bom: Erros específicos e informativos</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">DocumentationError</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Error</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">
+        <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">code</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">context</span>?: <span class="hljs-title class_">Record</span>&amp;lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">unknown</span>&amp;gt;
+    </span>) {
+        <span class="hljs-variable language_">super</span>(message)
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">DocumentationError</span>&amp;#<span class="hljs-number">39</span>;
+    }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">validateConfig</span>(<span class="hljs-params"><span class="hljs-attr">config</span>: <span class="hljs-title class_">DocForgeConfig</span></span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">if</span> (!config.<span class="hljs-property">inputDir</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DocumentationError</span>(
+            &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Input</span> directory is required&amp;#<span class="hljs-number">39</span>;,
+            &amp;#<span class="hljs-number">39</span>;<span class="hljs-variable constant_">MISSING_INPUT_DIR</span>&amp;#<span class="hljs-number">39</span>;,
+            { config }
+        )
+    }
+}
+
+<span class="hljs-comment">// ❌ Evitar: Erros genéricos sem contexto</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">badErrorHandling</span>(<span class="hljs-params"><span class="hljs-attr">config</span>: <span class="hljs-built_in">any</span></span>) {
+    <span class="hljs-keyword">if</span> (!config.<span class="hljs-property">inputDir</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(&amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Invalid</span> config&amp;#<span class="hljs-number">39</span>;)
+    }
+}
+</code></pre>
+<h2>🧪 Testes</h2>
+<h3>Estrutura de Testes</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// tests/unit/generator.test.ts</span>
+<span class="hljs-keyword">import</span> { describe, it, expect, beforeEach, afterEach } <span class="hljs-keyword">from</span> &amp;#<span class="hljs-number">39</span>;<span class="hljs-attr">bun</span>:test&amp;#<span class="hljs-number">39</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">DocumentationGenerator</span> } <span class="hljs-keyword">from</span> &amp;#<span class="hljs-number">39</span>;../../src/generator&amp;#<span class="hljs-number">39</span>;
+<span class="hljs-keyword">import</span> { mockConfig, mockFileSystem } <span class="hljs-keyword">from</span> &amp;#<span class="hljs-number">39</span>;../helpers/mocks&amp;#<span class="hljs-number">39</span>;
+
+<span class="hljs-title function_">describe</span>(&amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">DocumentationGenerator</span>&amp;#<span class="hljs-number">39</span>;, () =&amp;gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-attr">generator</span>: <span class="hljs-title class_">DocumentationGenerator</span>
+    
+    <span class="hljs-title function_">beforeEach</span>(() =&amp;gt; {
+        generator = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DocumentationGenerator</span>(mockConfig)
+    })
+    
+    <span class="hljs-title function_">afterEach</span>(() =&amp;gt; {
+        <span class="hljs-comment">// Cleanup</span>
+    })
+    
+    <span class="hljs-title function_">describe</span>(&amp;#<span class="hljs-number">39</span>;processMarkdownFiles&amp;#<span class="hljs-number">39</span>;, () =&amp;gt; {
+        <span class="hljs-title function_">it</span>(&amp;#<span class="hljs-number">39</span>;should process valid markdown files&amp;#<span class="hljs-number">39</span>;, <span class="hljs-title function_">async</span> () =&amp;gt; {
+            <span class="hljs-comment">// Arrange</span>
+            <span class="hljs-keyword">const</span> mockFiles = [&amp;#<span class="hljs-number">39</span>;test.<span class="hljs-property">md</span>&amp;#<span class="hljs-number">39</span>;, &amp;#<span class="hljs-number">39</span>;example.<span class="hljs-property">md</span>&amp;#<span class="hljs-number">39</span>;]
+            mockFileSystem.<span class="hljs-title function_">setup</span>(mockFiles)
+            
+            <span class="hljs-comment">// Act</span>
+            <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> generator.<span class="hljs-title function_">processMarkdownFiles</span>()
+            
+            <span class="hljs-comment">// Assert</span>
+            <span class="hljs-title function_">expect</span>(result).<span class="hljs-title function_">toHaveLength</span>(<span class="hljs-number">2</span>)
+            <span class="hljs-title function_">expect</span>(result[<span class="hljs-number">0</span>]).<span class="hljs-title function_">toMatchObject</span>({
+                <span class="hljs-attr">title</span>: expect.<span class="hljs-title function_">any</span>(<span class="hljs-title class_">String</span>),
+                <span class="hljs-attr">content</span>: expect.<span class="hljs-title function_">any</span>(<span class="hljs-title class_">String</span>),
+                <span class="hljs-attr">url</span>: expect.<span class="hljs-title function_">any</span>(<span class="hljs-title class_">String</span>)
+            })
+        })
+        
+        <span class="hljs-title function_">it</span>(&amp;#<span class="hljs-number">39</span>;should handle invalid markdown gracefully&amp;#<span class="hljs-number">39</span>;, <span class="hljs-title function_">async</span> () =&amp;gt; {
+            <span class="hljs-comment">// Arrange</span>
+            <span class="hljs-keyword">const</span> invalidMarkdown = &amp;#<span class="hljs-number">39</span>;# <span class="hljs-title class_">Invalid</span>\n<span class="hljs-string">``</span><span class="hljs-string">`\nunclosed code block&amp;#39;
+            mockFileSystem.setupFile(&amp;#39;invalid.md&amp;#39;, invalidMarkdown)
+            
+            // Act &amp;amp; Assert
+            await expect(generator.processMarkdownFiles())
+                .rejects.toThrow(&amp;#39;Invalid markdown syntax&amp;#39;)
+        })
+    })
+})
+</span></code></pre>
+<h3>Comandos de Teste</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Executar todos os testes</span>
+bun <span class="hljs-built_in">test</span>
+
+<span class="hljs-comment"># Testes com watch mode</span>
+bun <span class="hljs-built_in">test</span> --watch
+
+<span class="hljs-comment"># Testes específicos</span>
+bun <span class="hljs-built_in">test</span> --grep &amp;quot;SearchIndexGenerator&amp;quot;
+
+<span class="hljs-comment"># Testes com coverage</span>
+bun <span class="hljs-built_in">test</span> --coverage
+
+<span class="hljs-comment"># Testes de integração</span>
+bun <span class="hljs-built_in">test</span> tests/integration/
+
+<span class="hljs-comment"># Testes E2E</span>
+bun <span class="hljs-built_in">test</span> tests/e2e/
+</code></pre>
+<h3>Mocks e Helpers</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// tests/helpers/mocks.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">mockConfig</span>: <span class="hljs-title class_">DocForgeConfig</span> = {
+    <span class="hljs-attr">inputDir</span>: &amp;#<span class="hljs-number">39</span>;./test-docs&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">outputDir</span>: &amp;#<span class="hljs-number">39</span>;./test-dist&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">site</span>: {
+        <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Test</span> <span class="hljs-title class_">Documentation</span>&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">description</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Test</span> description&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">baseUrl</span>: &amp;#<span class="hljs-number">39</span>;/&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">author</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Test</span> <span class="hljs-title class_">Author</span>&amp;#<span class="hljs-number">39</span>;
+    },
+    <span class="hljs-comment">// ... outras configurações</span>
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MockFileSystem</span> {
+    <span class="hljs-keyword">private</span> files = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&amp;lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&amp;gt;()
+    
+    <span class="hljs-title function_">setup</span>(<span class="hljs-attr">filePaths</span>: <span class="hljs-built_in">string</span>[]): <span class="hljs-built_in">void</span> {
+        filePaths.<span class="hljs-title function_">forEach</span>(path =&amp;gt; {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">files</span>.<span class="hljs-title function_">set</span>(path, <span class="hljs-string">`# <span class="hljs-subst">${path}</span>\n\nTest content`</span>)
+        })
+    }
+    
+    <span class="hljs-title function_">setupFile</span>(<span class="hljs-attr">path</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">files</span>.<span class="hljs-title function_">set</span>(path, content)
+    }
+    
+    <span class="hljs-title function_">readFile</span>(<span class="hljs-attr">path</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">files</span>.<span class="hljs-title function_">get</span>(path) || &amp;#<span class="hljs-number">39</span>;&amp;#<span class="hljs-number">39</span>;
+    }
+}
+</code></pre>
+<h2>🔧 Scripts de Desenvolvimento</h2>
+<h3>Package.json Scripts</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  &amp;quot;scripts&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    &amp;quot;dev&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun run src/cli.ts dev&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;build&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun run src/cli.ts build&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;test&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun test&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;test<span class="hljs-punctuation">:</span>watch&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun test --watch&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;test<span class="hljs-punctuation">:</span>coverage&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;bun test --coverage&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;lint&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;eslint src<span class="hljs-comment">/**/</span>*.ts&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;lint<span class="hljs-punctuation">:</span>fix&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;eslint src<span class="hljs-comment">/**/</span>*.ts --fix&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;type-check&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;tsc --noEmit&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;format&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;prettier --write src<span class="hljs-comment">/**/</span>*.ts&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;prepare&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;husky install&amp;quot;<span class="hljs-punctuation">,</span>
+    &amp;quot;release&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;semantic-release&amp;quot;
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3>Husky Hooks</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># .husky/pre-commit</span>
+<span class="hljs-comment">#!/usr/bin/env sh</span>
+. &amp;quot;$(<span class="hljs-built_in">dirname</span> -- &amp;quot;<span class="hljs-variable">$0</span>&amp;quot;)/_/husky.sh&amp;quot;
+
+bun run lint
+bun run type-check
+bun <span class="hljs-built_in">test</span> --silent
+</code></pre>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># .husky/commit-msg</span>
+<span class="hljs-comment">#!/usr/bin/env sh</span>
+. &amp;quot;$(<span class="hljs-built_in">dirname</span> -- &amp;quot;<span class="hljs-variable">$0</span>&amp;quot;)/_/husky.sh&amp;quot;
+
+bunx commitlint --edit <span class="hljs-variable">$1</span>
+</code></pre>
+<h2>📦 Build e Release</h2>
+<h3>Processo de Build</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// scripts/build.ts</span>
+<span class="hljs-keyword">import</span> { build } <span class="hljs-keyword">from</span> &amp;#<span class="hljs-number">39</span>;bun&amp;#<span class="hljs-number">39</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">buildProject</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(&amp;#<span class="hljs-number">39</span>;🏗️  <span class="hljs-title class_">Building</span> <span class="hljs-title class_">Knowledge</span>...&amp;#<span class="hljs-number">39</span>;)
+    
+    <span class="hljs-comment">// Build CLI</span>
+    <span class="hljs-keyword">await</span> <span class="hljs-title function_">build</span>({
+        <span class="hljs-attr">entrypoints</span>: [&amp;#<span class="hljs-number">39</span>;./src/cli.<span class="hljs-property">ts</span>&amp;#<span class="hljs-number">39</span>;],
+        <span class="hljs-attr">outdir</span>: &amp;#<span class="hljs-number">39</span>;./dist&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">target</span>: &amp;#<span class="hljs-number">39</span>;bun&amp;#<span class="hljs-number">39</span>;,
+        <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+    })
+    
+    <span class="hljs-comment">// Build themes</span>
+    <span class="hljs-keyword">await</span> <span class="hljs-title function_">buildThemes</span>()
+    
+    <span class="hljs-comment">// Copy assets</span>
+    <span class="hljs-keyword">await</span> <span class="hljs-title function_">copyAssets</span>()
+    
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(&amp;#<span class="hljs-number">39</span>;✅ <span class="hljs-title class_">Build</span> completed!&amp;#<span class="hljs-number">39</span>;)
+}
+
+<span class="hljs-title function_">buildProject</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-variable language_">console</span>.<span class="hljs-property">error</span>)
+</code></pre>
+<h3>Versionamento Semântico</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  &amp;quot;release&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    &amp;quot;branches&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&amp;quot;main&amp;quot;<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    &amp;quot;plugins&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      &amp;quot;@semantic-release/commit-analyzer&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;@semantic-release/release-notes-generator&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;@semantic-release/changelog&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;@semantic-release/npm&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;@semantic-release/github&amp;quot;
+    <span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3>Conventional Commits</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Tipos de commit</span>
+feat: nova funcionalidade
+fix: correção de bug
+docs: documentação
+style: formatação
+refactor: refatoração
+<span class="hljs-built_in">test</span>: testes
+chore: tarefas de manutenção
+
+<span class="hljs-comment"># Exemplos</span>
+feat(search): add fuzzy search support
+fix(generator): resolve markdown parsing issue
+docs(api): update configuration examples
+<span class="hljs-built_in">test</span>(search): add unit tests <span class="hljs-keyword">for</span> indexing
+</code></pre>
+<h2>🤝 Processo de Contribuição</h2>
+<h3>Workflow de Desenvolvimento</h3>
+<ol>
+<li><strong>Fork</strong> do repositório</li>
+<li><strong>Clone</strong> do seu fork</li>
+<li><strong>Branch</strong> para sua feature (<code>git checkout -b feature/amazing-feature</code>)</li>
+<li><strong>Commit</strong> das mudanças (<code>git commit -m &#39;feat: add amazing feature&#39;</code>)</li>
+<li><strong>Push</strong> para a branch (<code>git push origin feature/amazing-feature</code>)</li>
+<li><strong>Pull Request</strong> para o repositório principal</li>
+</ol>
+<h3>Template de Pull Request</h3>
+<pre><code class="hljs language-markdown"><span class="hljs-section">## 📝 Descrição</span>
+
+Breve descrição das mudanças implementadas.
+
+<span class="hljs-section">## 🎯 Tipo de Mudança</span>
+
+<span class="hljs-bullet">-</span> [ ] Bug fix (mudança que corrige um problema)
+<span class="hljs-bullet">-</span> [ ] Nova funcionalidade (mudança que adiciona funcionalidade)
+<span class="hljs-bullet">-</span> [ ] Breaking change (mudança que quebra compatibilidade)
+<span class="hljs-bullet">-</span> [ ] Documentação (mudança apenas na documentação)
+
+<span class="hljs-section">## 🧪 Como Testar</span>
+
+<span class="hljs-bullet">1.</span> Passos para reproduzir
+<span class="hljs-bullet">2.</span> Comportamento esperado
+<span class="hljs-bullet">3.</span> Screenshots (se aplicável)
+
+<span class="hljs-section">## ✅ Checklist</span>
+
+<span class="hljs-bullet">-</span> [ ] Código segue os padrões do projeto
+<span class="hljs-bullet">-</span> [ ] Testes foram adicionados/atualizados
+<span class="hljs-bullet">-</span> [ ] Documentação foi atualizada
+<span class="hljs-bullet">-</span> [ ] Commits seguem conventional commits
+<span class="hljs-bullet">-</span> [ ] Build passa sem erros
+<span class="hljs-bullet">-</span> [ ] Testes passam
+
+<span class="hljs-section">## 📸 Screenshots</span>
+
+(Se aplicável)
+
+<span class="hljs-section">## 🔗 Issues Relacionadas</span>
+
+Closes #123
+</code></pre>
+<h3>Code Review Guidelines</h3>
+<h4>Para Autores</h4>
+<ul>
+<li><strong>Commits pequenos</strong>: Mantenha PRs focados e pequenos</li>
+<li><strong>Testes</strong>: Adicione testes para novas funcionalidades</li>
+<li><strong>Documentação</strong>: Atualize documentação relevante</li>
+<li><strong>Descrição clara</strong>: Explique o que e por que das mudanças</li>
+</ul>
+<h4>Para Reviewers</h4>
+<ul>
+<li><strong>Seja construtivo</strong>: Feedback específico e útil</li>
+<li><strong>Teste localmente</strong>: Verifique se funciona como esperado</li>
+<li><strong>Padrões</strong>: Verifique aderência aos padrões do projeto</li>
+<li><strong>Performance</strong>: Considere impacto na performance</li>
+</ul>
+<h2>🐛 Debug e Troubleshooting</h2>
+<h3>Logs de Debug</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// src/utils/logger.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Logger</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-attr">instance</span>: <span class="hljs-title class_">Logger</span>
+    <span class="hljs-keyword">private</span> debugEnabled = process.<span class="hljs-property">env</span>.<span class="hljs-property">DEBUG</span> === &amp;#<span class="hljs-number">39</span>;<span class="hljs-literal">true</span>&amp;#<span class="hljs-number">39</span>;
+    
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">getInstance</span>(): <span class="hljs-title class_">Logger</span> {
+        <span class="hljs-keyword">if</span> (!<span class="hljs-title class_">Logger</span>.<span class="hljs-property">instance</span>) {
+            <span class="hljs-title class_">Logger</span>.<span class="hljs-property">instance</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Logger</span>()
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Logger</span>.<span class="hljs-property">instance</span>
+    }
+    
+    <span class="hljs-title function_">debug</span>(<span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">context</span>?: <span class="hljs-title class_">Record</span>&amp;lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">unknown</span>&amp;gt;): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">debugEnabled</span>) {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`🐛 [DEBUG] <span class="hljs-subst">${message}</span>`</span>, context || &amp;#<span class="hljs-number">39</span>;&amp;#<span class="hljs-number">39</span>;)
+        }
+    }
+    
+    <span class="hljs-title function_">info</span>(<span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`ℹ️  [INFO] <span class="hljs-subst">${message}</span>`</span>)
+    }
+    
+    <span class="hljs-title function_">error</span>(<span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">error</span>?: <span class="hljs-title class_">Error</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">`❌ [ERROR] <span class="hljs-subst">${message}</span>`</span>, error || &amp;#<span class="hljs-number">39</span>;&amp;#<span class="hljs-number">39</span>;)
+    }
+}
+</code></pre>
+<h3>Debugging no VS Code</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  &amp;quot;version&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;<span class="hljs-number">0.2</span><span class="hljs-number">.0</span>&amp;quot;<span class="hljs-punctuation">,</span>
+  &amp;quot;configurations&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">{</span>
+      &amp;quot;name&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;Debug CLI&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;type&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;node&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;request&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;launch&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;program&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;$<span class="hljs-punctuation">{</span>workspaceFolder<span class="hljs-punctuation">}</span>/src/cli.ts&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;args&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&amp;quot;build&amp;quot;<span class="hljs-punctuation">,</span> &amp;quot;--verbose&amp;quot;<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      &amp;quot;env&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        &amp;quot;DEBUG&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;<span class="hljs-literal"><span class="hljs-keyword">true</span></span>&amp;quot;
+      <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+      &amp;quot;console&amp;quot;<span class="hljs-punctuation">:</span> &amp;quot;integratedTerminal&amp;quot;<span class="hljs-punctuation">,</span>
+      &amp;quot;skipFiles&amp;quot;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&amp;quot;&amp;lt;node_internals&amp;gt;<span class="hljs-comment">/**&amp;quot;]
+    },
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;Debug Tests&amp;quot;,
+      &amp;quot;type&amp;quot;: &amp;quot;node&amp;quot;,
+      &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,
+      &amp;quot;program&amp;quot;: &amp;quot;${workspaceFolder}/node_modules/.bin/bun&amp;quot;,
+      &amp;quot;args&amp;quot;: [&amp;quot;test&amp;quot;, &amp;quot;--inspect&amp;quot;],
+      &amp;quot;console&amp;quot;: &amp;quot;integratedTerminal&amp;quot;
+    }
+  ]
+}
+</span></code></pre>
+<h3>Performance Profiling</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// src/utils/profiler.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Profiler</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> timers = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&amp;lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">number</span>&amp;gt;()
+    
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">start</span>(<span class="hljs-attr">label</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">timers</span>.<span class="hljs-title function_">set</span>(label, performance.<span class="hljs-title function_">now</span>())
+    }
+    
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">end</span>(<span class="hljs-attr">label</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">number</span> {
+        <span class="hljs-keyword">const</span> start = <span class="hljs-variable language_">this</span>.<span class="hljs-property">timers</span>.<span class="hljs-title function_">get</span>(label)
+        <span class="hljs-keyword">if</span> (!start) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`Timer <span class="hljs-subst">${label}</span> not found`</span>)
+        }
+        
+        <span class="hljs-keyword">const</span> duration = performance.<span class="hljs-title function_">now</span>() - start
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`⏱️  <span class="hljs-subst">${label}</span>: <span class="hljs-subst">${duration.toFixed(<span class="hljs-number">2</span>)}</span>ms`</span>)
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">timers</span>.<span class="hljs-title function_">delete</span>(label)
+        
+        <span class="hljs-keyword">return</span> duration
+    }
+}
+
+<span class="hljs-comment">// Uso</span>
+<span class="hljs-title class_">Profiler</span>.<span class="hljs-title function_">start</span>(&amp;#<span class="hljs-number">39</span>;markdown-processing&amp;#<span class="hljs-number">39</span>;)
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">processMarkdownFiles</span>()
+<span class="hljs-title class_">Profiler</span>.<span class="hljs-title function_">end</span>(&amp;#<span class="hljs-number">39</span>;markdown-processing&amp;#<span class="hljs-number">39</span>;)
+</code></pre>
+<h2>📊 Métricas e Monitoramento</h2>
+<h3>Bundle Analysis</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Analisar tamanho do bundle</span>
+bun run build --analyze
+
+<span class="hljs-comment"># Verificar dependências</span>
+bun run deps:check
+
+<span class="hljs-comment"># Audit de segurança</span>
+bun audit
+</code></pre>
+<h3>Performance Benchmarks</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// tests/benchmarks/search.bench.ts</span>
+<span class="hljs-keyword">import</span> { bench, describe } <span class="hljs-keyword">from</span> &amp;#<span class="hljs-number">39</span>;<span class="hljs-attr">bun</span>:test&amp;#<span class="hljs-number">39</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">SearchIndexGenerator</span> } <span class="hljs-keyword">from</span> &amp;#<span class="hljs-number">39</span>;../../src/search&amp;#<span class="hljs-number">39</span>;
+
+<span class="hljs-title function_">describe</span>(&amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Search</span> <span class="hljs-title class_">Performance</span>&amp;#<span class="hljs-number">39</span>;, () =&amp;gt; {
+    <span class="hljs-title function_">bench</span>(&amp;#<span class="hljs-number">39</span>;index <span class="hljs-number">1000</span> documents&amp;#<span class="hljs-number">39</span>;, <span class="hljs-title function_">async</span> () =&amp;gt; {
+        <span class="hljs-keyword">const</span> generator = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SearchIndexGenerator</span>()
+        <span class="hljs-keyword">const</span> documents = <span class="hljs-title function_">generateMockDocuments</span>(<span class="hljs-number">1000</span>)
+        
+        documents.<span class="hljs-title function_">forEach</span>(doc =&amp;gt; generator.<span class="hljs-title function_">addPage</span>(doc))
+        <span class="hljs-keyword">await</span> generator.<span class="hljs-title function_">buildIndex</span>()
+    })
+    
+    <span class="hljs-title function_">bench</span>(&amp;#<span class="hljs-number">39</span>;search <span class="hljs-keyword">in</span> large index&amp;#<span class="hljs-number">39</span>;, <span class="hljs-title function_">async</span> () =&amp;gt; {
+        <span class="hljs-keyword">const</span> index = <span class="hljs-keyword">await</span> <span class="hljs-title function_">createLargeIndex</span>()
+        index.<span class="hljs-title function_">search</span>(&amp;#<span class="hljs-number">39</span>;test query&amp;#<span class="hljs-number">39</span>;)
+    })
+})
+</code></pre>
+<h2>🔒 Segurança</h2>
+<h3>Práticas de Segurança</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// ✅ Bom: Sanitização de entrada</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">sanitizeMarkdown</span>(<span class="hljs-params"><span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">return</span> content
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&amp;lt;script[^&amp;gt;]*&amp;gt;.*?&amp;lt;\/script&amp;gt;/gi</span>, &amp;#<span class="hljs-number">39</span>;&amp;#<span class="hljs-number">39</span>;)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/javascript:/gi</span>, &amp;#<span class="hljs-number">39</span>;&amp;#<span class="hljs-number">39</span>;)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/on\w+\s*=/gi</span>, &amp;#<span class="hljs-number">39</span>;&amp;#<span class="hljs-number">39</span>;)
+}
+
+<span class="hljs-comment">// ✅ Bom: Validação de caminhos</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">validatePath</span>(<span class="hljs-params"><span class="hljs-attr">filePath</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-keyword">const</span> normalizedPath = path.<span class="hljs-title function_">normalize</span>(filePath)
+    <span class="hljs-keyword">return</span> !normalizedPath.<span class="hljs-title function_">includes</span>(&amp;#<span class="hljs-number">39</span>;..&amp;#<span class="hljs-number">39</span>;)
+}
+
+<span class="hljs-comment">// ❌ Evitar: Execução de código não sanitizado</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">dangerousExample</span>(<span class="hljs-params"><span class="hljs-attr">userInput</span>: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-built_in">eval</span>(userInput) <span class="hljs-comment">// NUNCA fazer isso!</span>
+}
+</code></pre>
+<h3>Dependências</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Verificar vulnerabilidades</span>
+bun audit
+
+<span class="hljs-comment"># Atualizar dependências</span>
+bun update
+
+<span class="hljs-comment"># Verificar licenças</span>
+bunx license-checker
+</code></pre>
+<h2>📚 Recursos Adicionais</h2>
+<h3>Documentação Técnica</h3>
+<ul>
+<li><a href="https://bun.sh/docs">Bun.js Documentation</a></li>
+<li><a href="https://www.typescriptlang.org/docs/">TypeScript Handbook</a></li>
+<li><a href="https://lunrjs.com/guides/">Lunr.js Guide</a></li>
+<li><a href="https://marked.js.org/">Marked.js Documentation</a></li>
+</ul>
+<h3>Ferramentas Úteis</h3>
+<ul>
+<li><strong>Bun DevTools</strong>: Debugging e profiling</li>
+<li><strong>TypeScript Playground</strong>: Testar código TypeScript</li>
+<li><strong>Regex101</strong>: Testar expressões regulares</li>
+<li><strong>JSON Formatter</strong>: Validar e formatar JSON</li>
+</ul>
+<h3>Comunidade</h3>
+<ul>
+<li>💬 <strong>Discord</strong>: <a href="https://discord.gg/knowledge">Link do servidor</a></li>
+<li>🐛 <strong>Issues</strong>: <a href="https://github.com/riligar/knowledge/issues">GitHub Issues</a></li>
+<li>💡 <strong>Discussions</strong>: <a href="https://github.com/riligar/knowledge/discussions">GitHub Discussions</a></li>
+<li>📧 <strong>Email</strong>: <a href="mailto:dev@riligar.click">dev@riligar.click</a></li>
+</ul>
+<h2>🎯 Roadmap de Desenvolvimento</h2>
+<h3>Próximas Funcionalidades</h3>
+<ol>
+<li><p><strong>Plugin System</strong> (v2.0)</p>
+<ul>
+<li>API de plugins</li>
+<li>Marketplace de plugins</li>
+<li>Hot reload de plugins</li>
+</ul>
+</li>
+<li><p><strong>Advanced Search</strong> (v1.5)</p>
+<ul>
+<li>Busca semântica</li>
+<li>Filtros avançados</li>
+<li>Analytics de busca</li>
+</ul>
+</li>
+<li><p><strong>Themes 2.0</strong> (v1.4)</p>
+<ul>
+<li>Theme builder visual</li>
+<li>Componentes reutilizáveis</li>
+<li>Sistema de herança</li>
+</ul>
+</li>
+<li><p><strong>Performance</strong> (v1.3)</p>
+<ul>
+<li>Lazy loading</li>
+<li>Code splitting</li>
+<li>Service workers</li>
+</ul>
+</li>
+</ol>
+<h3>Como Contribuir</h3>
+<ol>
+<li><strong>Escolha uma issue</strong>: Procure issues marcadas como <code>good first issue</code></li>
+<li><strong>Discuta</strong>: Comente na issue antes de começar</li>
+<li><strong>Implemente</strong>: Siga os padrões estabelecidos</li>
+<li><strong>Teste</strong>: Adicione testes para sua funcionalidade</li>
+<li><strong>Documente</strong>: Atualize a documentação relevante</li>
+</ol>
+<hr>
+<p><strong>Obrigado por contribuir com o Knowledge!</strong> 🙏 Sua contribuição ajuda a tornar a documentação melhor para todos. </p>
+
+                </article>
+            </div>
+        </main>
+
+        <!-- Right Sidebar - Menu do Artigo -->
+        <aside class="article-sidebar">
+            <div class="content-menu">
+                <div class="content-menu-dropdown" id="content-menu-dropdown">
+                    <!-- Menu items will be dynamically generated based on page headings -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/page-highlighter.js"></script>
+</body>
+
+</html>
