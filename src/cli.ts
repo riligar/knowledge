@@ -6,6 +6,7 @@ import chokidar from 'chokidar';
 import { defaultConfig, loadConfig, loadConfigAsync, type KnowledgeConfig } from './config.js';
 import { DocumentationGenerator } from './generator.js';
 import { DevServer } from './dev-server.js';
+import openBrowser from './open-browser.js';
 
 const program = new Command();
 
@@ -54,12 +55,17 @@ program
 program
     .command('serve')
     .description('Serve the built documentation')
+    .option('-c, --config <path>', 'Path to config file')
     .option('-p, --port <number>', 'Port for server', '8080')
-    .option('-d, --dir <path>', 'Directory to serve', './dist')
+    .option('-d, --dir <path>', 'Directory to serve')
+    .option('--no-open', 'Do not open browser automatically')
     .action(async (options) => {
         try {
+            // Carregar configuração para obter o outputDir correto
+            const config = await loadConfigWithOptions(options);
+
             const port = parseInt(options.port || '8080');
-            const dir = path.resolve(options.dir || './dist');
+            const dir = path.resolve(options.dir || config.outputDir);
 
             if (!await fs.pathExists(dir)) {
                 console.error(`❌ Directory ${dir} does not exist. Run 'knowledge build' first.`);
@@ -70,7 +76,7 @@ program
             console.log(`📁 Serving from: ${dir}`);
 
             // Usar Bun.serve para servir arquivos estáticos
-            Bun.serve({
+            const server = Bun.serve({
                 port,
                 async fetch(req) {
                     const url = new URL(req.url);
@@ -97,6 +103,26 @@ program
                         return new Response('500 Internal Server Error', { status: 500 });
                     }
                 }
+            });
+
+            // Aguardar um pouco para garantir que o servidor está rodando
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Abrir browser automaticamente se não foi desabilitado
+            if (options.open !== false) {
+                const url = `http://localhost:${port}`;
+                console.log(`🌐 Opening browser at ${url}`);
+                await openBrowser(url);
+            }
+
+            console.log('📖 Documentation server is running');
+            console.log('Press Ctrl+C to stop');
+
+            // Manter o processo vivo
+            process.on('SIGINT', () => {
+                console.log('\n👋 Shutting down server...');
+                server.stop();
+                process.exit(0);
             });
 
         } catch (error) {
