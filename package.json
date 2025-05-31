@@ -8,13 +8,15 @@
     "build": "bun run src/cli.ts build",
     "dev": "bun run src/cli.ts dev",
     "serve": "bun run src/cli.ts serve",
-    "start": "bun run index.ts"
+    "start": "bun run index.ts",
+    "knowledge": "bun run src/cli.ts"
   },
   "keywords": [
     "documentation",
     "markdown",
     "static-site",
-    "generator"
+    "generator",
+    "knowledge"
   ],
   "author": {
     "name": "Ciro Cesar Maciel",

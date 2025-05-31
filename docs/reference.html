@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Knowledge - JSON Config Example</title>
+    <meta name="description" content="Example configuration using JSON format">
+    <meta name="author" content="Knowledge User">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/">
+    <meta property="og:title" content="API Reference - Knowledge - JSON Config Example">
+    <meta property="og:description" content="Example configuration using JSON format">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="/">
+    <meta property="twitter:title" content="API Reference - Knowledge - JSON Config Example">
+    <meta property="twitter:description" content="Example configuration using JSON format">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/highlight.css">
+    <link rel="stylesheet" href="/assets/css/search.css">
+    <link rel="stylesheet" href="/assets/css/page-highlighter.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo/Title -->
+            <div class="header-left">
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <h1 class="site-title">
+                    <a href="/">Knowledge - JSON Config Example</a>
+                </h1>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="header-center">
+                <div class="search-container search-enhanced">
+                    <input type="text" class="search-input" id="global-search"
+                        placeholder="Buscar na documentação... (Ctrl+K)" autocomplete="off">
+                    <button class="search-button" type="button" aria-label="Buscar">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side (for future elements like theme toggle, etc.) -->
+            <div class="header-right">
+                <button class="theme-toggle-header" aria-label="Toggle dark mode">
+                    <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <path
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                    <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout Container with Flexbox -->
+    <div class="main-container">
+        <!-- Left Sidebar - Menu Principal -->
+        <aside class="main-sidebar">
+            <!-- Mobile Header Section -->
+            <div class="mobile-sidebar-header">
+                <div class="mobile-logo">
+                    <!-- <img src="/assets/images/k2-logo-ico.png" alt="K2 Logo" class="mobile-logo-img"> -->
+                    <h2 class="mobile-title">Knowledge - JSON Config Example</h2>
+                </div>
+                <!-- Mobile Close Button -->
+                <button class="mobile-menu-close" aria-label="Close navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="navigation" role="navigation" aria-label="Documentation navigation">
+                <ul><li><a href="/reference.html">API Reference</a></li><li><a href="/development.html">Development Guide</a></li><li><a href="/index.html">Documentation Index - Knowledge</a></li><li><a href="/search.html">Full-Text Search System - Detailed Implementation</a></li><li><a href="/installation.html">Installation and Configuration Guide</a></li><li><a href="/readme.html">Knowledge - Modern Documentation System</a></li><li><a href="/architecture.html">Knowledge System Architecture</a></li></ul>
+            </nav>
+        </aside>
+
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay"></div>
+
+        <!-- Center Content -->
+        <main class="main-content" id="main-content" role="main">
+            <div class="content-wrapper">
+                <article>
+                    <h1>API Reference</h1>
+<h2>Overview</h2>
+<p>This documentation provides a complete API reference for Knowledge, including TypeScript interfaces, configurations, public methods, and usage examples.</p>
+<h2>Main Configuration</h2>
+<h3>DocForgeConfig</h3>
+<p>Main system configuration interface.</p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">DocForgeConfig</span> {
+    <span class="hljs-comment">// Directories</span>
+    <span class="hljs-attr">inputDir</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">outputDir</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">templatesDir</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">themesDir</span>?: <span class="hljs-built_in">string</span>
+
+    <span class="hljs-comment">// Site information</span>
+    <span class="hljs-attr">site</span>: <span class="hljs-title class_">SiteConfig</span>
+
+    <span class="hljs-comment">// Theme and layout</span>
+    <span class="hljs-attr">theme</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">layout</span>?: <span class="hljs-built_in">string</span>
+
+    <span class="hljs-comment">// Navigation</span>
+    <span class="hljs-attr">navigation</span>: <span class="hljs-title class_">NavigationConfig</span>
+
+    <span class="hljs-comment">// Features</span>
+    <span class="hljs-attr">features</span>: <span class="hljs-title class_">FeatureConfig</span>
+
+    <span class="hljs-comment">// Markdown processing</span>
+    <span class="hljs-attr">markdown</span>: <span class="hljs-title class_">MarkdownConfig</span>
+
+    <span class="hljs-comment">// Development server</span>
+    <span class="hljs-attr">dev</span>: <span class="hljs-title class_">DevConfig</span>
+}
+</code></pre>
+<h3>SiteConfig</h3>
+<p>Basic site configurations.</p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">SiteConfig</span> {
+    <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">description</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">baseUrl</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">author</span>: <span class="hljs-built_in">string</span>
+    
+    <span class="hljs-comment">// Optional</span>
+    <span class="hljs-attr">keywords</span>?: <span class="hljs-built_in">string</span>[]
+    <span class="hljs-attr">language</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">favicon</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">logo</span>?: <span class="hljs-built_in">string</span>
+    
+    <span class="hljs-comment">// SEO and Social Media</span>
+    <span class="hljs-attr">ogImage</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">ogType</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">twitterCard</span>?: &amp;#<span class="hljs-number">39</span>;summary&amp;#<span class="hljs-number">39</span>; | &amp;#<span class="hljs-number">39</span>;summary_large_image&amp;#<span class="hljs-number">39</span>;
+    <span class="hljs-attr">twitterSite</span>?: <span class="hljs-built_in">string</span>
+    
+    <span class="hljs-comment">// Analytics</span>
+    <span class="hljs-attr">googleAnalytics</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">gtag</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">plausible</span>?: <span class="hljs-built_in">string</span>
+    
+    <span class="hljs-comment">// Custom metadata</span>
+    <span class="hljs-attr">meta</span>?: <span class="hljs-title class_">Record</span>&amp;lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&amp;gt;
+}
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="hljs language-typescript"><span class="hljs-attr">site</span>: {
+    <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">My</span> <span class="hljs-title class_">Documentation</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">description</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Complete</span> technical documentation <span class="hljs-keyword">for</span> the project&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">baseUrl</span>: &amp;#<span class="hljs-number">39</span>;/&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">author</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Development</span> <span class="hljs-title class_">Team</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">keywords</span>: [&amp;#<span class="hljs-number">39</span>;documentation&amp;#<span class="hljs-number">39</span>;, &amp;#<span class="hljs-number">39</span>;api&amp;#<span class="hljs-number">39</span>;, &amp;#<span class="hljs-number">39</span>;guides&amp;#<span class="hljs-number">39</span>;],
+    <span class="hljs-attr">language</span>: &amp;#<span class="hljs-number">39</span>;en-<span class="hljs-variable constant_">US</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">favicon</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/assets/</span>favicon.<span class="hljs-property">ico</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">ogImage</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/assets/</span>og-image.<span class="hljs-property">png</span>&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">googleAnalytics</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-variable constant_">GA_MEASUREMENT_ID</span>&amp;#<span class="hljs-number">39</span>;
+}
+</code></pre>
+<h3>NavigationConfig</h3>
+<p>Site navigation configuration.</p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">NavigationConfig</span> {
+    <span class="hljs-attr">auto</span>: <span class="hljs-built_in">boolean</span>
+    <span class="hljs-attr">items</span>?: <span class="hljs-title class_">NavigationItem</span>[]
+    <span class="hljs-attr">maxDepth</span>?: <span class="hljs-built_in">number</span>
+    <span class="hljs-attr">showHome</span>?: <span class="hljs-built_in">boolean</span>
+    <span class="hljs-attr">homeTitle</span>?: <span class="hljs-built_in">string</span>
+}
+
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">NavigationItem</span> {
+    <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">url</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">icon</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">external</span>?: <span class="hljs-built_in">boolean</span>
+    <span class="hljs-attr">children</span>?: <span class="hljs-title class_">NavigationItem</span>[]
+    <span class="hljs-attr">order</span>?: <span class="hljs-built_in">number</span>
+    <span class="hljs-attr">hidden</span>?: <span class="hljs-built_in">boolean</span>
+}
+</code></pre>
+<p><strong>Automatic Navigation:</strong></p>
+<pre><code class="hljs language-typescript"><span class="hljs-attr">navigation</span>: {
+    <span class="hljs-attr">auto</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">maxDepth</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-attr">showHome</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">homeTitle</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Home</span>&amp;#<span class="hljs-number">39</span>;
+}
+</code></pre>
+<p><strong>Manual Navigation:</strong></p>
+<pre><code class="hljs language-typescript"><span class="hljs-attr">navigation</span>: {
+    <span class="hljs-attr">auto</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">items</span>: [
+        {
+            <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Home</span>&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;/&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">icon</span>: &amp;#<span class="hljs-number">39</span>;home&amp;#<span class="hljs-number">39</span>;
+        },
+        {
+            <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Guides</span>&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">children</span>: [
+                { <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Installation</span>&amp;#<span class="hljs-number">39</span>;, <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/guides/i</span>nstallation.<span class="hljs-property">html</span>&amp;#<span class="hljs-number">39</span>; },
+                { <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Configuration</span>&amp;#<span class="hljs-number">39</span>;, <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-regexp">/guides/</span>configuration.<span class="hljs-property">html</span>&amp;#<span class="hljs-number">39</span>; }
+            ]
+        },
+        {
+            <span class="hljs-attr">title</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">GitHub</span>&amp;#<span class="hljs-number">39</span>;,
+            <span class="hljs-attr">url</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-attr">https</span>:<span class="hljs-comment">//github.com/riligar/knowledge&amp;#39;,</span>
+            <span class="hljs-attr">external</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">icon</span>: &amp;#<span class="hljs-number">39</span>;github&amp;#<span class="hljs-number">39</span>;
+        }
+    ]
+}
+</code></pre>
+<h3>FeatureConfig</h3>
+<p>System features configuration.</p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">FeatureConfig</span> {
+    <span class="hljs-attr">search</span>?: <span class="hljs-built_in">boolean</span> | <span class="hljs-title class_">SearchConfig</span>
+    <span class="hljs-attr">syntaxHighlight</span>?: <span class="hljs-built_in">boolean</span> | <span class="hljs-title class_">SyntaxHighlightConfig</span>
+    <span class="hljs-attr">darkMode</span>?: <span class="hljs-built_in">boolean</span> | <span class="hljs-title class_">DarkModeConfig</span>
+    <span class="hljs-attr">tableOfContents</span>?: <span class="hljs-built_in">boolean</span> | <span class="hljs-title class_">TableOfContentsConfig</span>
+    <span class="hljs-attr">breadcrumbs</span>?: <span class="hljs-built_in">boolean</span> | <span class="hljs-title class_">BreadcrumbsConfig</span>
+    <span class="hljs-attr">editOnGithub</span>?: <span class="hljs-built_in">string</span> | <span class="hljs-title class_">EditOnGithubConfig</span>
+    <span class="hljs-attr">comments</span>?: <span class="hljs-built_in">boolean</span> | <span class="hljs-title class_">CommentsConfig</span>
+    <span class="hljs-attr">analytics</span>?: <span class="hljs-built_in">boolean</span> | <span class="hljs-title class_">AnalyticsConfig</span>
+}
+</code></pre>
+<h4>SearchConfig</h4>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">SearchConfig</span> {
+    <span class="hljs-attr">enabled</span>: <span class="hljs-built_in">boolean</span>
+    <span class="hljs-attr">placeholder</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">noResultsText</span>?: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">maxResults</span>?: <span class="hljs-built_in">number</span>
+    <span class="hljs-attr">minQueryLength</span>?: <span class="hljs-built_in">number</span>
+    <span class="hljs-attr">indexFields</span>?: {
+        <span class="hljs-attr">title</span>?: { <span class="hljs-attr">boost</span>: <span class="hljs-built_in">number</span> }
+        <span class="hljs-attr">excerpt</span>?: { <span class="hljs-attr">boost</span>: <span class="hljs-built_in">number</span> }
+        <span class="hljs-attr">content</span>?: { <span class="hljs-attr">boost</span>: <span class="hljs-built_in">number</span> }
+        <span class="hljs-attr">tags</span>?: { <span class="hljs-attr">boost</span>: <span class="hljs-built_in">number</span> }
+    }
+    <span class="hljs-attr">stopWords</span>?: <span class="hljs-built_in">string</span>[]
+    <span class="hljs-attr">stemming</span>?: <span class="hljs-built_in">boolean</span>
+}
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="hljs language-typescript"><span class="hljs-attr">search</span>: {
+    <span class="hljs-attr">enabled</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">placeholder</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">Search</span> documentation...&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">noResultsText</span>: &amp;#<span class="hljs-number">39</span>;<span class="hljs-title class_">No</span> results found&amp;#<span class="hljs-number">39</span>;,
+    <span class="hljs-attr">maxResults</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-attr">minQueryLength</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">indexFields</span>: {
+        <span class="hljs-attr">title</span>: { <span class="hljs-attr">boost</span>: <span class="hljs-number">10</span> },
+        <span class="hljs-attr">excerpt</span>: { <span class="hljs-attr">boost</span>: <span class="hljs-number">5</span> },
+        <span class="hljs-attr">content</span>: { <span class="hljs-attr">boost</span>: <span class="hljs-number">1</span> },
+        <span class="hljs-attr">tags</span>: { <span class="hljs-attr">boost</span>: <span class="hljs-number">8</span> }
+    }
+}
+</code></pre>
+
+                </article>
+            </div>
+        </main>
+
+        <!-- Right Sidebar - Menu do Artigo -->
+        <aside class="article-sidebar">
+            <div class="content-menu">
+                <div class="content-menu-dropdown" id="content-menu-dropdown">
+                    <!-- Menu items will be dynamically generated based on page headings -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/page-highlighter.js"></script>
+</body>
+
+</html>

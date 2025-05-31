@@ -1,8 +1,8 @@
-import type { DocForgeConfig } from './src/config.js';
+import type { KnowledgeConfig } from './src/config.js';
 
 export default {
-    inputDir: './docs',
-    outputDir: './dist',
+    inputDir: './content',
+    outputDir: './docs',
     templatesDir: './templates',
     themesDir: './themes',
 
@@ -40,4 +40,4 @@ export default {
         host: 'localhost',
         livereload: true
     }
-} as DocForgeConfig; 
+} as KnowledgeConfig; 

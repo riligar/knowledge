@@ -44,8 +44,8 @@ docforge/
 │           ├── css/     # Stylesheets
 │           └── js/      # JavaScript
 ├── templates/           # Page templates
-├── dist/               # Generated output
-└── docs/               # Documentation source
+├── docs/               # Generated output (for GitHub Pages)
+└── content/            # Documentation source (Markdown files)
 ```
 
 ## 🎨 Design System

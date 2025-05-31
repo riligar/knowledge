@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge System Architecture - Knowledge - JSON Config Example</title>
+    <meta name="description" content="Example configuration using JSON format">
+    <meta name="author" content="Knowledge User">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/">
+    <meta property="og:title" content="Knowledge System Architecture - Knowledge - JSON Config Example">
+    <meta property="og:description" content="Example configuration using JSON format">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="/">
+    <meta property="twitter:title" content="Knowledge System Architecture - Knowledge - JSON Config Example">
+    <meta property="twitter:description" content="Example configuration using JSON format">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/highlight.css">
+    <link rel="stylesheet" href="/assets/css/search.css">
+    <link rel="stylesheet" href="/assets/css/page-highlighter.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo/Title -->
+            <div class="header-left">
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <h1 class="site-title">
+                    <a href="/">Knowledge - JSON Config Example</a>
+                </h1>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="header-center">
+                <div class="search-container search-enhanced">
+                    <input type="text" class="search-input" id="global-search"
+                        placeholder="Buscar na documentação... (Ctrl+K)" autocomplete="off">
+                    <button class="search-button" type="button" aria-label="Buscar">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side (for future elements like theme toggle, etc.) -->
+            <div class="header-right">
+                <button class="theme-toggle-header" aria-label="Toggle dark mode">
+                    <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <path
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                    <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout Container with Flexbox -->
+    <div class="main-container">
+        <!-- Left Sidebar - Menu Principal -->
+        <aside class="main-sidebar">
+            <!-- Mobile Header Section -->
+            <div class="mobile-sidebar-header">
+                <div class="mobile-logo">
+                    <!-- <img src="/assets/images/k2-logo-ico.png" alt="K2 Logo" class="mobile-logo-img"> -->
+                    <h2 class="mobile-title">Knowledge - JSON Config Example</h2>
+                </div>
+                <!-- Mobile Close Button -->
+                <button class="mobile-menu-close" aria-label="Close navigation menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="navigation" role="navigation" aria-label="Documentation navigation">
+                <ul><li><a href="/reference.html">API Reference</a></li><li><a href="/development.html">Development Guide</a></li><li><a href="/index.html">Documentation Index - Knowledge</a></li><li><a href="/search.html">Full-Text Search System - Detailed Implementation</a></li><li><a href="/installation.html">Installation and Configuration Guide</a></li><li><a href="/readme.html">Knowledge - Modern Documentation System</a></li><li><a href="/architecture.html">Knowledge System Architecture</a></li></ul>
+            </nav>
+        </aside>
+
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay"></div>
+
+        <!-- Center Content -->
+        <main class="main-content" id="main-content" role="main">
+            <div class="content-wrapper">
+                <article>
+                    <h1>Knowledge System Architecture</h1>
+<h2>Overview</h2>
+<p>Knowledge is a static documentation generator built with a modular and extensible architecture. This document details the internal structure, design patterns, and architectural decisions.</p>
+<h2>Architectural Principles</h2>
+<h3>1. <strong>Separation of Concerns</strong></h3>
+<ul>
+<li><strong>CLI</strong>: Command line interface</li>
+<li><strong>Generator</strong>: Documentation generation logic</li>
+<li><strong>Search</strong>: Full-text search system</li>
+<li><strong>Markdown</strong>: Content processing</li>
+<li><strong>Config</strong>: Configuration management</li>
+<li><strong>Dev Server</strong>: Development server</li>
+</ul>
+<h3>2. <strong>Modularity</strong></h3>
+<ul>
+<li>Each module has a specific responsibility</li>
+<li>Well-defined interfaces between modules</li>
+<li>Facilitates testing and maintenance</li>
+</ul>
+<h3>3. <strong>Extensibility</strong></h3>
+<ul>
+<li>Pluggable theme system</li>
+<li>Flexible configuration</li>
+<li>Hooks for customization</li>
+</ul>
+<h3>4. <strong>Performance</strong></h3>
+<ul>
+<li>Build-time optimization</li>
+<li>Lazy loading of resources</li>
+<li>Optimized search index</li>
+</ul>
+<h2>Module Structure</h2>
+<h3>Core Modules</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// src/cli.ts - Command line interface</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CLI</span> {
+    <span class="hljs-title function_">build</span>(<span class="hljs-attr">options</span>: <span class="hljs-title class_">BuildOptions</span>): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">void</span>&amp;gt;
+    <span class="hljs-title function_">dev</span>(<span class="hljs-attr">options</span>: <span class="hljs-title class_">DevOptions</span>): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">void</span>&amp;gt;
+    <span class="hljs-title function_">serve</span>(<span class="hljs-attr">options</span>: <span class="hljs-title class_">ServeOptions</span>): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">void</span>&amp;gt;
+    <span class="hljs-title function_">init</span>(<span class="hljs-attr">options</span>: <span class="hljs-title class_">InitOptions</span>): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">void</span>&amp;gt;
+}
+
+<span class="hljs-comment">// src/generator.ts - Main generator</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DocumentationGenerator</span> {
+    <span class="hljs-title function_">generate</span>(): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">void</span>&amp;gt;
+    <span class="hljs-title function_">processMarkdownFiles</span>(): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">void</span>&amp;gt;
+    <span class="hljs-title function_">generateNavigation</span>(): <span class="hljs-built_in">void</span>
+    <span class="hljs-title function_">generatePages</span>(): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">void</span>&amp;gt;
+    <span class="hljs-title function_">copyAssets</span>(): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">void</span>&amp;gt;
+}
+
+<span class="hljs-comment">// src/search.ts - Search system</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SearchIndexGenerator</span> {
+    <span class="hljs-title function_">addPage</span>(<span class="hljs-attr">page</span>: <span class="hljs-title class_">DocumentPage</span>): <span class="hljs-built_in">void</span>
+    <span class="hljs-title function_">buildIndex</span>(): lunr.<span class="hljs-property">Index</span>
+    <span class="hljs-title function_">getSerializableData</span>(): <span class="hljs-title class_">SearchData</span>
+}
+
+<span class="hljs-comment">// src/markdown.ts - Markdown processor</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MarkdownProcessor</span> {
+    <span class="hljs-title function_">process</span>(<span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Promise</span>&amp;lt;<span class="hljs-built_in">string</span>&amp;gt;
+    <span class="hljs-title function_">extractFrontmatter</span>(<span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">FrontmatterResult</span>
+    <span class="hljs-title function_">highlightCode</span>(<span class="hljs-attr">html</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span>
+}
+
+<span class="hljs-comment">// src/config.ts - Configurations</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">DocForgeConfig</span> {
+    <span class="hljs-attr">inputDir</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">outputDir</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">site</span>: <span class="hljs-title class_">SiteConfig</span>
+    <span class="hljs-attr">features</span>: <span class="hljs-title class_">FeatureConfig</span>
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<h2>Processing Flow</h2>
+<h3>1. Build Process</h3>
+<pre><code class="language-mermaid">graph TD
+    A[CLI Build Command] --&gt; B[Load Configuration]
+    B --&gt; C[Initialize Generator]
+    C --&gt; D[Process Markdown Files]
+    D --&gt; E[Extract Frontmatter]
+    E --&gt; F[Convert to HTML]
+    F --&gt; G[Generate Navigation]
+    G --&gt; H[Build Search Index]
+    H --&gt; I[Generate HTML Pages]
+    I --&gt; J[Copy Assets]
+    J --&gt; K[Output to Dist]
+</code></pre>
+<h3>2. Development Process</h3>
+<pre><code class="language-mermaid">graph TD
+    A[CLI Dev Command] --&gt; B[Load Configuration]
+    B --&gt; C[Initialize Dev Server]
+    C --&gt; D[Watch File Changes]
+    D --&gt; E[Rebuild on Change]
+    E --&gt; F[Live Reload Browser]
+    F --&gt; D
+</code></pre>
+<h2>Detailed File Structure</h2>
+<pre><code>knowledge/
+├── src/                           # Main source code
+│   ├── cli.ts                    # CLI interface with Commander.js
+│   ├── generator.ts              # Documentation generator
+│   ├── search.ts                 # Search system with Lunr.js
+│   ├── markdown.ts               # Markdown processor with Marked
+│   ├── config.ts                 # Types and configurations
+│   └── dev-server.ts             # Development server
+├── themes/                       # Theme system
+│   └── default/                  # Default theme
+│       ├── layouts/              # HTML templates
+│       │   └── default.html      # Main layout
+│       └── assets/               # Theme assets
+│           ├── css/              # Stylesheets
+│           │   ├── style.css     # Main styles
+│           │   ├── search.css    # Search styles
+│           │   ├── highlight.css # Syntax highlighting
+│           │   └── page-highlighter.css
+│           └── js/               # JavaScript scripts
+│               ├── main.js       # Main script
+│               ├── search.js     # Search functionality
+│               └── page-highlighter.js
+├── docs/                         # Source documentation
+├── dist/                         # Generated output
+└── docforge.config.ts            # Project configuration
+</code></pre>
+<h2>Main Components</h2>
+<h3>1. CLI (Command Line Interface)</h3>
+<p><strong>Responsibilities:</strong></p>
+<ul>
+<li>Command line argument parsing</li>
+<li>Command orchestration (build, dev, serve, init)</li>
+<li>Configuration loading</li>
+<li>Error handling</li>
+</ul>
+<p><strong>Technologies:</strong></p>
+<ul>
+<li>Commander.js for argument parsing</li>
+<li>Bun.js for execution</li>
+</ul>
+<h3>2. Generator (Documentation Generator)</h3>
+<p><strong>Responsibilities:</strong></p>
+<ul>
+<li>Markdown file discovery</li>
+<li>Frontmatter processing</li>
+<li>Markdown → HTML conversion</li>
+<li>Automatic navigation generation</li>
+<li>Template application</li>
+<li>Asset copying</li>
+</ul>
+<p><strong>Processing Flow:</strong></p>
+<ol>
+<li>Scan input directory</li>
+<li>Read and parse .md files</li>
+<li>Extract metadata (frontmatter)</li>
+<li>Convert to HTML</li>
+<li>Apply templates</li>
+<li>Generate output files</li>
+</ol>
+<h3>3. Search (Search System)</h3>
+<p><strong>Responsibilities:</strong></p>
+<ul>
+<li>Content indexing during build</li>
+<li>Serialized JSON index generation</li>
+<li>Relevance weight configuration</li>
+</ul>
+<p><strong>Features:</strong></p>
+<ul>
+<li><strong>Engine</strong>: Lunr.js 2.3.9</li>
+<li><strong>Indexed fields</strong>: title (weight 10), excerpt (weight 5), content (weight 1)</li>
+<li><strong>Output format</strong>: JSON with documents and index data</li>
+<li><strong>Performance</strong>: Optimized index for offline search</li>
+</ul>
+<h3>4. Markdown Processor</h3>
+<p><strong>Responsibilities:</strong></p>
+<ul>
+<li>Markdown parsing with extensions</li>
+<li>Code syntax highlighting</li>
+<li>YAML frontmatter processing</li>
+<li>Automatic excerpt generation</li>
+</ul>
+<p><strong>Technologies:</strong></p>
+<ul>
+<li>Marked.js for Markdown parsing</li>
+<li>Highlight.js for syntax highlighting</li>
+<li>Regex for frontmatter extraction</li>
+</ul>
+<h3>5. Theme System</h3>
+<p><strong>Responsibilities:</strong></p>
+<ul>
+<li>Modular HTML templates</li>
+<li>Organized CSS/JS assets</li>
+<li>Flexible layout system</li>
+</ul>
+<p><strong>Theme Structure:</strong></p>
+<pre><code>theme/
+├── layouts/
+│   ├── default.html      # Main layout
+│   ├── page.html         # Page layout
+│   └── index.html        # Index layout
+└── assets/
+    ├── css/
+    ├── js/
+    └── images/
+</code></pre>
+<h2>System Configuration</h2>
+<h3>Configuration Hierarchy</h3>
+<ol>
+<li><strong>Default configuration</strong> (src/config.ts)</li>
+<li><strong>Project configuration</strong> (docforge.config.ts)</li>
+<li><strong>CLI arguments</strong> (override configurations)</li>
+</ol>
+<h3>Configuration Types</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">DocForgeConfig</span> {
+    <span class="hljs-comment">// Directories</span>
+    <span class="hljs-attr">inputDir</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">outputDir</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">templatesDir</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">themesDir</span>: <span class="hljs-built_in">string</span>
+
+    <span class="hljs-comment">// Site</span>
+    <span class="hljs-attr">site</span>: {
+        <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>
+        <span class="hljs-attr">description</span>: <span class="hljs-built_in">string</span>
+        <span class="hljs-attr">baseUrl</span>: <span class="hljs-built_in">string</span>
+        <span class="hljs-attr">author</span>: <span class="hljs-built_in">string</span>
+    }
+
+    <span class="hljs-comment">// Theme</span>
+    <span class="hljs-attr">theme</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">layout</span>: <span class="hljs-built_in">string</span>
+
+    <span class="hljs-comment">// Navigation</span>
+    <span class="hljs-attr">navigation</span>: {
+        <span class="hljs-attr">auto</span>: <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">items</span>?: <span class="hljs-title class_">NavigationItem</span>[]
+    }
+
+    <span class="hljs-comment">// Features</span>
+    <span class="hljs-attr">features</span>: {
+        <span class="hljs-attr">search</span>: <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">syntaxHighlight</span>: <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">darkMode</span>: <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">tableOfContents</span>: <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">breadcrumbs</span>: <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">editOnGithub</span>?: <span class="hljs-built_in">string</span>
+    }
+
+    <span class="hljs-comment">// Markdown</span>
+    <span class="hljs-attr">markdown</span>: {
+        <span class="hljs-attr">breaks</span>: <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">linkify</span>: <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">typographer</span>: <span class="hljs-built_in">boolean</span>
+    }
+
+    <span class="hljs-comment">// Development</span>
+    <span class="hljs-attr">dev</span>: {
+        <span class="hljs-attr">port</span>: <span class="hljs-built_in">number</span>
+        <span class="hljs-attr">host</span>: <span class="hljs-built_in">string</span>
+        <span class="hljs-attr">livereload</span>: <span class="hljs-built_in">boolean</span>
+    }
+}
+</code></pre>
+<h2>Performance and Optimizations</h2>
+<h3>Build Time Optimizations</h3>
+<ol>
+<li><strong>Parallel Processing</strong>: Process files in parallel when possible</li>
+<li><strong>Asset Caching</strong>: Assets copied only when needed</li>
+<li><strong>Optimized Index</strong>: Efficient index generation</li>
+</ol>
+<h3>Runtime Optimizations</h3>
+<ol>
+<li><strong>Lazy Loading</strong>: Resources loaded on demand</li>
+<li><strong>Minification</strong>: CSS and JS minified in production</li>
+<li><strong>Compression</strong>: Assets served with compression</li>
+<li><strong>Cache Headers</strong>: Appropriate cache headers</li>
+</ol>
+<h3>Search Optimizations</h3>
+<ol>
+<li><strong>Pre-built Index</strong>: Generated during build</li>
+<li><strong>Efficient Serialization</strong>: Optimized JSON format</li>
+<li><strong>Incremental Search</strong>: Real-time results</li>
+<li><strong>Intelligent Relevance</strong>: Weight-based scoring system</li>
+</ol>
+<h2>Security</h2>
+<h3>Input Sanitization</h3>
+<ul>
+<li>Markdown content sanitization</li>
+<li>HTML escaping in templates</li>
+<li>File path validation</li>
+</ul>
+<h3>Output Security</h3>
+<ul>
+<li>Appropriate security headers</li>
+<li>Preventing XSS</li>
+<li>URL sanitization</li>
+</ul>
+<h2>Testability</h2>
+<h3>Testable Architecture</h3>
+<ul>
+<li>Independent modules</li>
+<li>Well-defined interfaces</li>
+<li>Dependency injection</li>
+<li>I/O mocks</li>
+</ul>
+<h3>Testing Strategy</h3>
+<ol>
+<li><strong>Unit Tests</strong>: Individual module tests</li>
+<li><strong>Integration Tests</strong>: Full flow tests</li>
+<li><strong>E2E Tests</strong>: User interface tests</li>
+</ol>
+<h2>Extensibility</h2>
+<h3>Plugin System (Future)</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Plugin</span> {
+    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">version</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">hooks</span>: {
+        <span class="hljs-attr">beforeBuild</span>?: () =&amp;gt; <span class="hljs-built_in">void</span>
+        <span class="hljs-attr">afterBuild</span>?: () =&amp;gt; <span class="hljs-built_in">void</span>
+        <span class="hljs-attr">processMarkdown</span>?: (<span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span>) =&amp;gt; <span class="hljs-built_in">string</span>
+        <span class="hljs-attr">generatePage</span>?: (<span class="hljs-attr">page</span>: <span class="hljs-title class_">DocumentPage</span>) =&amp;gt; <span class="hljs-title class_">DocumentPage</span>
+    }
+}
+</code></pre>
+<h3>Custom Themes</h3>
+<ul>
+<li>Theme inheritance system</li>
+<li>Specific template overrides</li>
+<li>Custom assets</li>
+<li>Theme-based configuration</li>
+</ul>
+<h3>Custom Processors</h3>
+<ul>
+<li>Customized Markdown processors</li>
+<li>Content generators</li>
+<li>Data transformers</li>
+</ul>
+<h2>Build Metrics</h2>
+<ul>
+<li>Build time</li>
+<li>Number of processed pages</li>
+<li>Index size</li>
+<li>Generated assets size</li>
+</ul>
+<h2>Runtime Metrics</h2>
+<ul>
+<li>Page load time</li>
+<li>Search performance</li>
+<li>Memory usage</li>
+<li>Accessibility metrics</li>
+</ul>
+<h2>Development Lifecycle</h2>
+<h3>Development Lifecycle</h3>
+<ol>
+<li><strong>Watch</strong>: File change monitoring</li>
+<li><strong>Rebuild</strong>: Incremental reconstruction</li>
+<li><strong>Reload</strong>: Automatic browser update</li>
+</ol>
+<h3>Production Lifecycle</h3>
+<ol>
+<li><strong>Build</strong>: Complete documentation generation</li>
+<li><strong>Optimize</strong>: Asset optimization</li>
+<li><strong>Deploy</strong>: Static site publication</li>
+</ol>
+<h2>Architectural Decisions</h2>
+<h3>Why Bun.js?</h3>
+<ul>
+<li><strong>Performance</strong>: Faster runtime than Node.js</li>
+<li><strong>Native TypeScript</strong>: Built-in support</li>
+<li><strong>Bundler integrated</strong>: No need for webpack/rollup</li>
+<li><strong>Package manager</strong>: Fast dependency management</li>
+</ul>
+<h3>Why Lunr.js?</h3>
+<ul>
+<li><strong>Offline</strong>: Search works without server</li>
+<li><strong>Performance</strong>: Optimized index for fast search</li>
+<li><strong>Flexibility</strong>: Relevance configuration</li>
+<li><strong>Size</strong>: Small bundle</li>
+</ul>
+<h3>Why Marked.js?</h3>
+<ul>
+<li><strong>Compatibility</strong>: Full CommonMark support</li>
+<li><strong>Extensibility</strong>: Plugin system</li>
+<li><strong>Performance</strong>: Fast parsing</li>
+<li><strong>Maturity</strong>: Stable and tested library</li>
+</ul>
+<h2>Architectural Troubleshooting</h2>
+<h3>Common Problems</h3>
+<ol>
+<li><strong>Slow build</strong>: Check parallel processing</li>
+<li><strong>Search not working</strong>: Check index generation</li>
+<li><strong>Assets not loading</strong>: Check relative paths</li>
+<li><strong>Memory leaks</strong>: Check watcher cleanup</li>
+</ol>
+<h3>Debug Tools</h3>
+<ul>
+<li>Detailed logs in verbose mode</li>
+<li>Performance profiling</li>
+<li>Bundle size analysis</li>
+<li>Build time metrics</li>
+</ul>
+<hr>
+<p>This architecture was designed to be <strong>simple</strong>, <strong>extensible</strong>, and <strong>performant</strong>, following modern development best practices. </p>
+
+                </article>
+            </div>
+        </main>
+
+        <!-- Right Sidebar - Menu do Artigo -->
+        <aside class="article-sidebar">
+            <div class="content-menu">
+                <div class="content-menu-dropdown" id="content-menu-dropdown">
+                    <!-- Menu items will be dynamically generated based on page headings -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/page-highlighter.js"></script>
+</body>
+
+</html>

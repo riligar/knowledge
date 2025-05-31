@@ -3,14 +3,14 @@ import { Command } from 'commander';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import chokidar from 'chokidar';
-import { defaultConfig, loadConfig, type DocForgeConfig } from './config.js';
+import { defaultConfig, loadConfig, loadConfigAsync, type KnowledgeConfig } from './config.js';
 import { DocumentationGenerator } from './generator.js';
 import { DevServer } from './dev-server.js';
 
 const program = new Command();
 
 program
-    .name('docforge')
+    .name('knowledge')
     .description('Modern static documentation generator powered by Bun.js')
     .version('1.0.0');
 
@@ -62,7 +62,7 @@ program
             const dir = path.resolve(options.dir || './dist');
 
             if (!await fs.pathExists(dir)) {
-                console.error(`❌ Directory ${dir} does not exist. Run 'docforge build' first.`);
+                console.error(`❌ Directory ${dir} does not exist. Run 'knowledge build' first.`);
                 process.exit(1);
             }
 
@@ -107,32 +107,22 @@ program
 
 program
     .command('init')
-    .description('Initialize a new DocForge project')
+    .description('Initialize a new Knowledge project')
     .option('-d, --dir <path>', 'Directory to initialize', '.')
     .action(async (options) => {
         try {
             const targetDir = path.resolve(options.dir || '.');
             await initializeProject(targetDir);
-            console.log('✅ DocForge project initialized successfully!');
+            console.log('✅ Knowledge project initialized successfully!');
         } catch (error) {
             console.error('❌ Initialization failed:', error);
             process.exit(1);
         }
     });
 
-async function loadConfigWithOptions(options: any): Promise<DocForgeConfig> {
-    let config = { ...defaultConfig };
-
-    // Carregar arquivo de configuração se especificado
-    if (options.config) {
-        try {
-            const configPath = path.resolve(options.config);
-            const configFile = await import(configPath);
-            config = { ...config, ...configFile.default };
-        } catch (error) {
-            console.warn(`⚠️  Could not load config file: ${options.config}`);
-        }
-    }
+async function loadConfigWithOptions(options: any): Promise<KnowledgeConfig> {
+    // Usar a nova função loadConfigAsync que já faz o merge e validação
+    let config = await loadConfigAsync(options.config);
 
     // Sobrescrever com opções da linha de comando
     if (options.input) config.inputDir = options.input;
@@ -143,17 +133,17 @@ async function loadConfigWithOptions(options: any): Promise<DocForgeConfig> {
 
 async function initializeProject(targetDir: string): Promise<void> {
     // Criar estrutura de diretórios
-    await fs.ensureDir(path.join(targetDir, 'docs'));
+    await fs.ensureDir(path.join(targetDir, 'content'));
     await fs.ensureDir(path.join(targetDir, 'themes/default/layouts'));
     await fs.ensureDir(path.join(targetDir, 'themes/default/assets/css'));
     await fs.ensureDir(path.join(targetDir, 'themes/default/assets/js'));
 
     // Criar arquivo de configuração
-    const configContent = `import { DocForgeConfig } from './src/config.js';
+    const configContent = `import { KnowledgeConfig } from './src/config.js';
 
 export default {
-  inputDir: './docs',
-  outputDir: './dist',
+  inputDir: './content',
+  outputDir: './docs',
   
   site: {
     title: 'My Documentation',
@@ -169,13 +159,13 @@ export default {
     tableOfContents: true,
     breadcrumbs: true
   }
-} as DocForgeConfig;
+} as KnowledgeConfig;
 `;
 
-    await fs.writeFile(path.join(targetDir, 'docforge.config.ts'), configContent);
+    await fs.writeFile(path.join(targetDir, 'knowledge.config.ts'), configContent);
 
     // Criar exemplo de documentação
-    const exampleDoc = `# Welcome to DocForge
+    const exampleDoc = `# Welcome to Knowledge
 
 This is your documentation homepage. Edit this file to get started!
 
@@ -190,14 +180,14 @@ This is your documentation homepage. Edit this file to get started!
 
 ## Getting Started
 
-1. Edit files in the \`docs/\` directory
+1. Edit files in the \`content/\` directory
 2. Run \`bun run dev\` to start the development server
 3. Run \`bun run build\` to build for production
 
 Happy documenting! 📚
 `;
 
-    await fs.writeFile(path.join(targetDir, 'docs/README.md'), exampleDoc);
+    await fs.writeFile(path.join(targetDir, 'content/README.md'), exampleDoc);
 
     console.log(`📁 Created project structure in ${targetDir}`);
     console.log('📝 Created example documentation');

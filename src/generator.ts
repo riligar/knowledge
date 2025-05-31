@@ -2,8 +2,9 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
-import type { DocForgeConfig, NavigationItem } from './config.js';
+import type { KnowledgeConfig, NavigationItem } from './config.js';
 import { SearchIndexGenerator } from './search.js';
+import { MarkdownProcessor } from './markdown.js';
 
 export interface DocumentPage {
     path: string;
@@ -14,14 +15,32 @@ export interface DocumentPage {
     url: string;
 }
 
+interface Document {
+    path: string;
+    title: string;
+    content: string;
+    html: string;
+    metadata: Record<string, any>;
+}
+
+interface TemplateData {
+    title: string;
+    content: string;
+    navigation: NavigationItem[];
+    config: KnowledgeConfig;
+    currentPath: string;
+}
+
 export class DocumentationGenerator {
     private pages: DocumentPage[] = [];
     private navigation: NavigationItem[] = [];
     private searchIndex: SearchIndexGenerator;
+    private markdownProcessor: MarkdownProcessor;
 
-    constructor(private config: DocForgeConfig) {
+    constructor(private config: KnowledgeConfig) {
         this.setupMarked();
         this.searchIndex = new SearchIndexGenerator();
+        this.markdownProcessor = new MarkdownProcessor(config);
     }
 
     private setupMarked() {

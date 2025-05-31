@@ -1,19 +1,22 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import chokidar, { type FSWatcher } from 'chokidar';
-import type { DocForgeConfig } from './config.js';
+import type { KnowledgeConfig } from './config.js';
 import { DocumentationGenerator } from './generator.js';
 
 export class DevServer {
     private generator: DocumentationGenerator;
     private watcher?: FSWatcher;
+    private server?: any;
 
-    constructor(private config: DocForgeConfig) {
+    constructor(private config: KnowledgeConfig) {
         this.generator = new DocumentationGenerator(config);
     }
 
     public async start(): Promise<void> {
-        console.log('🚀 Starting DocForge development server...');
+        console.log('🚀 Starting Knowledge development server...');
+        console.log(`📁 Watching: ${this.config.inputDir}`);
+        console.log(`🌐 Server: http://${this.config.dev.host}:${this.config.dev.port}`);
 
         // Build inicial
         await this.generator.generate();
@@ -73,7 +76,7 @@ export class DevServer {
         console.log('👀 Watching for changes...');
         console.log('Press Ctrl+C to stop');
 
-        Bun.serve({
+        this.server = Bun.serve({
             port,
             hostname: host,
             async fetch(req) {
@@ -121,7 +124,10 @@ export class DevServer {
     public async stop(): Promise<void> {
         if (this.watcher) {
             await this.watcher.close();
-            console.log('👋 Development server stopped');
         }
+        if (this.server) {
+            this.server.close();
+        }
+        console.log('🛑 Development server stopped');
     }
 } 

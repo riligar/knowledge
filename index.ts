@@ -1,6 +1,9 @@
 #!/usr/bin/env bun
 
-// DocForge - Modern Static Documentation Generator
-// Powered by Bun.js
+// Knowledge - Modern Static Documentation Generator
 
-import './src/cli.js';
+console.log('🚀 Starting Knowledge...');
+
+// Re-export main functionality
+export * from './src/config.js';
+export * from './src/generator.js';
