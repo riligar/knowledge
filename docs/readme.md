@@ -1,157 +1,157 @@
-# Knowledge - Sistema de Documentação Moderno
+# Knowledge - Modern Documentation System
 
 [![GitHub stars](https://img.shields.io/github/stars/riligar/knowledge)](https://github.com/riligar/knowledge/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-knowledge.dev-blue)](https://knowledge.dev)
 
-> Transforme como sua equipe cria, organiza e compartilha conhecimento
+> Transform how your team creates, organizes, and shares knowledge
 
-Um sistema de documentação moderno e open-source que transforma como equipes criam, organizam e compartilham conhecimento. Construído para desenvolvedores, projetado para todos.
+A modern and open-source documentation system that transforms how teams create, organize, and share knowledge. Built for developers, designed for everyone.
 
-## Por que Knowledge?
+## Why Knowledge?
 
-- **Developer First** - Construído por desenvolvedores, para desenvolvedores
-- **Stack Moderno** - Tecnologias web mais recentes para melhor performance
-- **Extensível** - Sistema de plugins para customização ilimitada
-- **Community Driven** - Open source com suporte ativo da comunidade
+- **Developer First** - Built by developers, for developers
+- **Modern Stack** - Latest web technologies for better performance
+- **Extensible** - Plugin system for unlimited customization
+- **Community Driven** - Open source with active community support
 
-## Características Principais
+## Main Features
 
-### Interface Moderna
-- **Design Limpo**: Interface profissional com atenção aos detalhes
-- **Responsivo**: Design mobile-first que funciona em todos os dispositivos
-- **Modo Escuro**: Alternância automática de tema com transições suaves
-- **Acessibilidade**: Compatível com WCAG e navegação por teclado
+### Modern Interface
+- **Clean Design**: Professional interface with attention to detail
+- **Responsive**: Mobile-first design that works on all devices
+- **Dark Mode**: Automatic theme switching with smooth transitions
+- **Accessibility**: WCAG compatible and keyboard navigation
 
-### Busca Avançada
-- **Busca em Tempo Real**: Resultados instantâneos conforme você digita
-- **Full-Text Search**: Busca em títulos, conteúdo e resumos
-- **Atalhos de Teclado**: Ctrl/Cmd + K para focar na busca
-- **Relevância Inteligente**: Algoritmo de pontuação por peso
+### Advanced Search
+- **Real-time Search**: Instant results as you type
+- **Full-Text Search**: Search in titles, content, and summaries
+- **Keyboard Shortcuts**: Ctrl/Cmd + K to focus on search
+- **Smart Relevance**: Weight-based scoring algorithm
 
-### Recursos para Desenvolvedores
-- **Syntax Highlighting**: Destaque de sintaxe com copy-to-clipboard
-- **Navegação Automática**: Geração automática de navegação
-- **Live Reload**: Servidor de desenvolvimento com recarga automática
-- **TypeScript**: Desenvolvimento type-safe
+### Developer Resources
+- **Syntax Highlighting**: Syntax highlighting with copy-to-clipboard
+- **Automatic Navigation**: Automatic navigation generation
+- **Live Reload**: Development server with automatic reload
+- **TypeScript**: Type-safe development
 
-## Stack Tecnológico
+## Technology Stack
 
-- **Runtime**: Bun.js para performance máxima
-- **Linguagem**: TypeScript para type safety
-- **Markdown**: Processamento avançado com extensões
-- **Busca**: Lunr.js para busca full-text offline
-- **CSS Moderno**: Grid, Flexbox, Custom Properties
-- **JavaScript Vanilla**: Sem dependências de framework
+- **Runtime**: Bun.js for maximum performance
+- **Language**: TypeScript for type safety
+- **Markdown**: Advanced processing with extensions
+- **Search**: Lunr.js for offline full-text search
+- **Modern CSS**: Grid, Flexbox, Custom Properties
+- **Vanilla JavaScript**: No framework dependencies
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 knowledge/
-├── src/                    # Código fonte
-│   ├── cli.ts             # Interface de linha de comando
-│   ├── generator.ts       # Gerador de documentação
-│   ├── search.ts          # Sistema de busca
-│   ├── markdown.ts        # Processador de Markdown
-│   ├── config.ts          # Configurações
-│   └── dev-server.ts      # Servidor de desenvolvimento
-├── themes/                # Temas
+├── src/                    # Source code
+│   ├── cli.ts             # Command line interface
+│   ├── generator.ts       # Documentation generator
+│   ├── search.ts          # Search system
+│   ├── markdown.ts        # Markdown processor
+│   ├── config.ts          # Configurations
+│   └── dev-server.ts      # Development server
+├── themes/                # Themes
 │   └── default/
-│       ├── layouts/       # Templates HTML
+│       ├── layouts/       # HTML templates
 │       └── assets/
-│           ├── css/       # Folhas de estilo
-│           └── js/        # Scripts JavaScript
-├── docs/                  # Documentação fonte
-├── dist/                  # Saída gerada
-└── docforge.config.ts     # Configuração principal
+│           ├── css/       # Stylesheets
+│           └── js/        # JavaScript scripts
+├── docs/                  # Source documentation
+├── dist/                  # Generated output
+└── docforge.config.ts     # Main configuration
 ```
 
-## Início Rápido
+## Quick Start
 
-### Pré-requisitos
+### Prerequisites
 
 - [Bun.js](https://bun.sh/) v1.0+
-- Node.js v18+ (opcional, para compatibilidade)
+- Node.js v18+ (optional, for compatibility)
 
-### Instalação
+### Installation
 
 ```bash
-# Clonar o repositório
+# Clone the repository
 git clone https://github.com/riligar/knowledge.git
 cd knowledge
 
-# Instalar dependências
+# Install dependencies
 bun install
 
-# Inicializar projeto
+# Initialize project
 bun run init
 ```
 
-### Desenvolvimento
+### Development
 
 ```bash
-# Iniciar servidor de desenvolvimento
+# Start development server
 bun run dev
 
-# Acessar: http://localhost:3000
+# Access: http://localhost:3000
 ```
 
-### Build para Produção
+### Production Build
 
 ```bash
-# Gerar documentação
+# Generate documentation
 bun run build
 
-# Servir localmente
+# Serve locally
 bun run serve
 ```
 
-## Configuração
+## Configuration
 
-O arquivo `docforge.config.ts` contém todas as opções de configuração:
+The `docforge.config.ts` file contains all configuration options:
 
 ```typescript
 export default {
-    // Diretórios
+    // Directories
     inputDir: './docs',
     outputDir: './dist',
     themesDir: './themes',
 
-    // Informações do site
+    // Site information
     site: {
-        title: 'Sua Documentação',
-        description: 'Descrição do seu site',
+        title: 'Your Documentation',
+        description: 'Your site description',
         baseUrl: '/',
-        author: 'Seu Nome'
+        author: 'Your Name'
     },
 
-    // Tema e layout
+    // Theme and layout
     theme: 'default',
     layout: 'default',
 
-    // Navegação
+    // Navigation
     navigation: {
-        auto: true  // Geração automática
+        auto: true  // Automatic generation
     },
 
-    // Funcionalidades
+    // Features
     features: {
         search: true,
         syntaxHighlight: true,
         darkMode: true,
         tableOfContents: true,
         breadcrumbs: true,
-        editOnGithub: 'https://github.com/seu-usuario/docs'
+        editOnGithub: 'https://github.com/your-username/docs'
     },
 
-    // Processamento Markdown
+    // Markdown processing
     markdown: {
         breaks: true,
         linkify: true,
         typographer: true
     },
 
-    // Servidor de desenvolvimento
+    // Development server
     dev: {
         port: 3000,
         host: 'localhost',
@@ -160,140 +160,140 @@ export default {
 } as DocForgeConfig;
 ```
 
-## Comandos CLI
+## CLI Commands
 
 ### `build`
-Gera a documentação estática:
+Generates static documentation:
 ```bash
-bun run build [opções]
+bun run build [options]
 
-Opções:
-  -c, --config <path>   Caminho para arquivo de configuração
-  -i, --input <path>    Diretório de entrada com arquivos markdown
-  -o, --output <path>   Diretório de saída para site gerado
+Options:
+  -c, --config <path>   Path to configuration file
+  -i, --input <path>    Input directory with markdown files
+  -o, --output <path>   Output directory for generated site
 ```
 
 ### `dev`
-Inicia servidor de desenvolvimento:
+Starts development server:
 ```bash
-bun run dev [opções]
+bun run dev [options]
 
-Opções:
-  -c, --config <path>   Caminho para arquivo de configuração
-  -p, --port <number>   Porta do servidor (padrão: 3000)
-  -h, --host <string>   Host do servidor (padrão: localhost)
+Options:
+  -c, --config <path>   Path to configuration file
+  -p, --port <number>   Server port (default: 3000)
+  -h, --host <string>   Server host (default: localhost)
 ```
 
 ### `serve`
-Serve a documentação construída:
+Serves built documentation:
 ```bash
-bun run serve [opções]
+bun run serve [options]
 
-Opções:
-  -p, --port <number>   Porta do servidor (padrão: 8080)
-  -d, --dir <path>      Diretório para servir (padrão: ./dist)
+Options:
+  -p, --port <number>   Server port (default: 8080)
+  -d, --dir <path>      Directory to serve (default: ./dist)
 ```
 
 ### `init`
-Inicializa um novo projeto:
+Initializes a new project:
 ```bash
-bun run init [opções]
+bun run init [options]
 ```
 
-## Sistema de Design
+## Design System
 
-### Paleta de Cores
-- **Primária**: Azul (#3b82f6) com variações em gradiente
-- **Secundária**: Cinza ardósia (#64748b)
-- **Destaque**: Ciano (#06b6d4)
-- **Sucesso**: Verde (#10b981)
-- **Aviso**: Âmbar (#f59e0b)
-- **Erro**: Vermelho (#ef4444)
+### Color Palette
+- **Primary**: Blue (#3b82f6) with gradient variations
+- **Secondary**: Slate gray (#64748b)
+- **Accent**: Cyan (#06b6d4)
+- **Success**: Green (#10b981)
+- **Warning**: Amber (#f59e0b)
+- **Error**: Red (#ef4444)
 
-### Tipografia
-- **Família**: Montserrat (cabeçalhos e corpo)
-- **Pesos**: 300, 400, 500, 600, 700, 800
-- **Escala**: Sistema harmonioso com alturas de linha adequadas
+### Typography
+- **Family**: Montserrat (headings and body)
+- **Weights**: 300, 400, 500, 600, 700, 800
+- **Scale**: Harmonious system with appropriate line heights
 
-### Espaçamento
-- **Grid**: Sistema de unidade base de 8px
-- **Containers**: Largura máxima de 1400px com padding responsivo
-- **Componentes**: Espaçamento consistente usando propriedades CSS customizadas
+### Spacing
+- **Grid**: 8px base unit system
+- **Containers**: Maximum width of 1400px with responsive padding
+- **Components**: Consistent spacing using CSS custom properties
 
-## Sistema de Busca
+## Search System
 
-### Características
-- **Engine**: Lunr.js 2.3.9 para busca full-text
-- **Performance**: Índice otimizado gerado durante o build
-- **Offline**: Funciona sem conexão com a internet
-- **Relevância**: Sistema de pontuação por peso (títulos > excerpts > conteúdo)
+### Features
+- **Engine**: Lunr.js 2.3.9 for full-text search
+- **Performance**: Optimized index generated during build
+- **Offline**: Works without internet connection
+- **Relevance**: Weight-based scoring system (titles > excerpts > content)
 
-### Uso
-- **Atalho**: Ctrl/Cmd + K para focar
-- **Navegação**: Setas ↑/↓ para navegar, Enter para abrir
-- **Sintaxe**: Suporte a wildcards, busca exata com aspas
-- **Highlight**: Destaque visual dos termos encontrados
+### Usage
+- **Shortcut**: Ctrl/Cmd + K to focus
+- **Navigation**: ↑/↓ arrows to navigate, Enter to open
+- **Syntax**: Wildcard support, exact search with quotes
+- **Highlight**: Visual highlighting of found terms
 
-## Experiência Mobile
+## Mobile Experience
 
-- **Touch-Friendly**: Alvos de toque mínimos de 44px
-- **Navegação Responsiva**: Sidebar colapsável
-- **Tipografia Otimizada**: Legível em todos os tamanhos de tela
-- **Interações Rápidas**: Otimizado para performance mobile
+- **Touch-Friendly**: Minimum 44px touch targets
+- **Responsive Navigation**: Collapsible sidebar
+- **Optimized Typography**: Readable on all screen sizes
+- **Fast Interactions**: Optimized for mobile performance
 
-## ♿ Acessibilidade
+## Accessibility
 
-- **Navegação por Teclado**: Suporte completo a teclado
-- **Screen Readers**: HTML semântico e labels ARIA
-- **Alto Contraste**: Suporte para modo de alto contraste
-- **Movimento Reduzido**: Respeita preferências de movimento do usuário
+- **Keyboard Navigation**: Complete keyboard support
+- **Screen Readers**: Semantic HTML and ARIA labels
+- **High Contrast**: Support for high contrast mode
+- **Reduced Motion**: Respects user motion preferences
 
-## 🌙 Modo Escuro
+## Dark Mode
 
-- **Detecção Automática**: Detecta preferência do sistema
-- **Toggle Manual**: Alternância manual com persistência
-- **Transições Suaves**: Animações otimizadas
-- **Visuais Aprimorados**: Design específico para modo escuro
+- **Automatic Detection**: Detects system preference
+- **Manual Toggle**: Manual switching with persistence
+- **Smooth Transitions**: Optimized animations
+- **Enhanced Visuals**: Specific design for dark mode
 
-## 🎯 Performance
+## Performance
 
-- **Carregamento Rápido**: CSS e JavaScript otimizados
-- **Animações Suaves**: Transições aceleradas por hardware
-- **Imagens Responsivas**: Otimização automática de imagens
-- **Bundle Mínimo**: Sem dependências desnecessárias
+- **Fast Loading**: Optimized CSS and JavaScript
+- **Smooth Animations**: Hardware-accelerated transitions
+- **Responsive Images**: Automatic image optimization
+- **Minimal Bundle**: No unnecessary dependencies
 
-## 🤝 Contribuindo
+## Contributing
 
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Faça commit das suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Faça push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Diretrizes de Contribuição
+### Contribution Guidelines
 
-- Siga os padrões de código TypeScript
-- Adicione testes para novas funcionalidades
-- Atualize a documentação conforme necessário
-- Mantenha commits atômicos e descritivos
+- Follow TypeScript code standards
+- Add tests for new features
+- Update documentation as needed
+- Keep commits atomic and descriptive
 
-## 📄 Licença
+## License
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Agradecimentos
+## Acknowledgments
 
-- Construído com padrões web modernos
-- Inspirado pelos melhores sites de documentação
-- Projetado para a felicidade do desenvolvedor
+- Built with modern web standards
+- Inspired by the best documentation sites
+- Designed for developer happiness
 
 ---
 
-**Construído com ❤️ pela [RiliGar](http://riligar.click/) e a comunidade open source.**
+**Built with ❤️ by [RiliGar](http://riligar.click/) and the open source community.**
 
-## 📞 Suporte
+## Support
 
-- 📧 Email: [suporte@riligar.click](mailto:suporte@riligar.click)
-- 🐛 Issues: [GitHub Issues](https://github.com/riligar/knowledge/issues)
-- 💬 Discussões: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
-- 📖 Documentação: [knowledge.dev](https://knowledge.dev) 
+- Email: [suporte@riligar.click](mailto:suporte@riligar.click)
+- Issues: [GitHub Issues](https://github.com/riligar/knowledge/issues)
+- Discussions: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
+- Documentation: [knowledge.dev](https://knowledge.dev) 

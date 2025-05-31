@@ -1,144 +1,144 @@
-# 🚀 Guia de Instalação e Configuração
+# Installation and Configuration Guide
 
-## 📋 Visão Geral
+## Overview
 
-Este guia fornece instruções detalhadas para instalar, configurar e começar a usar o Knowledge em diferentes ambientes e cenários.
+This guide provides detailed instructions for installing, configuring, and getting started with Knowledge in different environments and scenarios.
 
-## 🔧 Pré-requisitos
+## Prerequisites
 
-### Requisitos Mínimos
+### Minimum Requirements
 
-- **Bun.js**: v1.0.0 ou superior (recomendado)
-- **Node.js**: v18.0.0 ou superior (alternativo)
-- **Sistema Operacional**: Windows 10+, macOS 10.15+, Linux (Ubuntu 20.04+)
-- **Memória RAM**: 2GB mínimo, 4GB recomendado
-- **Espaço em Disco**: 500MB para instalação + espaço para documentação
+- **Bun.js**: v1.0.0 or higher (recommended)
+- **Node.js**: v18.0.0 or higher (alternative)
+- **Operating System**: Windows 10+, macOS 10.15+, Linux (Ubuntu 20.04+)
+- **RAM**: 2GB minimum, 4GB recommended
+- **Disk Space**: 500MB for installation + space for documentation
 
-### Ferramentas Opcionais
+### Optional Tools
 
-- **Git**: Para controle de versão
-- **VS Code**: Editor recomendado com extensões TypeScript
-- **Docker**: Para deployment em containers
+- **Git**: For version control
+- **VS Code**: Recommended editor with TypeScript extensions
+- **Docker**: For container deployment
 
-## 📦 Instalação
+## Installation
 
-### Método 1: Instalação com Bun (Recomendado)
+### Method 1: Installation with Bun (Recommended)
 
 ```bash
-# 1. Instalar Bun.js (se não estiver instalado)
+# 1. Install Bun.js (if not already installed)
 curl -fsSL https://bun.sh/install | bash
 
-# 2. Clonar o repositório
+# 2. Clone the repository
 git clone https://github.com/riligar/knowledge.git
 cd knowledge
 
-# 3. Instalar dependências
+# 3. Install dependencies
 bun install
 
-# 4. Verificar instalação
+# 4. Verify installation
 bun run --version
 ```
 
-### Método 2: Instalação com npm/yarn
+### Method 2: Installation with npm/yarn
 
 ```bash
-# 1. Clonar o repositório
+# 1. Clone the repository
 git clone https://github.com/riligar/knowledge.git
 cd knowledge
 
-# 2. Instalar dependências
+# 2. Install dependencies
 npm install
-# ou
+# or
 yarn install
 
-# 3. Verificar instalação
+# 3. Verify installation
 npm run build --dry-run
 ```
 
-### Método 3: Instalação Global
+### Method 3: Global Installation
 
 ```bash
-# Instalar globalmente (futuro)
+# Install globally (future)
 npm install -g @riligar/knowledge
 
-# Usar em qualquer diretório
+# Use in any directory
 knowledge init my-docs
 cd my-docs
 knowledge dev
 ```
 
-## ⚙️ Configuração Inicial
+## Initial Configuration
 
-### 1. Inicializar Projeto
+### 1. Initialize Project
 
 ```bash
-# Criar novo projeto de documentação
+# Create new documentation project
 bun run init
 
-# Ou especificar diretório
-bun run init --dir ./minha-documentacao
+# Or specify directory
+bun run init --dir ./my-documentation
 ```
 
-Isso criará a seguinte estrutura:
+This will create the following structure:
 
 ```
-minha-documentacao/
-├── docs/                    # Documentação fonte
-│   └── README.md           # Página inicial
-├── docforge.config.ts      # Configuração principal
-├── package.json            # Dependências do projeto
-└── .gitignore             # Arquivos ignorados pelo Git
+my-documentation/
+├── docs/                    # Source documentation
+│   └── README.md           # Home page
+├── docforge.config.ts      # Main configuration
+├── package.json            # Project dependencies
+└── .gitignore             # Git ignored files
 ```
 
-### 2. Configuração Básica
+### 2. Basic Configuration
 
-Edite o arquivo `docforge.config.ts`:
+Edit the `docforge.config.ts` file:
 
 ```typescript
 import type { DocForgeConfig } from './src/config.js';
 
 export default {
-    // Diretórios
+    // Directories
     inputDir: './docs',
     outputDir: './dist',
     themesDir: './themes',
 
-    // Informações do site
+    // Site information
     site: {
-        title: 'Minha Documentação',
-        description: 'Documentação completa do meu projeto',
+        title: 'My Documentation',
+        description: 'Complete documentation for my project',
         baseUrl: '/',
-        author: 'Seu Nome'
+        author: 'Your Name'
     },
 
-    // Tema e layout
+    // Theme and layout
     theme: 'default',
     layout: 'default',
 
-    // Navegação
+    // Navigation
     navigation: {
-        auto: true,  // Geração automática baseada na estrutura de arquivos
-        // items: []  // Navegação manual (opcional)
+        auto: true,  // Automatic generation based on file structure
+        // items: []  // Manual navigation (optional)
     },
 
-    // Funcionalidades
+    // Features
     features: {
         search: true,
         syntaxHighlight: true,
         darkMode: true,
         tableOfContents: true,
         breadcrumbs: true,
-        editOnGithub: 'https://github.com/seu-usuario/seu-repo'
+        editOnGithub: 'https://github.com/your-username/your-repo'
     },
 
-    // Processamento Markdown
+    // Markdown processing
     markdown: {
         breaks: true,
         linkify: true,
         typographer: true
     },
 
-    // Servidor de desenvolvimento
+    // Development server
     dev: {
         port: 3000,
         host: 'localhost',
@@ -147,13 +147,13 @@ export default {
 } as DocForgeConfig;
 ```
 
-### 3. Estrutura de Documentação
+### 3. Documentation Structure
 
-Organize seus arquivos Markdown na pasta `docs/`:
+Organize your Markdown files in the `docs/` folder:
 
 ```
 docs/
-├── README.md                # Página inicial (obrigatório)
+├── README.md                # Home page (required)
 ├── getting-started/
 │   ├── installation.md
 │   ├── quick-start.md
@@ -171,23 +171,23 @@ docs/
     └── files/
 ```
 
-## 🎯 Configurações Avançadas
+## Advanced Configurations
 
-### Configuração de Site
+### Site Configuration
 
 ```typescript
 site: {
     title: 'Knowledge Base',
-    description: 'Documentação técnica completa',
-    baseUrl: '/',  // Para GitHub Pages: '/nome-do-repo/'
-    author: 'Equipe de Desenvolvimento',
+    description: 'Complete technical documentation',
+    baseUrl: '/',  // For GitHub Pages: '/repo-name/'
+    author: 'Development Team',
     
-    // Metadados adicionais
-    keywords: ['documentação', 'api', 'guias'],
-    language: 'pt-BR',
+    // Additional metadata
+    keywords: ['documentation', 'api', 'guides'],
+    language: 'en-US',
     favicon: '/assets/favicon.ico',
     
-    // SEO e Social
+    // SEO and Social
     ogImage: '/assets/og-image.png',
     twitterCard: 'summary_large_image',
     
@@ -197,7 +197,7 @@ site: {
 }
 ```
 
-### Configuração de Navegação Manual
+### Manual Navigation Configuration
 
 ```typescript
 navigation: {
@@ -233,7 +233,7 @@ navigation: {
 }
 ```
 
-### Configuração de Funcionalidades
+### Features Configuration
 
 ```typescript
 features: {
@@ -288,7 +288,7 @@ features: {
 }
 ```
 
-### Configuração de Markdown
+### Markdown Configuration
 
 ```typescript
 markdown: {
@@ -317,9 +317,9 @@ markdown: {
 }
 ```
 
-## 🎨 Personalização de Tema
+## Personalization of Theme
 
-### Tema Customizado
+### Custom Theme
 
 ```bash
 # Criar tema personalizado
@@ -331,7 +331,7 @@ mkdir -p themes/meu-tema/assets/js
 cp -r themes/default/* themes/meu-tema/
 ```
 
-### Customização de CSS
+### Customization of CSS
 
 ```css
 /* themes/meu-tema/assets/css/custom.css */
@@ -372,7 +372,7 @@ cp -r themes/default/* themes/meu-tema/
 }
 ```
 
-### Layout Personalizado
+### Custom Layout
 
 ```html
 <!-- themes/meu-tema/layouts/default.html -->
@@ -425,9 +425,9 @@ cp -r themes/default/* themes/meu-tema/
 </html>
 ```
 
-## 🔧 Comandos e Scripts
+## Commands and Scripts
 
-### Scripts de Desenvolvimento
+### Development Scripts
 
 ```json
 {
@@ -443,29 +443,29 @@ cp -r themes/default/* themes/meu-tema/
 }
 ```
 
-### Comandos Úteis
+### Useful Commands
 
 ```bash
-# Desenvolvimento
-bun run dev                    # Servidor de desenvolvimento
-bun run dev --port 4000       # Porta customizada
-bun run dev --host 0.0.0.0    # Acessível externamente
+# Development
+bun run dev                    # Development server
+bun run dev --port 4000       # Custom port
+bun run dev --host 0.0.0.0    # Accessible externally
 
 # Build
-bun run build                  # Build completo
-bun run build --config custom.config.ts  # Configuração customizada
+bun run build                  # Complete build
+bun run build --config custom.config.ts  # Custom configuration
 
-# Servir
-bun run serve                  # Servir dist/
-bun run serve --port 8080     # Porta customizada
-bun run serve --dir ./build   # Diretório customizado
+# Serve
+bun run serve                  # Serve dist/
+bun run serve --port 8080     # Custom port
+bun run serve --dir ./build   # Custom directory
 
-# Limpeza
-bun run clean                  # Limpar dist/
-rm -rf node_modules && bun install  # Reinstalar dependências
+# Clean
+bun run clean                  # Clean dist/
+rm -rf node_modules && bun install  # Reinstall dependencies
 ```
 
-## 🐳 Deploy com Docker
+## Deploy with Docker
 
 ### Dockerfile
 
@@ -505,7 +505,7 @@ services:
       - NODE_ENV=production
     restart: unless-stopped
 
-  # Desenvolvimento
+  # Development
   knowledge-dev:
     build:
       context: .
@@ -520,23 +520,23 @@ services:
       - NODE_ENV=development
 ```
 
-### Comandos Docker
+### Docker Commands
 
 ```bash
-# Build da imagem
+# Build image
 docker build -t knowledge .
 
-# Executar container
+# Run container
 docker run -p 80:80 knowledge
 
-# Com Docker Compose
+# With Docker Compose
 docker-compose up -d
 
-# Desenvolvimento
+# Development
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 ```
 
-## 🌐 Deploy em Produção
+## Deploy to Production
 
 ### GitHub Pages
 
@@ -615,133 +615,133 @@ jobs:
 }
 ```
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
-### Problemas Comuns
+### Common Problems
 
-#### 1. Erro de Instalação
+#### 1. Installation Error
 
 ```bash
-# Limpar cache
+# Clear cache
 bun pm cache rm
 rm -rf node_modules bun.lock
 bun install
 
-# Verificar versão do Bun
+# Verify Bun version
 bun --version
 
-# Atualizar Bun
+# Update Bun
 curl -fsSL https://bun.sh/install | bash
 ```
 
-#### 2. Build Falha
+#### 2. Build Failure
 
 ```bash
-# Verificar configuração
+# Verify configuration
 bun run src/cli.ts build --verbose
 
-# Verificar arquivos Markdown
+# Verify Markdown files
 find docs -name "*.md" -exec echo "Checking: {}" \; -exec head -1 {} \;
 
-# Verificar sintaxe do config
+# Verify config syntax
 bun run -e "import('./docforge.config.ts')"
 ```
 
-#### 3. Servidor Não Inicia
+#### 3. Server Not Starting
 
 ```bash
-# Verificar porta em uso
+# Verify port in use
 lsof -i :3000
 
-# Usar porta diferente
+# Use different port
 bun run dev --port 3001
 
-# Verificar permissões
+# Verify permissions
 ls -la src/
 ```
 
-#### 4. Assets Não Carregam
+#### 4. Assets Not Loading
 
 ```bash
-# Verificar estrutura de temas
+# Verify theme structure
 ls -la themes/default/assets/
 
-# Verificar caminhos no HTML
+# Verify paths in HTML
 grep -r "assets/" dist/
 
-# Verificar servidor estático
+# Verify static server
 curl -I http://localhost:3000/assets/css/style.css
 ```
 
-### Logs de Debug
+### Debug Logs
 
 ```bash
-# Habilitar logs detalhados
+# Enable detailed logs
 DEBUG=knowledge:* bun run dev
 
-# Logs específicos
+# Specific logs
 DEBUG=knowledge:generator bun run build
 DEBUG=knowledge:search bun run build
 DEBUG=knowledge:markdown bun run build
 ```
 
-### Verificação de Saúde
+### Health Check
 
 ```bash
-# Script de verificação
+# Health check script
 #!/bin/bash
-echo "🔍 Verificando instalação do Knowledge..."
+echo "🔍 Verifying Knowledge installation..."
 
-# Verificar Bun
+# Verify Bun
 if command -v bun &> /dev/null; then
     echo "✅ Bun: $(bun --version)"
 else
-    echo "❌ Bun não encontrado"
+    echo "❌ Bun not found"
 fi
 
-# Verificar dependências
+# Verify dependencies
 if [ -f "package.json" ]; then
-    echo "✅ package.json encontrado"
-    bun run --dry-run build && echo "✅ Scripts funcionando"
+    echo "✅ package.json found"
+    bun run --dry-run build && echo "✅ Scripts working"
 else
-    echo "❌ package.json não encontrado"
+    echo "❌ package.json not found"
 fi
 
-# Verificar configuração
+# Verify configuration
 if [ -f "docforge.config.ts" ]; then
-    echo "✅ Configuração encontrada"
+    echo "✅ Configuration found"
 else
-    echo "⚠️  Configuração não encontrada - execute 'bun run init'"
+    echo "⚠️  Configuration not found - execute 'bun run init'"
 fi
 
-# Verificar documentação
+# Verify documentation
 if [ -d "docs" ] && [ -f "docs/README.md" ]; then
-    echo "✅ Documentação encontrada"
-    echo "📄 Arquivos: $(find docs -name "*.md" | wc -l) arquivos Markdown"
+    echo "✅ Documentation found"
+    echo "📄 Files: $(find docs -name "*.md" | wc -l) Markdown files"
 else
-    echo "❌ Pasta docs/ ou README.md não encontrado"
+    echo "❌ docs/ or README.md not found"
 fi
 
-echo "🎉 Verificação concluída!"
+echo "🎉 Health check completed!"
 ```
 
-## 📚 Próximos Passos
+## Next Steps
 
-Após a instalação e configuração:
+After installation and configuration:
 
-1. **Criar Conteúdo**: Adicione seus arquivos Markdown na pasta `docs/`
-2. **Personalizar Tema**: Customize cores, fontes e layout
-3. **Configurar Deploy**: Configure CI/CD para deploy automático
-4. **Otimizar SEO**: Configure metadados e sitemap
-5. **Monitorar Performance**: Configure analytics e métricas
+1. **Create Content**: Add your Markdown files to the `docs/` folder
+2. **Personalize Theme**: Customize colors, fonts, and layout
+3. **Configure Deploy**: Configure CI/CD for automatic deploy
+4. **Optimize SEO**: Configure metadata and sitemap
+5. **Monitor Performance**: Configure analytics and metrics
 
-## 🆘 Suporte
+## Support
 
-- 📖 **Documentação**: [knowledge.dev](https://knowledge.dev)
+- 📖 **Documentation**: [knowledge.dev](https://knowledge.dev)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/riligar/knowledge/issues)
-- 💬 **Discussões**: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
+- �� **Discussions**: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
 - 📧 **Email**: [suporte@riligar.click](mailto:suporte@riligar.click)
 
 ---
 
-**Pronto para começar!** 🚀 Sua documentação moderna está a apenas alguns comandos de distância. 
+**Ready to start!** 🚀 Your modern documentation is just a few commands away. 

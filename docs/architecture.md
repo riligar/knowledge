@@ -1,40 +1,40 @@
-# 🏗️ Arquitetura do Sistema Knowledge
+# Knowledge System Architecture
 
-## 📋 Visão Geral
+## Overview
 
-O Knowledge é um gerador de documentação estática construído com uma arquitetura modular e extensível. Este documento detalha a estrutura interna, padrões de design e decisões arquiteturais.
+Knowledge is a static documentation generator built with a modular and extensible architecture. This document details the internal structure, design patterns, and architectural decisions.
 
-## 🎯 Princípios Arquiteturais
+## Architectural Principles
 
-### 1. **Separação de Responsabilidades**
-- **CLI**: Interface de linha de comando
-- **Generator**: Lógica de geração de documentação
-- **Search**: Sistema de busca full-text
-- **Markdown**: Processamento de conteúdo
-- **Config**: Gerenciamento de configurações
-- **Dev Server**: Servidor de desenvolvimento
+### 1. **Separation of Concerns**
+- **CLI**: Command line interface
+- **Generator**: Documentation generation logic
+- **Search**: Full-text search system
+- **Markdown**: Content processing
+- **Config**: Configuration management
+- **Dev Server**: Development server
 
-### 2. **Modularidade**
-- Cada módulo tem uma responsabilidade específica
-- Interfaces bem definidas entre módulos
-- Facilita testes e manutenção
+### 2. **Modularity**
+- Each module has a specific responsibility
+- Well-defined interfaces between modules
+- Facilitates testing and maintenance
 
-### 3. **Extensibilidade**
-- Sistema de temas plugável
-- Configuração flexível
-- Hooks para customização
+### 3. **Extensibility**
+- Pluggable theme system
+- Flexible configuration
+- Hooks for customization
 
 ### 4. **Performance**
 - Build-time optimization
-- Lazy loading de recursos
-- Índice de busca otimizado
+- Lazy loading of resources
+- Optimized search index
 
-## 🏛️ Estrutura de Módulos
+## Module Structure
 
 ### Core Modules
 
 ```typescript
-// src/cli.ts - Interface de linha de comando
+// src/cli.ts - Command line interface
 export class CLI {
     build(options: BuildOptions): Promise<void>
     dev(options: DevOptions): Promise<void>
@@ -42,7 +42,7 @@ export class CLI {
     init(options: InitOptions): Promise<void>
 }
 
-// src/generator.ts - Gerador principal
+// src/generator.ts - Main generator
 export class DocumentationGenerator {
     generate(): Promise<void>
     processMarkdownFiles(): Promise<void>
@@ -51,21 +51,21 @@ export class DocumentationGenerator {
     copyAssets(): Promise<void>
 }
 
-// src/search.ts - Sistema de busca
+// src/search.ts - Search system
 export class SearchIndexGenerator {
     addPage(page: DocumentPage): void
     buildIndex(): lunr.Index
     getSerializableData(): SearchData
 }
 
-// src/markdown.ts - Processador de Markdown
+// src/markdown.ts - Markdown processor
 export class MarkdownProcessor {
     process(content: string): Promise<string>
     extractFrontmatter(content: string): FrontmatterResult
     highlightCode(html: string): string
 }
 
-// src/config.ts - Configurações
+// src/config.ts - Configurations
 export interface DocForgeConfig {
     inputDir: string
     outputDir: string
@@ -75,7 +75,7 @@ export interface DocForgeConfig {
 }
 ```
 
-## 🔄 Fluxo de Processamento
+## Processing Flow
 
 ### 1. Build Process
 
@@ -105,127 +105,127 @@ graph TD
     F --> D
 ```
 
-## 📁 Estrutura de Arquivos Detalhada
+## Detailed File Structure
 
 ```
 knowledge/
-├── src/                           # Código fonte principal
-│   ├── cli.ts                    # Interface CLI com Commander.js
-│   ├── generator.ts              # Gerador de documentação
-│   ├── search.ts                 # Sistema de busca com Lunr.js
-│   ├── markdown.ts               # Processador Markdown com Marked
-│   ├── config.ts                 # Tipos e configurações
-│   └── dev-server.ts             # Servidor de desenvolvimento
-├── themes/                       # Sistema de temas
-│   └── default/                  # Tema padrão
-│       ├── layouts/              # Templates HTML
-│       │   └── default.html      # Layout principal
-│       └── assets/               # Assets do tema
-│           ├── css/              # Folhas de estilo
-│           │   ├── style.css     # Estilos principais
-│           │   ├── search.css    # Estilos da busca
+├── src/                           # Main source code
+│   ├── cli.ts                    # CLI interface with Commander.js
+│   ├── generator.ts              # Documentation generator
+│   ├── search.ts                 # Search system with Lunr.js
+│   ├── markdown.ts               # Markdown processor with Marked
+│   ├── config.ts                 # Types and configurations
+│   └── dev-server.ts             # Development server
+├── themes/                       # Theme system
+│   └── default/                  # Default theme
+│       ├── layouts/              # HTML templates
+│       │   └── default.html      # Main layout
+│       └── assets/               # Theme assets
+│           ├── css/              # Stylesheets
+│           │   ├── style.css     # Main styles
+│           │   ├── search.css    # Search styles
 │           │   ├── highlight.css # Syntax highlighting
 │           │   └── page-highlighter.css
-│           └── js/               # Scripts JavaScript
-│               ├── main.js       # Script principal
-│               ├── search.js     # Funcionalidade de busca
+│           └── js/               # JavaScript scripts
+│               ├── main.js       # Main script
+│               ├── search.js     # Search functionality
 │               └── page-highlighter.js
-├── docs/                         # Documentação fonte
-├── dist/                         # Saída gerada
-└── docforge.config.ts            # Configuração do projeto
+├── docs/                         # Source documentation
+├── dist/                         # Generated output
+└── docforge.config.ts            # Project configuration
 ```
 
-## 🔧 Componentes Principais
+## Main Components
 
 ### 1. CLI (Command Line Interface)
 
-**Responsabilidades:**
-- Parsing de argumentos de linha de comando
-- Orquestração de comandos (build, dev, serve, init)
-- Carregamento de configurações
-- Tratamento de erros
+**Responsibilities:**
+- Command line argument parsing
+- Command orchestration (build, dev, serve, init)
+- Configuration loading
+- Error handling
 
-**Tecnologias:**
-- Commander.js para parsing de argumentos
-- Bun.js para execução
+**Technologies:**
+- Commander.js for argument parsing
+- Bun.js for execution
 
-### 2. Generator (Gerador de Documentação)
+### 2. Generator (Documentation Generator)
 
-**Responsabilidades:**
-- Descoberta de arquivos Markdown
-- Processamento de frontmatter
-- Conversão Markdown → HTML
-- Geração de navegação automática
-- Aplicação de templates
-- Cópia de assets
+**Responsibilities:**
+- Markdown file discovery
+- Frontmatter processing
+- Markdown → HTML conversion
+- Automatic navigation generation
+- Template application
+- Asset copying
 
-**Fluxo de Processamento:**
-1. Scan do diretório de entrada
-2. Leitura e parsing de arquivos .md
-3. Extração de metadados (frontmatter)
-4. Conversão para HTML
-5. Aplicação de templates
-6. Geração de arquivos de saída
+**Processing Flow:**
+1. Scan input directory
+2. Read and parse .md files
+3. Extract metadata (frontmatter)
+4. Convert to HTML
+5. Apply templates
+6. Generate output files
 
-### 3. Search (Sistema de Busca)
+### 3. Search (Search System)
 
-**Responsabilidades:**
-- Indexação de conteúdo durante o build
-- Geração de índice JSON serializado
-- Configuração de pesos de relevância
+**Responsibilities:**
+- Content indexing during build
+- Serialized JSON index generation
+- Relevance weight configuration
 
-**Características:**
+**Features:**
 - **Engine**: Lunr.js 2.3.9
-- **Campos indexados**: title (peso 10), excerpt (peso 5), content (peso 1)
-- **Formato de saída**: JSON com documentos e dados do índice
-- **Performance**: Índice otimizado para busca offline
+- **Indexed fields**: title (weight 10), excerpt (weight 5), content (weight 1)
+- **Output format**: JSON with documents and index data
+- **Performance**: Optimized index for offline search
 
 ### 4. Markdown Processor
 
-**Responsabilidades:**
-- Parsing de Markdown com extensões
-- Syntax highlighting de código
-- Processamento de frontmatter YAML
-- Geração de excerpts automáticos
+**Responsibilities:**
+- Markdown parsing with extensions
+- Code syntax highlighting
+- YAML frontmatter processing
+- Automatic excerpt generation
 
-**Tecnologias:**
-- Marked.js para parsing Markdown
-- Highlight.js para syntax highlighting
-- Regex para extração de frontmatter
+**Technologies:**
+- Marked.js for Markdown parsing
+- Highlight.js for syntax highlighting
+- Regex for frontmatter extraction
 
 ### 5. Theme System
 
-**Responsabilidades:**
-- Templates HTML modulares
-- Assets CSS/JS organizados
-- Sistema de layouts flexível
+**Responsibilities:**
+- Modular HTML templates
+- Organized CSS/JS assets
+- Flexible layout system
 
-**Estrutura de Tema:**
+**Theme Structure:**
 ```
 theme/
 ├── layouts/
-│   ├── default.html      # Layout principal
-│   ├── page.html         # Layout de página
-│   └── index.html        # Layout de índice
+│   ├── default.html      # Main layout
+│   ├── page.html         # Page layout
+│   └── index.html        # Index layout
 └── assets/
     ├── css/
     ├── js/
     └── images/
 ```
 
-## 🔌 Sistema de Configuração
+## System Configuration
 
-### Hierarquia de Configuração
+### Configuration Hierarchy
 
-1. **Configuração padrão** (src/config.ts)
-2. **Arquivo de configuração** (docforge.config.ts)
-3. **Argumentos CLI** (sobrescreve configurações)
+1. **Default configuration** (src/config.ts)
+2. **Project configuration** (docforge.config.ts)
+3. **CLI arguments** (override configurations)
 
-### Tipos de Configuração
+### Configuration Types
 
 ```typescript
 interface DocForgeConfig {
-    // Diretórios
+    // Directories
     inputDir: string
     outputDir: string
     templatesDir: string
@@ -239,17 +239,17 @@ interface DocForgeConfig {
         author: string
     }
 
-    // Tema
+    // Theme
     theme: string
     layout: string
 
-    // Navegação
+    // Navigation
     navigation: {
         auto: boolean
         items?: NavigationItem[]
     }
 
-    // Funcionalidades
+    // Features
     features: {
         search: boolean
         syntaxHighlight: boolean
@@ -266,7 +266,7 @@ interface DocForgeConfig {
         typographer: boolean
     }
 
-    // Desenvolvimento
+    // Development
     dev: {
         port: number
         host: string
@@ -275,60 +275,60 @@ interface DocForgeConfig {
 }
 ```
 
-## 🚀 Performance e Otimizações
+## Performance and Optimizations
 
 ### Build Time Optimizations
 
-1. **Processamento Paralelo**: Arquivos processados em paralelo quando possível
-2. **Cache de Assets**: Assets copiados apenas quando necessário
-3. **Índice Otimizado**: Geração eficiente do índice de busca
+1. **Parallel Processing**: Process files in parallel when possible
+2. **Asset Caching**: Assets copied only when needed
+3. **Optimized Index**: Efficient index generation
 
 ### Runtime Optimizations
 
-1. **Lazy Loading**: Recursos carregados sob demanda
-2. **Minificação**: CSS e JS minificados em produção
-3. **Compressão**: Assets servidos com compressão
-4. **Cache Headers**: Headers de cache apropriados
+1. **Lazy Loading**: Resources loaded on demand
+2. **Minification**: CSS and JS minified in production
+3. **Compression**: Assets served with compression
+4. **Cache Headers**: Appropriate cache headers
 
 ### Search Optimizations
 
-1. **Índice Pré-construído**: Gerado durante o build
-2. **Serialização Eficiente**: Formato JSON otimizado
-3. **Busca Incremental**: Resultados em tempo real
-4. **Relevância Inteligente**: Sistema de pontuação por peso
+1. **Pre-built Index**: Generated during build
+2. **Efficient Serialization**: Optimized JSON format
+3. **Incremental Search**: Real-time results
+4. **Intelligent Relevance**: Weight-based scoring system
 
-## 🔒 Segurança
+## Security
 
 ### Input Sanitization
 
-- Sanitização de conteúdo Markdown
-- Escape de HTML em templates
-- Validação de caminhos de arquivo
+- Markdown content sanitization
+- HTML escaping in templates
+- File path validation
 
 ### Output Security
 
-- Headers de segurança apropriados
-- Prevenção de XSS
-- Sanitização de URLs
+- Appropriate security headers
+- Preventing XSS
+- URL sanitization
 
-## 🧪 Testabilidade
+## Testability
 
-### Arquitetura Testável
+### Testable Architecture
 
-- Módulos independentes
-- Interfaces bem definidas
-- Injeção de dependências
-- Mocks para I/O
+- Independent modules
+- Well-defined interfaces
+- Dependency injection
+- I/O mocks
 
-### Estratégia de Testes
+### Testing Strategy
 
-1. **Unit Tests**: Testes de módulos individuais
-2. **Integration Tests**: Testes de fluxo completo
-3. **E2E Tests**: Testes de interface de usuário
+1. **Unit Tests**: Individual module tests
+2. **Integration Tests**: Full flow tests
+3. **E2E Tests**: User interface tests
 
-## 🔮 Extensibilidade
+## Extensibility
 
-### Plugin System (Futuro)
+### Plugin System (Future)
 
 ```typescript
 interface Plugin {
@@ -345,86 +345,84 @@ interface Plugin {
 
 ### Custom Themes
 
-- Sistema de herança de temas
-- Override de templates específicos
-- Assets customizados
-- Configuração por tema
+- Theme inheritance system
+- Specific template overrides
+- Custom assets
+- Theme-based configuration
 
 ### Custom Processors
 
-- Processadores de Markdown customizados
-- Geradores de conteúdo
-- Transformadores de dados
+- Customized Markdown processors
+- Content generators
+- Data transformers
 
-## 📊 Métricas e Monitoramento
+## Build Metrics
 
-### Build Metrics
+- Build time
+- Number of processed pages
+- Index size
+- Generated assets size
 
-- Tempo de build
-- Número de páginas processadas
-- Tamanho do índice de busca
-- Tamanho dos assets gerados
+## Runtime Metrics
 
-### Runtime Metrics
+- Page load time
+- Search performance
+- Memory usage
+- Accessibility metrics
 
-- Tempo de carregamento de páginas
-- Performance de busca
-- Uso de memória
-- Métricas de acessibilidade
-
-## 🔄 Ciclo de Vida
+## Development Lifecycle
 
 ### Development Lifecycle
 
-1. **Watch**: Monitoramento de mudanças em arquivos
-2. **Rebuild**: Reconstrução incremental
-3. **Reload**: Atualização automática do browser
+1. **Watch**: File change monitoring
+2. **Rebuild**: Incremental reconstruction
+3. **Reload**: Automatic browser update
 
 ### Production Lifecycle
 
-1. **Build**: Geração completa da documentação
-2. **Optimize**: Otimização de assets
-3. **Deploy**: Publicação do site estático
+1. **Build**: Complete documentation generation
+2. **Optimize**: Asset optimization
+3. **Deploy**: Static site publication
 
-## 🎯 Decisões Arquiteturais
+## Architectural Decisions
 
-### Por que Bun.js?
+### Why Bun.js?
 
-- **Performance**: Runtime mais rápido que Node.js
-- **TypeScript nativo**: Suporte built-in
-- **Bundler integrado**: Sem necessidade de webpack/rollup
-- **Package manager**: Gerenciamento de dependências rápido
+- **Performance**: Faster runtime than Node.js
+- **Native TypeScript**: Built-in support
+- **Bundler integrated**: No need for webpack/rollup
+- **Package manager**: Fast dependency management
 
-### Por que Lunr.js?
+### Why Lunr.js?
 
-- **Offline**: Busca funciona sem servidor
-- **Performance**: Índice otimizado para busca rápida
-- **Flexibilidade**: Configuração de relevância
-- **Tamanho**: Bundle pequeno
+- **Offline**: Search works without server
+- **Performance**: Optimized index for fast search
+- **Flexibility**: Relevance configuration
+- **Size**: Small bundle
 
-### Por que Marked.js?
+### Why Marked.js?
 
-- **Compatibilidade**: Suporte completo ao CommonMark
-- **Extensibilidade**: Sistema de plugins
-- **Performance**: Parsing rápido
-- **Maturidade**: Biblioteca estável e testada
+- **Compatibility**: Full CommonMark support
+- **Extensibility**: Plugin system
+- **Performance**: Fast parsing
+- **Maturity**: Stable and tested library
 
-## 🔧 Troubleshooting Arquitetural
+## Architectural Troubleshooting
 
-### Problemas Comuns
+### Common Problems
 
-1. **Build lento**: Verificar processamento paralelo
-2. **Busca não funciona**: Verificar geração do índice
-3. **Assets não carregam**: Verificar caminhos relativos
-4. **Memory leaks**: Verificar cleanup de watchers
+1. **Slow build**: Check parallel processing
+2. **Search not working**: Check index generation
+3. **Assets not loading**: Check relative paths
+4. **Memory leaks**: Check watcher cleanup
 
 ### Debug Tools
 
-- Logs detalhados em modo verbose
-- Profiling de performance
-- Análise de bundle size
-- Métricas de build time
+- Detailed logs in verbose mode
+- Performance profiling
+- Bundle size analysis
+- Build time metrics
 
 ---
 
-Esta arquitetura foi projetada para ser **simples**, **extensível** e **performática**, seguindo as melhores práticas de desenvolvimento moderno. 
+This architecture was designed to be **simple**, **extensible**, and **performant**, following modern development best practices. 

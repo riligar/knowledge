@@ -1,40 +1,40 @@
-# 🛠️ Guia de Desenvolvimento
+# Development Guide
 
-## 📋 Visão Geral
+## Overview
 
-Este guia fornece informações detalhadas para desenvolvedores que desejam contribuir com o projeto Knowledge, incluindo configuração do ambiente de desenvolvimento, padrões de código, arquitetura e processo de contribuição.
+This guide provides detailed information for developers who want to contribute to the Knowledge project, including development environment setup, code standards, architecture, and contribution process.
 
-## 🚀 Configuração do Ambiente
+## Environment Setup
 
-### Pré-requisitos para Desenvolvimento
+### Development Prerequisites
 
-- **Bun.js**: v1.0.0+ (runtime principal)
-- **Node.js**: v18.0.0+ (compatibilidade)
-- **Git**: Para controle de versão
-- **VS Code**: Editor recomendado
-- **TypeScript**: Conhecimento básico necessário
+- **Bun.js**: v1.0.0+ (main runtime)
+- **Node.js**: v18.0.0+ (compatibility)
+- **Git**: For version control
+- **VS Code**: Recommended editor
+- **TypeScript**: Basic knowledge required
 
-### Configuração Inicial
+### Initial Setup
 
 ```bash
-# 1. Fork e clone o repositório
-git clone https://github.com/seu-usuario/knowledge.git
+# 1. Fork and clone the repository
+git clone https://github.com/your-username/knowledge.git
 cd knowledge
 
-# 2. Instalar dependências
+# 2. Install dependencies
 bun install
 
-# 3. Configurar hooks do Git
+# 3. Configure Git hooks
 bun run prepare
 
-# 4. Executar testes
+# 4. Run tests
 bun test
 
-# 5. Iniciar desenvolvimento
+# 5. Start development
 bun run dev
 ```
 
-### Extensões Recomendadas para VS Code
+### Recommended VS Code Extensions
 
 ```json
 {
@@ -50,7 +50,7 @@ bun run dev
 }
 ```
 
-### Configuração do VS Code
+### VS Code Configuration
 
 ```json
 {
@@ -67,47 +67,47 @@ bun run dev
 }
 ```
 
-## 🏗️ Estrutura do Projeto
+## Project Structure
 
-### Organização de Código
+### Code Organization
 
 ```
 knowledge/
-├── src/                        # Código fonte principal
-│   ├── cli.ts                 # Interface CLI
-│   ├── generator.ts           # Gerador de documentação
-│   ├── search.ts              # Sistema de busca
-│   ├── markdown.ts            # Processador Markdown
-│   ├── config.ts              # Configurações e tipos
-│   └── dev-server.ts          # Servidor de desenvolvimento
-├── themes/                     # Sistema de temas
-│   └── default/               # Tema padrão
-│       ├── layouts/           # Templates HTML
-│       └── assets/            # CSS, JS, imagens
-├── tests/                      # Testes automatizados
-│   ├── unit/                  # Testes unitários
-│   ├── integration/           # Testes de integração
-│   └── e2e/                   # Testes end-to-end
-├── docs/                       # Documentação do projeto
-├── examples/                   # Exemplos de uso
-└── scripts/                    # Scripts de build e deploy
+├── src/                        # Main source code
+│   ├── cli.ts                 # CLI interface
+│   ├── generator.ts           # Documentation generator
+│   ├── search.ts              # Search system
+│   ├── markdown.ts            # Markdown processor
+│   ├── config.ts              # Configurations and types
+│   └── dev-server.ts          # Development server
+├── themes/                     # Theme system
+│   └── default/               # Default theme
+│       ├── layouts/           # HTML templates
+│       └── assets/            # CSS, JS, images
+├── tests/                      # Automated tests
+│   ├── unit/                  # Unit tests
+│   ├── integration/           # Integration tests
+│   └── e2e/                   # End-to-end tests
+├── docs/                       # Project documentation
+├── examples/                   # Usage examples
+└── scripts/                    # Build and deploy scripts
 ```
 
-### Convenções de Nomenclatura
+### Naming Conventions
 
-- **Arquivos**: kebab-case (`search-index.ts`)
+- **Files**: kebab-case (`search-index.ts`)
 - **Classes**: PascalCase (`DocumentationGenerator`)
-- **Funções**: camelCase (`generateNavigation`)
-- **Constantes**: UPPER_SNAKE_CASE (`DEFAULT_CONFIG`)
-- **Interfaces**: PascalCase com prefixo I (`ISearchResult`)
+- **Functions**: camelCase (`generateNavigation`)
+- **Constants**: UPPER_SNAKE_CASE (`DEFAULT_CONFIG`)
+- **Interfaces**: PascalCase with I prefix (`ISearchResult`)
 - **Types**: PascalCase (`DocForgeConfig`)
 
-## 📝 Padrões de Código
+## Code Standards
 
 ### TypeScript Guidelines
 
 ```typescript
-// ✅ Bom: Tipagem explícita e interfaces bem definidas
+// ✅ Good: Explicit typing and well-defined interfaces
 interface SearchDocument {
     readonly id: string
     readonly title: string
@@ -120,15 +120,15 @@ class SearchIndexGenerator {
     private readonly documents: SearchDocument[] = []
     
     public addPage(page: DocumentPage): void {
-        // Implementação...
+        // Implementation...
     }
     
     public async buildIndex(): Promise<lunr.Index> {
-        // Implementação assíncrona...
+        // Async implementation...
     }
 }
 
-// ❌ Evitar: Tipos any e mutabilidade desnecessária
+// ❌ Avoid: any types and unnecessary mutability
 class BadExample {
     public data: any[] = []
     
@@ -138,10 +138,10 @@ class BadExample {
 }
 ```
 
-### Padrões de Async/Await
+### Async/Await Patterns
 
 ```typescript
-// ✅ Bom: Tratamento de erros e async/await
+// ✅ Good: Error handling and async/await
 async function processMarkdownFiles(): Promise<DocumentPage[]> {
     try {
         const files = await this.findMarkdownFiles(this.inputDir)
@@ -150,18 +150,18 @@ async function processMarkdownFiles(): Promise<DocumentPage[]> {
         )
         return pages.filter(page => page !== null)
     } catch (error) {
-        console.error('Erro ao processar arquivos:', error)
-        throw new Error(`Falha no processamento: ${error.message}`)
+        console.error('Error processing files:', error)
+        throw new Error(`Processing failed: ${error.message}`)
     }
 }
 
-// ❌ Evitar: Promises aninhadas e falta de tratamento de erro
+// ❌ Avoid: Nested promises and lack of error handling
 function badAsyncExample() {
     return new Promise((resolve, reject) => {
         this.findMarkdownFiles(this.inputDir).then(files => {
             files.forEach(file => {
                 this.processFile(file).then(page => {
-                    // Lógica aninhada...
+                    // Nested logic...
                 })
             })
         })
@@ -169,10 +169,10 @@ function badAsyncExample() {
 }
 ```
 
-### Padrões de Error Handling
+### Error Handling Patterns
 
 ```typescript
-// ✅ Bom: Erros específicos e informativos
+// ✅ Good: Specific and informative errors
 class DocumentationError extends Error {
     constructor(
         message: string,
@@ -194,7 +194,7 @@ function validateConfig(config: DocForgeConfig): void {
     }
 }
 
-// ❌ Evitar: Erros genéricos sem contexto
+// ❌ Avoid: Generic errors without context
 function badErrorHandling(config: any) {
     if (!config.inputDir) {
         throw new Error('Invalid config')
@@ -202,9 +202,9 @@ function badErrorHandling(config: any) {
 }
 ```
 
-## 🧪 Testes
+## Test Cases
 
-### Estrutura de Testes
+### Test Structure
 
 ```typescript
 // tests/unit/generator.test.ts
@@ -254,29 +254,29 @@ describe('DocumentationGenerator', () => {
 })
 ```
 
-### Comandos de Teste
+### Test Commands
 
 ```bash
-# Executar todos os testes
+# Run all tests
 bun test
 
-# Testes com watch mode
+# Test with watch mode
 bun test --watch
 
-# Testes específicos
+# Specific tests
 bun test --grep "SearchIndexGenerator"
 
-# Testes com coverage
+# Test with coverage
 bun test --coverage
 
-# Testes de integração
+# Integration tests
 bun test tests/integration/
 
-# Testes E2E
+# End-to-end tests
 bun test tests/e2e/
 ```
 
-### Mocks e Helpers
+### Mocks and Helpers
 
 ```typescript
 // tests/helpers/mocks.ts
@@ -311,7 +311,7 @@ export class MockFileSystem {
 }
 ```
 
-## 🔧 Scripts de Desenvolvimento
+## Development Scripts
 
 ### Package.json Scripts
 
@@ -353,9 +353,9 @@ bun test --silent
 bunx commitlint --edit $1
 ```
 
-## 📦 Build e Release
+## Build and Release
 
-### Processo de Build
+### Build Process
 
 ```typescript
 // scripts/build.ts
@@ -384,7 +384,7 @@ async function buildProject() {
 buildProject().catch(console.error)
 ```
 
-### Versionamento Semântico
+### Semantic Versioning
 
 ```json
 {
@@ -404,90 +404,90 @@ buildProject().catch(console.error)
 ### Conventional Commits
 
 ```bash
-# Tipos de commit
-feat: nova funcionalidade
-fix: correção de bug
-docs: documentação
-style: formatação
-refactor: refatoração
-test: testes
-chore: tarefas de manutenção
+# Commit types
+feat: new feature
+fix: bug fix
+docs: documentation
+style: formatting
+refactor: refactoring
+test: tests
+chore: maintenance tasks
 
-# Exemplos
+# Examples
 feat(search): add fuzzy search support
 fix(generator): resolve markdown parsing issue
 docs(api): update configuration examples
 test(search): add unit tests for indexing
 ```
 
-## 🤝 Processo de Contribuição
+## Contribution Process
 
-### Workflow de Desenvolvimento
+### Development Workflow
 
-1. **Fork** do repositório
-2. **Clone** do seu fork
-3. **Branch** para sua feature (`git checkout -b feature/amazing-feature`)
-4. **Commit** das mudanças (`git commit -m 'feat: add amazing feature'`)
-5. **Push** para a branch (`git push origin feature/amazing-feature`)
-6. **Pull Request** para o repositório principal
+1. **Fork** the repository
+2. **Clone** your fork
+3. **Branch** for your feature (`git checkout -b feature/amazing-feature`)
+4. **Commit** changes (`git commit -m 'feat: add amazing feature'`)
+5. **Push** to the branch (`git push origin feature/amazing-feature`)
+6. **Pull Request** to the main repository
 
-### Template de Pull Request
+### Pull Request Template
 
 ```markdown
-## 📝 Descrição
+## 📝 Description
 
-Breve descrição das mudanças implementadas.
+Brief description of the implemented changes.
 
-## 🎯 Tipo de Mudança
+## 🎯 Change Type
 
-- [ ] Bug fix (mudança que corrige um problema)
-- [ ] Nova funcionalidade (mudança que adiciona funcionalidade)
-- [ ] Breaking change (mudança que quebra compatibilidade)
-- [ ] Documentação (mudança apenas na documentação)
+- [ ] Bug fix (change that fixes a problem)
+- [ ] New feature (change that adds functionality)
+- [ ] Breaking change (change that breaks compatibility)
+- [ ] Documentation (change only in documentation)
 
-## 🧪 Como Testar
+## 🧪 How to Test
 
-1. Passos para reproduzir
-2. Comportamento esperado
-3. Screenshots (se aplicável)
+1. Steps to reproduce
+2. Expected behavior
+3. Screenshots (if applicable)
 
 ## ✅ Checklist
 
-- [ ] Código segue os padrões do projeto
-- [ ] Testes foram adicionados/atualizados
-- [ ] Documentação foi atualizada
-- [ ] Commits seguem conventional commits
-- [ ] Build passa sem erros
-- [ ] Testes passam
+- [ ] Code follows project standards
+- [ ] Tests were added/updated
+- [ ] Documentation was updated
+- [ ] Commits follow conventional commits
+- [ ] Build passes without errors
+- [ ] Tests pass
 
 ## 📸 Screenshots
 
-(Se aplicável)
+(If applicable)
 
-## 🔗 Issues Relacionadas
+## 🔗 Related Issues
 
 Closes #123
 ```
 
 ### Code Review Guidelines
 
-#### Para Autores
+#### For Authors
 
-- **Commits pequenos**: Mantenha PRs focados e pequenos
-- **Testes**: Adicione testes para novas funcionalidades
-- **Documentação**: Atualize documentação relevante
-- **Descrição clara**: Explique o que e por que das mudanças
+- **Small commits**: Keep PRs focused and small
+- **Tests**: Add tests for new features
+- **Documentation**: Update relevant documentation
+- **Clear Description**: Explain what and why changes are made
 
-#### Para Reviewers
+#### For Reviewers
 
-- **Seja construtivo**: Feedback específico e útil
-- **Teste localmente**: Verifique se funciona como esperado
-- **Padrões**: Verifique aderência aos padrões do projeto
-- **Performance**: Considere impacto na performance
+- **Be constructive**: Provide specific and useful feedback
+- **Test locally**: Verify it works as expected
+- **Standards**: Verify adherence to project standards
+- **Performance**: Consider impact on performance
 
-## 🐛 Debug e Troubleshooting
+## 🐛 Debug and Troubleshooting
 
-### Logs de Debug
+### Debug Logs
 
 ```typescript
 // src/utils/logger.ts
@@ -518,7 +518,7 @@ export class Logger {
 }
 ```
 
-### Debugging no VS Code
+### Debugging in VS Code
 
 ```json
 {
@@ -573,24 +573,24 @@ export class Profiler {
     }
 }
 
-// Uso
+// Usage
 Profiler.start('markdown-processing')
 await processMarkdownFiles()
 Profiler.end('markdown-processing')
 ```
 
-## 📊 Métricas e Monitoramento
+## 📊 Metrics and Monitoring
 
 ### Bundle Analysis
 
 ```bash
-# Analisar tamanho do bundle
+# Analyze bundle size
 bun run build --analyze
 
-# Verificar dependências
+# Check dependencies
 bun run deps:check
 
-# Audit de segurança
+# Security audit
 bun audit
 ```
 
@@ -617,12 +617,12 @@ describe('Search Performance', () => {
 })
 ```
 
-## 🔒 Segurança
+## 🔒 Security
 
-### Práticas de Segurança
+### Security Practices
 
 ```typescript
-// ✅ Bom: Sanitização de entrada
+// ✅ Good: Input sanitization
 function sanitizeMarkdown(content: string): string {
     return content
         .replace(/<script[^>]*>.*?<\/script>/gi, '')
@@ -630,86 +630,86 @@ function sanitizeMarkdown(content: string): string {
         .replace(/on\w+\s*=/gi, '')
 }
 
-// ✅ Bom: Validação de caminhos
+// ✅ Good: Path validation
 function validatePath(filePath: string): boolean {
     const normalizedPath = path.normalize(filePath)
     return !normalizedPath.includes('..')
 }
 
-// ❌ Evitar: Execução de código não sanitizado
+// ❌ Avoid: Executing untrusted code
 function dangerousExample(userInput: string) {
-    eval(userInput) // NUNCA fazer isso!
+    eval(userInput) // NEVER do this!
 }
 ```
 
-### Dependências
+### Dependencies
 
 ```bash
-# Verificar vulnerabilidades
+# Check for vulnerabilities
 bun audit
 
-# Atualizar dependências
+# Update dependencies
 bun update
 
-# Verificar licenças
+# Check licenses
 bunx license-checker
 ```
 
-## 📚 Recursos Adicionais
+## 📚 Additional Resources
 
-### Documentação Técnica
+### Technical Documentation
 
 - [Bun.js Documentation](https://bun.sh/docs)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [Lunr.js Guide](https://lunrjs.com/guides/)
 - [Marked.js Documentation](https://marked.js.org/)
 
-### Ferramentas Úteis
+### Useful Tools
 
-- **Bun DevTools**: Debugging e profiling
-- **TypeScript Playground**: Testar código TypeScript
-- **Regex101**: Testar expressões regulares
-- **JSON Formatter**: Validar e formatar JSON
+- **Bun DevTools**: Debugging and profiling
+- **TypeScript Playground**: Test TypeScript code
+- **Regex101**: Test regular expressions
+- **JSON Formatter**: Validate and format JSON
 
-### Comunidade
+### Community
 
-- 💬 **Discord**: [Link do servidor](https://discord.gg/knowledge)
+- 💬 **Discord**: [Server link](https://discord.gg/knowledge)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/riligar/knowledge/issues)
 - 💡 **Discussions**: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
 - 📧 **Email**: [dev@riligar.click](mailto:dev@riligar.click)
 
-## 🎯 Roadmap de Desenvolvimento
+## 🎯 Development Roadmap
 
-### Próximas Funcionalidades
+### Next Features
 
 1. **Plugin System** (v2.0)
-   - API de plugins
-   - Marketplace de plugins
-   - Hot reload de plugins
+   - API of plugins
+   - Plugin marketplace
+   - Hot reload of plugins
 
 2. **Advanced Search** (v1.5)
-   - Busca semântica
-   - Filtros avançados
-   - Analytics de busca
+   - Semantic search
+   - Advanced filters
+   - Search analytics
 
 3. **Themes 2.0** (v1.4)
-   - Theme builder visual
-   - Componentes reutilizáveis
-   - Sistema de herança
+   - Visual theme builder
+   - Reusable components
+   - Inheritance system
 
 4. **Performance** (v1.3)
    - Lazy loading
    - Code splitting
    - Service workers
 
-### Como Contribuir
+### How to Contribute
 
-1. **Escolha uma issue**: Procure issues marcadas como `good first issue`
-2. **Discuta**: Comente na issue antes de começar
-3. **Implemente**: Siga os padrões estabelecidos
-4. **Teste**: Adicione testes para sua funcionalidade
-5. **Documente**: Atualize a documentação relevante
+1. **Choose an issue**: Search for issues marked as `good first issue`
+2. **Discuss**: Comment on the issue before starting
+3. **Implement**: Follow established patterns
+4. **Test**: Add tests for your feature
+5. **Document**: Update relevant documentation
 
 ---
 
-**Obrigado por contribuir com o Knowledge!** 🙏 Sua contribuição ajuda a tornar a documentação melhor para todos. 
+**Thank you for contributing to Knowledge!** 🙏 Your contribution helps make documentation better for everyone. 
