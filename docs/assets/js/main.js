@@ -5,12 +5,13 @@ class Knowledge {
     }
 
     init() {
-        this.setupThemeToggle();
-        this.setupSearch();
-        this.setupNavigation();
-        this.setupScrollSpy();
-        this.setupCodeCopy();
-        this.setupTOC();
+        this.initThemeToggle();
+        this.initMobileMenu();
+        this.initNavigation();
+        this.initSmoothScrolling();
+        this.initKeyboardShortcuts();
+        this.initContentMenu();
+        this.initContentMenuScrollSpy();
         this.initializeTheme();
     }
 
@@ -443,7 +444,7 @@ class Knowledge {
         localStorage.setItem('knowledge-theme', theme);
 
         // Update toggle button
-        const toggleBtn = document.querySelector('.theme-toggle');
+        const toggleBtn = document.querySelector('.theme-toggle-header');
         if (toggleBtn) {
             toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
             toggleBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
