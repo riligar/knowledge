@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/riligar/knowledge/compare/v1.2.1...v1.3.0) (2025-06-01)
+
+
+### Features
+
+* **server:** add helper functions for static file handling and content type determination ([1dbd588](https://github.com/riligar/knowledge/commit/1dbd5885ccfb796a3194df698c78c596e3b3e304))
+
 ## [1.2.1](https://github.com/riligar/knowledge/compare/v1.2.0...v1.2.1) (2025-06-01)
 
 
