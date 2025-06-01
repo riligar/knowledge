@@ -6,12 +6,12 @@ This documentation provides a complete API reference for Knowledge, including Ty
 
 ## Main Configuration
 
-### DocForgeConfig
+### KnowledgeConfig
 
 Main system configuration interface.
 
 ```typescript
-interface DocForgeConfig {
+interface KnowledgeConfig {
     // Directories
     inputDir: string
     outputDir: string

@@ -100,7 +100,7 @@ knowledge/
 - **Functions**: camelCase (`generateNavigation`)
 - **Constants**: UPPER_SNAKE_CASE (`DEFAULT_CONFIG`)
 - **Interfaces**: PascalCase with I prefix (`ISearchResult`)
-- **Types**: PascalCase (`DocForgeConfig`)
+- **Types**: PascalCase (`KnowledgeConfig`)
 
 ## Code Standards
 
@@ -184,7 +184,7 @@ class DocumentationError extends Error {
     }
 }
 
-function validateConfig(config: DocForgeConfig): void {
+function validateConfig(config: KnowledgeConfig): void {
     if (!config.inputDir) {
         throw new DocumentationError(
             'Input directory is required',
@@ -280,7 +280,7 @@ bun test tests/e2e/
 
 ```typescript
 // tests/helpers/mocks.ts
-export const mockConfig: DocForgeConfig = {
+export const mockConfig: KnowledgeConfig = {
     inputDir: './test-docs',
     outputDir: './test-dist',
     site: {

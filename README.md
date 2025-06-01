@@ -35,7 +35,7 @@ A modern, open-source documentation platform that transforms how teams create, o
 ## 📁 Project Structure
 
 ```
-docforge/
+knowledge/
 ├── src/                 # Source code
 ├── themes/
 │   └── default/
@@ -84,7 +84,7 @@ docforge/
 
 ## 📝 Configuration
 
-The `docforge.config.ts` file contains all configuration options:
+The `knowledge.config.ts` file contains all configuration options:
 
 ```typescript
 export default {
@@ -101,7 +101,7 @@ export default {
         darkMode: true,
         tableOfContents: true
     }
-} as DocForgeConfig;
+} as KnowledgeConfig;
 ```
 
 ## 🎯 Performance

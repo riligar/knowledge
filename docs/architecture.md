@@ -66,7 +66,7 @@ export class MarkdownProcessor {
 }
 
 // src/config.ts - Configurations
-export interface DocForgeConfig {
+export interface KnowledgeConfig {
     inputDir: string
     outputDir: string
     site: SiteConfig
@@ -132,7 +132,7 @@ knowledge/
 │               └── page-highlighter.js
 ├── docs/                         # Source documentation
 ├── dist/                         # Generated output
-└── docforge.config.ts            # Project configuration
+└── knowledge.config.ts            # Project configuration
 ```
 
 ## Main Components
@@ -218,13 +218,13 @@ theme/
 ### Configuration Hierarchy
 
 1. **Default configuration** (src/config.ts)
-2. **Project configuration** (docforge.config.ts)
+2. **Project configuration** (knowledge.config.ts)
 3. **CLI arguments** (override configurations)
 
 ### Configuration Types
 
 ```typescript
-interface DocForgeConfig {
+interface KnowledgeConfig {
     // Directories
     inputDir: string
     outputDir: string

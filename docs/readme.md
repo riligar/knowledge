@@ -63,7 +63,7 @@ knowledge/
 │           └── js/        # JavaScript scripts
 ├── docs/                  # Source documentation
 ├── dist/                  # Generated output
-└── docforge.config.ts     # Main configuration
+└── knowledge.config.ts     # Main configuration
 ```
 
 ## Quick Start
@@ -108,7 +108,7 @@ bun run serve
 
 ## Configuration
 
-The `docforge.config.ts` file contains all configuration options:
+The `knowledge.config.ts` file contains all configuration options:
 
 ```typescript
 export default {
@@ -157,7 +157,7 @@ export default {
         host: 'localhost',
         livereload: true
     }
-} as DocForgeConfig;
+} as KnowledgeConfig;
 ```
 
 ## CLI Commands

@@ -85,17 +85,17 @@ This will create the following structure:
 my-documentation/
 ├── docs/                    # Source documentation
 │   └── README.md           # Home page
-├── docforge.config.ts      # Main configuration
+├── knowledge.config.ts      # Main configuration
 ├── package.json            # Project dependencies
 └── .gitignore             # Git ignored files
 ```
 
 ### 2. Basic Configuration
 
-Edit the `docforge.config.ts` file:
+Edit the `knowledge.config.ts` file:
 
 ```typescript
-import type { DocForgeConfig } from './src/config.js';
+import type { KnowledgeConfig } from './src/config.js';
 
 export default {
     // Directories
@@ -144,7 +144,7 @@ export default {
         host: 'localhost',
         livereload: true
     }
-} as DocForgeConfig;
+} as KnowledgeConfig;
 ```
 
 ### 3. Documentation Structure
@@ -644,7 +644,7 @@ bun run src/cli.ts build --verbose
 find docs -name "*.md" -exec echo "Checking: {}" \; -exec head -1 {} \;
 
 # Verify config syntax
-bun run -e "import('./docforge.config.ts')"
+bun run -e "import('./knowledge.config.ts')"
 ```
 
 #### 3. Server Not Starting
@@ -708,7 +708,7 @@ else
 fi
 
 # Verify configuration
-if [ -f "docforge.config.ts" ]; then
+if [ -f "knowledge.config.ts" ]; then
     echo "✅ Configuration found"
 else
     echo "⚠️  Configuration not found - execute 'bun run init'"
@@ -739,7 +739,7 @@ After installation and configuration:
 
 - 📖 **Documentation**: [knowledge.dev](https://knowledge.dev)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/riligar/knowledge/issues)
-- �� **Discussions**: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
 - 📧 **Email**: [suporte@riligar.click](mailto:suporte@riligar.click)
 
 ---

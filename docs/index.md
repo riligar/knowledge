@@ -68,7 +68,7 @@ This is the complete index of the Knowledge system documentation. Here you will 
 ### APIs and Interfaces
 | Interface | Description | Document |
 |-----------|-----------|-----------|
-| `DocForgeConfig` | Main configuration | [API Reference](./reference.md#docforgeconfig) |
+| `KnowledgeConfig` | Main configuration | [API Reference](./reference.md#knowledgeconfig) |
 | `DocumentationGenerator` | Main generator | [API Reference](./reference.md#documentationgenerator) |
 | `SearchIndexGenerator` | Search system | [API Reference](./reference.md#searchindexgenerator) |
 | `DevServer` | Development server | [API Reference](./reference.md#devserver) |
