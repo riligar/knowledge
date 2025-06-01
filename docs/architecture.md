@@ -147,7 +147,7 @@ knowledge/
 
 **Technologies:**
 - Commander.js for argument parsing
-- Bun.js for execution
+- Bun for execution
 
 ### 2. Generator (Documentation Generator)
 
@@ -386,7 +386,7 @@ interface Plugin {
 
 ## Architectural Decisions
 
-### Why Bun.js?
+### Why Bun?
 
 - **Performance**: Faster runtime than Node.js
 - **Native TypeScript**: Built-in support

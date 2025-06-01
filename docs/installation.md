@@ -8,7 +8,7 @@ This guide provides detailed instructions for installing, configuring, and getti
 
 ### Minimum Requirements
 
-- **Bun.js**: v1.0.0 or higher (recommended)
+- **Bun**: v1.0.0 or higher (recommended)
 - **Node.js**: v18.0.0 or higher (alternative)
 - **Operating System**: Windows 10+, macOS 10.15+, Linux (Ubuntu 20.04+)
 - **RAM**: 2GB minimum, 4GB recommended
@@ -25,7 +25,7 @@ This guide provides detailed instructions for installing, configuring, and getti
 ### Method 1: Installation with Bun (Recommended)
 
 ```bash
-# 1. Install Bun.js (if not already installed)
+# 1. Install Bun (if not already installed)
 curl -fsSL https://bun.sh/install | bash
 
 # 2. Clone the repository

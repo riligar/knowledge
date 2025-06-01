@@ -350,7 +350,7 @@ This is your documentation homepage. Edit this file to get started!
 
 ## Features
 
-- 🚀 **Fast builds** with Bun.js
+- 🚀 **Fast builds** with Bun
 - 📝 **Markdown support** with syntax highlighting
 - 🎨 **Beautiful default theme**
 - 🔍 **Built-in search**
@@ -377,7 +377,7 @@ Welcome to the installation guide for Knowledge.
 Before you begin, make sure you have one of the following package managers installed:
 
 - [npm](https://www.npmjs.com/) (comes with Node.js)
-- [Bun.js](https://bun.sh) (recommended for faster performance)
+- [Bun](https://bun.sh) (recommended for faster performance)
 - [Yarn](https://yarnpkg.com/)
 - [pnpm](https://pnpm.io/)
 

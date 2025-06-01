@@ -8,7 +8,7 @@ This guide provides detailed information for developers who want to contribute t
 
 ### Development Prerequisites
 
-- **Bun.js**: v1.0.0+ (main runtime)
+- **Bun**: v1.0.0+ (main runtime)
 - **Node.js**: v18.0.0+ (compatibility)
 - **Git**: For version control
 - **VS Code**: Recommended editor
@@ -659,7 +659,7 @@ bunx license-checker
 
 ### Technical Documentation
 
-- [Bun.js Documentation](https://bun.sh/docs)
+- [Bun Documentation](https://bun.sh/docs)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [Lunr.js Guide](https://lunrjs.com/guides/)
 - [Marked.js Documentation](https://marked.js.org/)

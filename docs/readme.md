@@ -37,7 +37,7 @@ A modern and open-source documentation system that transforms how teams create, 
 
 ## Technology Stack
 
-- **Runtime**: Bun.js for maximum performance
+- **Runtime**: Bun for maximum performance
 - **Language**: TypeScript for type safety
 - **Markdown**: Advanced processing with extensions
 - **Search**: Lunr.js for offline full-text search
@@ -70,7 +70,7 @@ knowledge/
 
 ### Prerequisites
 
-- [Bun.js](https://bun.sh/) v1.0+
+- [Bun](https://bun.sh/) v1.0+
 - Node.js v18+ (optional, for compatibility)
 
 ### Installation

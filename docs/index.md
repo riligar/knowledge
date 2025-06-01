@@ -176,7 +176,7 @@ This is the complete index of the Knowledge system documentation. Here you will 
 - **Documentation**: [knowledge.dev](https://knowledge.dev)
 
 ### External Resources
-- [Bun.js Documentation](https://bun.sh/docs)
+- [Bun Documentation](https://bun.sh/docs)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [Lunr.js Guide](https://lunrjs.com/guides/)
 - [Marked.js Documentation](https://marked.js.org/)
