@@ -582,8 +582,15 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-/* Theme Toggle in Header */
-.theme-toggle-header {
+/* Header Actions Group */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+/* Header Action Buttons - Base Style */
+.header-action-btn {
     background: none;
     border: 1px solid var(--border-medium);
     border-radius: 6px;
@@ -595,18 +602,90 @@ body {
     cursor: pointer;
     transition: var(--transition);
     color: var(--text-secondary);
+    text-decoration: none;
     position: relative;
+    overflow: hidden;
+}
+
+.header-action-btn:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.header-action-btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.header-action-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* GitHub Link Specific Styles */
+.github-link svg {
+    width: 20px;
+    height: 20px;
+    transition: var(--transition);
+}
+
+.github-link:hover svg {
+    transform: scale(1.1);
+}
+
+/* Theme Toggle Specific Styles */
+.theme-toggle-header .theme-icon {
+    position: absolute;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Theme Icons Animation */
+.theme-icon-light,
+.theme-icon-dark {
+    position: absolute;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light theme - show sun icon */
+[data-theme="light"] .theme-icon-light {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+[data-theme="light"] .theme-icon-dark {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.5);
+}
+
+/* Dark theme - show moon icon */
+[data-theme="dark"] .theme-icon-light {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-icon-dark {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Theme Toggle in Header */
+.theme-toggle-header {
+    /* Inherits from .header-action-btn */
 }
 
 .theme-toggle-header:hover {
-    background: var(--bg-tertiary);
-    border-color: var(--border-medium);
-    color: var(--text-primary);
+    /* Inherits from .header-action-btn:hover */
 }
 
 .theme-toggle-header:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
+    /* Inherits from .header-action-btn:focus */
 }
 
 /* Page Actions */
@@ -664,35 +743,6 @@ body {
     letter-spacing: 0.3px;
 }
 
-/* Theme Icons */
-.theme-icon-light,
-.theme-icon-dark {
-    position: absolute;
-    transition: var(--transition);
-}
-
-/* Light theme - show sun icon */
-[data-theme="light"] .theme-icon-light {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-[data-theme="light"] .theme-icon-dark {
-    opacity: 0;
-    transform: rotate(90deg);
-}
-
-/* Dark theme - show moon icon */
-[data-theme="dark"] .theme-icon-light {
-    opacity: 0;
-    transform: rotate(-90deg);
-}
-
-[data-theme="dark"] .theme-icon-dark {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
 /* Mobile Menu Button - Hidden on desktop */
 .mobile-menu-toggle {
     display: none;
@@ -703,7 +753,7 @@ body {
     padding: 8px;
     border-radius: 6px;
     transition: var(--transition);
-    margin-right: var(--space-md);
+    margin-right: var(--space-xs);
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -1113,6 +1163,21 @@ body {
         padding: 8px;
     }
 
+    /* Header actions adjustments */
+    .header-actions {
+        gap: var(--space-xs);
+    }
+
+    .header-action-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .github-link svg {
+        width: 18px;
+        height: 18px;
+    }
+
     /* Page actions adjustments */
     .page-actions {
         margin-bottom: var(--space-md);
@@ -1191,5 +1256,28 @@ body {
 
     .download-text {
         font-size: 12px;
+    }
+
+    /* Header actions adjustments for small screens */
+    .header-actions {
+        gap: 4px;
+    }
+
+    .header-action-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .github-link svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .theme-toggle-header .theme-icon {
+        font-size: 14px;
+    }
+
+    .navigation {
+        padding: var(--space-md);
     }
 }

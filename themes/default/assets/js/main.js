@@ -443,11 +443,11 @@ class Knowledge {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('knowledge-theme', theme);
 
-        // Update toggle button
+        // Update toggle button aria-label
         const toggleBtn = document.querySelector('.theme-toggle-header');
         if (toggleBtn) {
-            toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
-            toggleBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+            toggleBtn.setAttribute('aria-label', `Alternar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`);
+            toggleBtn.setAttribute('title', `Alternar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`);
         }
 
         // Atualizar meta theme-color para mobile
