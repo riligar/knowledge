@@ -10,7 +10,7 @@ export default {
         title: 'Knowledge',
         description: 'A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.',
         baseUrl: '/',
-        author: 'RiliGar'
+        author: 'Ciro Cesar Maciel'
     },
 
     theme: 'default',
