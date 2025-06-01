@@ -23,8 +23,7 @@
 - 🧭 **Automatic navigation** based on folders
 
 ### ✅ **Productivity**
-- ⚡ **Live reload** during development
-- 🚀 **Fast build** with Bun.js
+- 🚀 **Fast build** with Bun.js (seconds)
 - 📦 **Simple deploy** to any hosting
 - 🔧 **Zero configuration** required
 
@@ -119,7 +118,7 @@ docs/
 
 ## ⚙️ Minimal Configuration
 
-**`knowledge.config.ts`** (optional):
+**`knowledge.config.ts`** (required):
 ```typescript
 export default {
     site: {
