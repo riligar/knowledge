@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/riligar/knowledge/compare/v1.2.0...v1.2.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* **cli:** update initialization steps to reflect new command structure for knowledge project ([0a9f8e3](https://github.com/riligar/knowledge/commit/0a9f8e3c86cf8499b0cdae46fb50fddce076103b))
+
 # [1.2.0](https://github.com/riligar/knowledge/compare/v1.1.0...v1.2.0) (2025-06-01)
 
 
