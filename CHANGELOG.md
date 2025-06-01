@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/riligar/knowledge/compare/v1.0.0...v1.0.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* add publishConfig to package.json for public access ([40f007f](https://github.com/riligar/knowledge/commit/40f007fab59db87526c62c03d7f4a4824fba032b))
+
 # 1.0.0 (2025-06-01)
 
 
