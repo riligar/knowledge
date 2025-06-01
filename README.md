@@ -52,11 +52,6 @@ pnpm add -g @riligar/knowledge
    knowledge build
    ```
 
-## 📖 Documentation
-
-Visit our [official documentation](https://myknowledge.click) for detailed guides and examples.
-
-
 ## 🚀 How to Use (3 Steps)
 
 ### 1. **Structure your files**
