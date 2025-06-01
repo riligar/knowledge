@@ -8,12 +8,15 @@ import { DocumentationGenerator } from './generator.ts';
 import { DevServer } from './dev-server.ts';
 import openBrowser from './open-browser.ts';
 
+// Importar versão do package.json
+const packageJson = JSON.parse(await fs.readFile(path.join(import.meta.dir, '../package.json'), 'utf-8'));
+
 const program = new Command();
 
 program
     .name('knowledge')
     .description('Modern static documentation generator powered by Bun.js')
-    .version('1.0.0');
+    .version(packageJson.version);
 
 program
     .command('build')
@@ -193,27 +196,6 @@ async function initializeProject(targetDir: string): Promise<void> {
 };`;
 
     await fs.writeFile(path.join(targetDir, 'knowledge.config.ts'), configContent);
-
-    // Criar package.json se não existir
-    const packageJsonPath = path.join(targetDir, 'package.json');
-    if (!await fs.pathExists(packageJsonPath)) {
-        console.log('📦 Creating package.json...');
-        const packageJson = {
-            name: path.basename(targetDir),
-            version: "1.0.0",
-            description: "Documentation project powered by Knowledge",
-            scripts: {
-                "build": "knowledge build",
-                "dev": "knowledge dev",
-                "serve": "knowledge serve",
-                "init": "knowledge init"
-            },
-            devDependencies: {
-                "knowledge": "^1.0.0"
-            }
-        };
-        await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
-    }
 
     // Criar documentação de exemplo
     console.log('📝 Creating example documentation...');
