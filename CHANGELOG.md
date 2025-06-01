@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/riligar/knowledge/compare/v1.11.0...v1.12.0) (2025-06-01)
+
+
+### Features
+
+* **download:** add download ZIP button with loading state and styles ([4e9711b](https://github.com/riligar/knowledge/commit/4e9711bc4ac8e90c23539606c08ff380ab99b7e9))
+
 # [1.11.0](https://github.com/riligar/knowledge/compare/v1.10.0...v1.11.0) (2025-06-01)
 
 
