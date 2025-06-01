@@ -13,9 +13,18 @@ First, thoroughly explore the repository:
 - Configurations and environment variables
 - Project purpose and functionalities
 
-### 2. Create Documentation Structure
+### 2. Generate Index Documentation
+**IMMEDIATELY after the repository analysis**, create the `docs/index.md` file. This file is crucial as it serves as the main entry point for the documentation. It must be:
+- **Clear and succinct**: Present the project in a way that immediately communicates its value
+- **Engaging**: Use compelling language and structure that captures the reader's attention
+- **Informative**: Include interesting details that make users want to explore further
+- **Well-structured**: Organize information logically with proper headings and formatting
 
-Create the following files in the `docs/` folder:
+The index.md should hook the reader from the first paragraph and provide a comprehensive overview that encourages deeper exploration of the documentation.
+
+### 3. Create Complete Documentation Structure
+
+After generating the index.md, create the following additional files in the `docs/` folder:
 
 #### `docs/index.md`
 ```markdown
@@ -122,7 +131,7 @@ Create the following files in the `docs/` folder:
 ```
 ```
 
-### 3. Configuration File
+### 4. Configuration File
 
 Create `knowledge.config.ts` in the root:
 
@@ -157,7 +166,7 @@ export default {
 } as KnowledgeConfig;
 ```
 
-### 4. Update README.md
+### 5. Update README.md
 
 Add documentation section to README:
 
@@ -189,6 +198,7 @@ Access: http://localhost:8080
 - [ ] Correct internal links
 - [ ] Up-to-date information
 - [ ] Complete project coverage
+- [ ] **Engaging and attention-grabbing index.md**
 
 ## 🎯 Guidelines
 
@@ -197,12 +207,14 @@ Access: http://localhost:8080
 - Include emojis for better readability
 - Provide practical examples
 - Explain the "why", not just the "how"
+- **Make the index.md compelling and memorable**
 
 ### Organization
 - Structure information in lists
 - Use tables when appropriate
 - Highlight important information
 - Keep sections concise
+- **Ensure the index.md flows naturally and maintains reader interest**
 
 ### Code
 - All examples must work
@@ -213,6 +225,7 @@ Access: http://localhost:8080
 ## 🚀 Expected Result
 
 At the end, the user will have:
+- **A captivating index.md that serves as an excellent introduction to the project**
 - Professional and navigable documentation
 - Optimized static site
 - Integrated search working
@@ -220,4 +233,4 @@ At the end, the user will have:
 
 ---
 
-**💡 Tip**: Focus on user experience. Documentation should quickly answer the questions: "What is it?", "How to install?", "How to use?" and "How to contribute?" 
+**💡 Tip**: Focus on user experience. The index.md should immediately answer "What is this?" and "Why should I care?" in a way that makes readers excited to learn more. The complete documentation should quickly answer: "What is it?", "How to install?", "How to use?" and "How to contribute?" 
