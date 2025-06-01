@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/riligar/knowledge/compare/v1.8.1...v1.9.0) (2025-06-01)
+
+
+### Features
+
+* **generator:** enhance documentation generation and asset handling ([3760ff1](https://github.com/riligar/knowledge/commit/3760ff1cf2e3a7b92518f7409823d3db3464b337))
+
 ## [1.8.1](https://github.com/riligar/knowledge/compare/v1.8.0...v1.8.1) (2025-06-01)
 
 
