@@ -7,13 +7,17 @@
 
 **Knowledge** is a modern static documentation generator that transforms Markdown files into professional documentation sites. It's the perfect tool for anyone who wants to create beautiful and functional documentation without complications.
 
-**With Knowledge, you transform:**
+## 📊 Expected ROI
 
-**From:** Scattered Markdown files
-**To:** Professional documentation site
+### Time Saved
+- **Before**: 4-8 hours for basic documentation
+- **After**: 30-60 minutes with prompt
+- **Savings**: 85-90% of time
 
-**In:** Less than 30 minutes
-**With:** Zero complex configuration
+### Improved Quality
+- **Consistency**: Standardized templates
+- **Completeness**: Coverage of all aspects
+- **Usability**: Modern and navigable interface
 
 
 ## 🚀 Features
