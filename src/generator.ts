@@ -3,6 +3,7 @@ import * as path from 'path';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
 import type { KnowledgeConfig, NavigationItem } from './config.js';
+import { resolveThemesDir } from './config.js';
 import { SearchIndexGenerator } from './search.js';
 import { MarkdownProcessor } from './markdown.js';
 
@@ -37,11 +38,15 @@ export class DocumentationGenerator {
     private navigation: NavigationItem[] = [];
     private searchIndex: SearchIndexGenerator;
     private markdownProcessor: MarkdownProcessor;
+    private resolvedThemesDir: string;
 
     constructor(private config: KnowledgeConfig) {
         this.setupMarked();
         this.searchIndex = new SearchIndexGenerator();
         this.markdownProcessor = new MarkdownProcessor(config);
+
+        // Resolver o caminho correto dos temas
+        this.resolvedThemesDir = resolveThemesDir(config.themesDir);
     }
 
     private setupMarked() {
@@ -302,7 +307,7 @@ export class DocumentationGenerator {
     }
 
     private async generatePages(): Promise<void> {
-        const templatePath = path.join(this.config.themesDir, this.config.theme, 'layouts', `${this.config.layout}.html`);
+        const templatePath = path.join(this.resolvedThemesDir, this.config.theme, 'layouts', `${this.config.layout}.html`);
         let template = '';
 
         try {
@@ -399,13 +404,15 @@ export class DocumentationGenerator {
     }
 
     private async copyAssets(): Promise<void> {
-        const themeAssetsDir = path.join(this.config.themesDir, this.config.theme, 'assets');
+        const themeAssetsDir = path.join(this.resolvedThemesDir, this.config.theme, 'assets');
         const outputAssetsDir = path.join(this.config.outputDir, 'assets');
 
         try {
             await fs.copy(themeAssetsDir, outputAssetsDir);
+            console.log(`✅ Assets copied from: ${themeAssetsDir}`);
         } catch (err) {
             console.warn(`Could not copy theme assets from ${themeAssetsDir}`);
+            console.warn('Error:', err instanceof Error ? err.message : err);
             // Criar assets padrão
             await this.createDefaultAssets();
         }

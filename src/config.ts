@@ -1,5 +1,6 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 
 export interface KnowledgeConfig {
     // Diretórios
@@ -271,4 +272,45 @@ function validateConfig(config: KnowledgeConfig): void {
     if (errors.length > 0) {
         throw new Error(`Configuration validation failed:\n${errors.map(e => `  - ${e}`).join('\n')}`);
     }
+}
+
+/**
+ * Resolve o caminho correto para o diretório de temas
+ * Considera tanto instalação local quanto global
+ */
+export function resolveThemesDir(configThemesDir: string): string {
+    // Se o caminho é absoluto, usar como está
+    if (path.isAbsolute(configThemesDir)) {
+        return configThemesDir;
+    }
+
+    // Tentar caminho relativo primeiro (instalação local ou projeto com temas próprios)
+    const localThemesDir = path.resolve(configThemesDir);
+
+    if (fs.existsSync(localThemesDir)) {
+        return localThemesDir;
+    }
+
+    // Se não encontrou localmente, tentar no diretório de instalação do pacote
+    try {
+        // Obter o diretório do módulo atual
+        const currentModuleDir = path.dirname(fileURLToPath(import.meta.url));
+
+        // Navegar para o diretório raiz do pacote (src -> raiz)
+        const packageRootDir = path.resolve(currentModuleDir, '..');
+
+        // Caminho para os temas no pacote instalado
+        const packageThemesDir = path.join(packageRootDir, 'themes');
+
+        if (fs.existsSync(packageThemesDir)) {
+            console.log(`📁 Using themes from package installation: ${packageThemesDir}`);
+            return packageThemesDir;
+        }
+    } catch (error) {
+        console.warn('⚠️  Could not resolve package themes directory:', error);
+    }
+
+    // Fallback para o caminho original
+    console.warn(`⚠️  Themes directory not found, using fallback: ${localThemesDir}`);
+    return localThemesDir;
 } 
