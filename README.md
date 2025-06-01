@@ -1,169 +1,273 @@
 # Knowledge - Modern Documentation Generator
 
-[![GitHub stars](https://img.shields.io/github/stars/yourorg/knowledge)](https://github.com/yourorg/knowledge/stargazers)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Documentation](https://img.shields.io/badge/docs-knowledge.dev-blue)](https://knowledge.dev)
+[![GitHub stars](https://img.shields.io/github/stars/yourorg/knowledge)](https://github.com/yourorg/knowledge/stargazers) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Documentation](https://img.shields.io/badge/docs-knowledge.dev-blue)](https://knowledge.dev)
 
 > Transform how your team creates, organizes, and shares knowledge
 
-A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge. Built for developers, designed for everyone.
+## 🎯 What is Knowledge?
 
-## 🌟 Why Knowledge?
+**Knowledge** is a modern static documentation generator that transforms Markdown files into professional documentation sites. It's the perfect tool for anyone who wants to create beautiful and functional documentation without complications.
 
-- **Developer First** - Built by developers, for developers
-- **Modern Stack** - Latest web technologies for best performance
-- **Extensible** - Plugin system for unlimited customization
-- **Community Driven** - Open source with active community support
+## ⚡ Why use Knowledge?
 
-## 🎯 Key Features
+### ✅ **Extreme Simplicity**
+- Write in plain Markdown
+- Configure once, use always
+- Generate professional sites automatically
 
-- **Modern Design**: Clean, professional interface with attention to detail
-- **Responsive**: Mobile-first design that works on all devices
-- **Dark Mode**: Automatic theme switching with smooth transitions
-- **Search**: Real-time search functionality
-- **Code Highlighting**: Syntax highlighting with copy-to-clipboard
-- **Navigation**: Auto-generated navigation with smooth scrolling
-- **Accessibility**: WCAG compliant with keyboard navigation support
+### ✅ **Professional Features**
+- 🔍 **Instant search** across all content
+- 📱 **Responsive design** (mobile + desktop)
+- 🌙 **Automatic dark mode**
+- 🎨 **Syntax highlighting** for code
+- 🧭 **Automatic navigation** based on folders
 
-## 🛠️ Technical Stack
+### ✅ **Productivity**
+- ⚡ **Live reload** during development
+- 🚀 **Fast build** with Bun.js
+- 📦 **Simple deploy** to any hosting
+- 🔧 **Zero configuration** required
 
-- **TypeScript**: Type-safe development
-- **Modern CSS**: CSS Grid, Flexbox, Custom Properties
-- **Vanilla JavaScript**: No framework dependencies
-- **Markdown**: Standard markdown with extensions
+## 🚀 How to Use (3 Steps)
 
-## 📁 Project Structure
-
+### 1. **Structure your files**
 ```
-knowledge/
-├── src/                 # Source code
-├── themes/
-│   └── default/
-│       ├── layouts/     # HTML templates
-│       └── assets/
-│           ├── css/     # Stylesheets
-│           └── js/      # JavaScript
-├── templates/           # Page templates
-├── docs/               # Generated output (for GitHub Pages)
-└── content/            # Documentation source (Markdown files)
+my-project/
+├── docs/                 # 📝 Your .md files here
+│   ├── index.md         # Home page
+│   ├── installation.md  # Guides
+│   └── api/             # Organize in folders
+│       └── reference.md
+└── knowledge.config.ts   # ⚙️ Configuration (optional)
 ```
 
-## 🎨 Design System
+### 2. **Write in Markdown**
+```markdown
+# My Documentation
 
-### Colors
-- **Primary**: Blue (#3b82f6) with gradient variations
-- **Secondary**: Slate gray (#64748b)
-- **Accent**: Cyan (#06b6d4)
+Welcome! This is a simple example.
 
-### Typography
-- **Font Family**: Montserrat (headings and body)
-- **Font Weights**: 300, 400, 500, 600, 700, 800
-- **Scale**: Harmonious type scale with proper line heights
+## Features
 
-### Spacing
-- **Grid**: 8px base unit system
-- **Containers**: Max-width 1400px with responsive padding
-- **Components**: Consistent spacing using CSS custom properties
+- ✅ Easy to use
+- ✅ Modern design
+- ✅ Integrated search
 
-## 🚀 Getting Started
+## Links
 
-1. **Install dependencies**:
-   ```bash
-   bun install
-   ```
+- [Installation](./installation.md)
+- [API](./api/reference.md)
+```
 
-2. **Start development server**:
-   ```bash
-   bun run dev
-   ```
+### 3. **Generate documentation**
+```bash
+# Development (with live reload)
+bun run dev
 
-3. **Build for production**:
-   ```bash
-   bun run build
-   ```
+# Production (static files)
+bun run build
 
-## 📝 Configuration
+# Serve generated files
+bun run serve
+```
 
-The `knowledge.config.ts` file contains all configuration options:
+## 🎨 What you get automatically
 
+### **Professional Interface**
+- Modern and clean design
+- Automatic sidebar navigation
+- Breadcrumbs and table of contents
+- Search with Ctrl+K
+
+### **Advanced Features**
+- Copy-to-clipboard in code blocks
+- Functional internal links
+- SEO optimized
+- Full accessibility
+
+### **Mobile Experience**
+- Collapsible menu
+- Touch-friendly
+- Fast loading
+- Smooth scrolling
+
+## 📋 Ideal Use Cases
+
+### **📚 Project Documentation**
+```
+docs/
+├── index.md           # Overview
+├── installation.md    # Getting started
+├── guides/           # Tutorials
+└── api/              # Technical reference
+```
+
+### **🔌 API Documentation**
+```
+docs/
+├── authentication.md  # How to authenticate
+├── quick-start.md     # First steps
+├── endpoints/         # Each endpoint
+└── examples/          # Use cases
+```
+
+### **📖 Knowledge Base**
+```
+docs/
+├── faq.md            # Frequently asked questions
+├── tutorials/        # Step-by-step guides
+├── troubleshooting/  # Problem solving
+└── resources/        # Links and tools
+```
+
+## ⚙️ Minimal Configuration
+
+**`knowledge.config.ts`** (optional):
 ```typescript
 export default {
     site: {
-        title: 'Your Documentation',
-        description: 'Your site description',
-        baseUrl: '/',
+        title: 'My Documentation',
+        description: 'My project documentation',
         author: 'Your Name'
     },
-    theme: 'default',
+    
     features: {
-        search: true,
-        syntaxHighlight: true,
-        darkMode: true,
-        tableOfContents: true
+        search: true,        // Automatic search
+        darkMode: true,      // Dark mode
+        syntaxHighlight: true // Code highlighting
     }
-} as KnowledgeConfig;
+};
 ```
 
-## 🎯 Performance
+## 🚀 Essential Commands
 
-- **Fast Loading**: Optimized CSS and JavaScript
-- **Smooth Animations**: Hardware-accelerated transitions
-- **Responsive Images**: Automatic image optimization
-- **Minimal Bundle**: No unnecessary dependencies
+```bash
+# Development
+bun run dev              # Start server with live reload
 
-## ♿ Accessibility
+# Production
+bun run build            # Generate static site
+bun run serve            # Serve generated files
 
-- **Keyboard Navigation**: Full keyboard support
-- **Screen Readers**: Semantic HTML and ARIA labels
-- **High Contrast**: Support for high contrast mode
-- **Reduced Motion**: Respects user motion preferences
+# Utilities
+bun run knowledge init   # Initialize new project
+```
 
-## 🌙 Dark Mode
+## 💡 Tips for Efficient Documentation
 
-Automatic dark mode detection with manual toggle:
-- System preference detection
-- Smooth theme transitions
-- Persistent user choice
-- Enhanced dark mode visuals
+### **1. Start Simple**
+- `index.md` - What the project is
+- `installation.md` - How to get started
+- `quick-start.md` - First use
 
-## 📱 Mobile Experience
+### **2. Organize by Audience**
+```
+docs/
+├── users/             # For end users
+├── developers/        # For developers
+└── administrators/    # For administrators
+```
 
-- **Touch-Friendly**: 44px minimum touch targets
-- **Responsive Navigation**: Collapsible sidebar
-- **Optimized Typography**: Readable on all screen sizes
-- **Fast Interactions**: Optimized for mobile performance
+### **3. Use Conventions**
+```markdown
+# Use hierarchical headings
+## Main section
+### Subsection
+#### Details
 
-## 🔍 Search
+# Include code examples
+```bash
+npm install my-project
+```
 
-Real-time search functionality:
-- **Instant Results**: Search as you type
-- **Keyboard Shortcuts**: Ctrl/Cmd + K to focus
-- **Highlighted Results**: Visual feedback for matches
+# Add internal links
+- [Installation](./installation.md)
+- [API](./api/reference.md)
+```
 
-## 📋 Code Features
+### **4. Maintain Consistency**
+- Same heading style
+- Standard format for examples
+- Consistent tone of voice
 
-- **Syntax Highlighting**: Multiple language support
-- **Copy to Clipboard**: One-click code copying
-- **Language Labels**: Automatic language detection
-- **Line Numbers**: Optional line numbering
+## 🎯 Recommended Workflow
 
-## 🤝 Contributing
+### **For New Projects**
+1. **Plan** the documentation structure
+2. **Create** basic files (index, installation, guide)
+3. **Start** `bun run dev` for development
+4. **Write** and see changes in real time
+5. **Publish** with `bun run build`
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+### **For Existing Projects**
+1. **Migrate** existing documentation to Markdown
+2. **Organize** in logical folder structure
+3. **Configure** Knowledge with your preferences
+4. **Test** with `bun run dev`
+5. **Deploy** to replace old documentation
 
-## 📄 License
+## 📊 Comparison with Other Tools
 
-MIT License - see [LICENSE](LICENSE) file for details.
+| Feature | Knowledge | GitBook | Notion | Wiki |
+|---------|-----------|---------|--------|------|
+| **Simplicity** | ✅ Pure Markdown | ❌ Complex interface | ❌ Proprietary | ❌ Specific syntax |
+| **Performance** | ✅ Static sites | ⚠️ Slow loading | ⚠️ Internet dependent | ❌ Server required |
+| **Customization** | ✅ Themes and config | ❌ Limited | ❌ Very limited | ⚠️ Requires programming |
+| **Search** | ✅ Instant | ✅ Good | ✅ Good | ⚠️ Basic |
+| **Cost** | ✅ Free | ❌ Paid | ❌ Paid | ⚠️ Self-hosting |
+| **Offline** | ✅ Works | ❌ No | ❌ No | ❌ No |
 
-## 🙏 Acknowledgments
+## 🚀 Deploy and Hosting
 
-- Built with modern web standards
-- Inspired by the best documentation sites
-- Designed for developer happiness
+### **GitHub Pages** (Free)
+```bash
+bun run build
+git add dist/
+git commit -m "Update docs"
+git push origin main
+```
 
+### **Netlify/Vercel** (Free)
+- Connect your repository
+- Configure build: `bun run build`
+- Publish folder: `dist/`
 
-Built with ❤️ by [RiliGar](http://riligar.click/) and the open source community.
+### **Own Server**
+```bash
+bun run build
+# Copy dist/ folder to your server
+```
+
+## 📈 Benefits for Teams
+
+### **For Developers**
+- ✅ Documentation lives with the code
+- ✅ Familiar and versionable Markdown
+- ✅ Easy CI/CD setup
+- ✅ No vendor lock-in
+
+### **For Managers**
+- ✅ Reduces onboarding time
+- ✅ Improves team communication
+- ✅ Always up-to-date documentation
+- ✅ Zero infrastructure cost
+
+### **For Users**
+- ✅ Intuitive and fast interface
+- ✅ Efficient search
+- ✅ Works on any device
+- ✅ Always available
+
+## 🎯 Final Result
+
+With Knowledge, you transform:
+
+**From:** Scattered Markdown files
+**To:** Professional documentation site
+
+**In:** Less than 30 minutes
+**With:** Zero complex configuration
+
+---
+
+**💡 Remember**: Knowledge is made to be simple. Focus on content, let the tool handle the presentation! 
