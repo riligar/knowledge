@@ -92,23 +92,11 @@ knowledge serve
 
 ## 🎨 What you get automatically
 
-### **Professional Interface**
-- Modern and clean design
-- Automatic sidebar navigation
-- Breadcrumbs and table of contents
-- Search with Ctrl+K
-
-### **Advanced Features**
-- Copy-to-clipboard in code blocks
-- Functional internal links
-- SEO optimized
-- Full accessibility
-
-### **Mobile Experience**
-- Collapsible menu
-- Touch-friendly
-- Fast loading
-- Smooth scrolling
+| Category | Features | Benefits |
+|----------|----------|----------|
+| **Professional Interface** | • Modern and clean design<br>• Automatic sidebar navigation<br>• Breadcrumbs and table of contents<br>• Search with Ctrl+K | • Professional appearance<br>• Easy navigation<br>• Quick content discovery<br>• Instant search functionality |
+| **Advanced Features** | • Copy-to-clipboard in code blocks<br>• Functional internal links<br>• SEO optimized<br>• Full accessibility | • Developer-friendly<br>• Seamless navigation<br>• Better search rankings<br>• Inclusive for all users |
+| **Mobile Experience** | • Collapsible menu<br>• Touch-friendly<br>• Fast loading<br>• Smooth scrolling | • Mobile-first design<br>• Intuitive interactions<br>• Optimal performance<br>• Enhanced UX |
 
 ## 📋 Ideal Use Cases
 
@@ -166,11 +154,6 @@ knowledge init              # Initialize new project
 knowledge dev               # Start development server
 knowledge build             # Generate static site
 knowledge serve             # Serve generated files
-
-# Local commands (in project directory)
-bun run dev                 # Start development server
-bun run build               # Generate static site
-bun run serve               # Serve generated files
 ```
 
 ## 💡 Tips for Efficient Documentation
@@ -240,23 +223,11 @@ bun run build
 
 ## 📈 Benefits for Teams
 
-### **For Developers**
-- ✅ Documentation lives with the code
-- ✅ Familiar and versionable Markdown
-- ✅ Easy CI/CD setup
-- ✅ No vendor lock-in
-
-### **For Managers**
-- ✅ Reduces onboarding time
-- ✅ Improves team communication
-- ✅ Always up-to-date documentation
-- ✅ Zero infrastructure cost
-
-### **For Users**
-- ✅ Intuitive and fast interface
-- ✅ Efficient search
-- ✅ Works on any device
-- ✅ Always available
+| Team Role | Benefits | Impact |
+|-----------|----------|--------|
+| **For Developers** | • Documentation lives with the code<br>• Familiar and versionable Markdown<br>• Easy CI/CD setup<br>• No vendor lock-in | • Streamlined workflow<br>• Version control integration<br>• Automated deployments<br>• Future-proof solution |
+| **For Managers** | • Reduces onboarding time<br>• Improves team communication<br>• Always up-to-date documentation<br>• Zero infrastructure cost | • Faster team productivity<br>• Better collaboration<br>• Reliable information<br>• Cost-effective solution |
+| **For Users** | • Intuitive and fast interface<br>• Efficient search<br>• Works on any device<br>• Always available | • Enhanced user experience<br>• Quick information access<br>• Cross-platform compatibility<br>• Reliable availability |
 
 ## 🎯 Final Result
 
