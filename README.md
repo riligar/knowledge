@@ -1,6 +1,7 @@
 # Knowledge - Modern Documentation Generator
 
-[![GitHub stars](https://img.shields.io/github/stars/riligar/knowledge)](https://github.com/riligar/knowledge/stargazers) ![GitHub License](https://img.shields.io/github/license/riligar/knowledge) [![Documentation](https://img.shields.io/badge/docs-Knowledge.click-blue)](https://myknowledge.click)
+[![GitHub stars](https://img.shields.io/github/stars/riligar/knowledge)](https://github.com/riligar/knowledge/stargazers) ![GitHub License](https://img.shields.io/github/license/riligar/knowledge) [![Documentation](https://img.shields.io/badge/docs-Knowledge.click-blue)](https://myknowledge.click) [![NPM Version](https://img.shields.io/npm/v/%40riligar%2Fknowledge)
+](https://www.npmjs.com/package/@riligar/knowledge)
 
 > Transform how your team creates, organizes, and shares knowledge
 
