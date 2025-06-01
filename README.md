@@ -107,35 +107,6 @@ knowledge build
 knowledge serve
 ```
 
-## 📋 Ideal Use Cases
-
-### **📚 Project Documentation**
-```
-docs/
-├── index.md           # Overview
-├── installation.md    # Getting started
-├── guides/           # Tutorials
-└── api/              # Technical reference
-```
-
-### **🔌 API Documentation**
-```
-docs/
-├── authentication.md  # How to authenticate
-├── quick-start.md     # First steps
-├── endpoints/         # Each endpoint
-└── examples/          # Use cases
-```
-
-### **📖 Knowledge Base**
-```
-docs/
-├── faq.md            # Frequently asked questions
-├── tutorials/        # Step-by-step guides
-├── troubleshooting/  # Problem solving
-└── resources/        # Links and tools
-```
-
 ## ⚙️ Minimal Configuration
 
 **`knowledge.config.ts`** (required):
@@ -163,6 +134,35 @@ knowledge init              # Initialize new project
 knowledge dev               # Start development server
 knowledge build             # Generate static site
 knowledge serve             # Serve generated files
+```
+
+## 📋 Ideal Use Cases
+
+### **📚 Project Documentation**
+```
+docs/
+├── index.md           # Overview
+├── installation.md    # Getting started
+├── guides/           # Tutorials
+└── api/              # Technical reference
+```
+
+### **🔌 API Documentation**
+```
+docs/
+├── authentication.md  # How to authenticate
+├── quick-start.md     # First steps
+├── endpoints/         # Each endpoint
+└── examples/          # Use cases
+```
+
+### **📖 Knowledge Base**
+```
+docs/
+├── faq.md            # Frequently asked questions
+├── tutorials/        # Step-by-step guides
+├── troubleshooting/  # Problem solving
+└── resources/        # Links and tools
 ```
 
 ## 💡 Tips for Efficient Documentation
