@@ -453,9 +453,12 @@ Thumbs.db
     console.log('✅ Knowledge project initialized successfully!');
     console.log('');
     console.log('📋 Next steps:');
-    console.log('  1. cd ' + path.relative(process.cwd(), targetDir));
-    console.log('  2. bun install');
-    console.log('  3. bun run dev');
+    if (targetDir !== '.') {
+        console.log('  1. cd ' + path.relative(process.cwd(), targetDir));
+    }
+    console.log('  1. knowledge dev');
+    console.log('  2. knowledge build');
+    console.log('  4. knowledge serve');
     console.log('');
     console.log('🌐 Your documentation will be available at http://localhost:3000');
 }
