@@ -6,6 +6,7 @@ interface ProcessedMarkdown {
     html: string;
     title?: string;
     metadata: Record<string, any>;
+    isValid: boolean;
 }
 
 interface FrontMatter {
@@ -26,6 +27,9 @@ export class MarkdownProcessor {
         // Extrair front matter se existir
         const { frontMatter, markdown } = this.extractFrontMatter(content);
 
+        // Validar se o markdown começa com H1
+        const isValid = this.validateMarkdownStartsWithH1(markdown, frontMatter);
+
         // Processar markdown
         const html = await marked(markdown);
 
@@ -35,8 +39,26 @@ export class MarkdownProcessor {
         return {
             html,
             title,
-            metadata: frontMatter
+            metadata: frontMatter,
+            isValid
         };
+    }
+
+    /**
+     * Valida se o arquivo Markdown começa com H1
+     * @param content Conteúdo do markdown (sem frontmatter)
+     * @param frontMatter Frontmatter extraído do arquivo
+     * @returns true se válido, false caso contrário
+     */
+    validateMarkdownStartsWithH1(content: string, frontMatter: FrontMatter): boolean {
+        // Se há título no frontmatter, consideramos válido
+        if (frontMatter.title) {
+            return true;
+        }
+
+        // Verificar se o conteúdo começa com H1 (ignorando linhas vazias no início)
+        const h1Regex = /^\s*#\s+.+/;
+        return h1Regex.test(content);
     }
 
     private configureMarked(): void {
@@ -95,6 +117,6 @@ export class MarkdownProcessor {
     private extractTitle(markdown: string): string | undefined {
         // Procurar pelo primeiro cabeçalho H1
         const h1Match = markdown.match(/^#\s+(.+)$/m);
-        return h1Match ? h1Match[1].trim() : undefined;
+        return h1Match && h1Match[1] ? h1Match[1].trim() : undefined;
     }
 } 

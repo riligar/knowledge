@@ -101,6 +101,12 @@ export class DocumentationGenerator {
                 const relativePath = path.relative(inputDir, filePath);
                 const { frontmatter, body } = this.extractFrontmatter(content);
 
+                // Validação: verificar se o arquivo começa com H1
+                if (!this.validateMarkdownStartsWithH1(body, frontmatter)) {
+                    console.warn(`⚠️  Skipping file '${relativePath}': Markdown files must start with H1 (# Title)`);
+                    continue;
+                }
+
                 const htmlContent = await this.processMarkdown(body);
                 const title = this.extractTitle(body, frontmatter);
                 const url = this.generateUrl(relativePath);
@@ -642,5 +648,31 @@ export class DocumentationGenerator {
             await fs.ensureDir(path.dirname(outputPath));
             await fs.copy(filePath, outputPath);
         }
+    }
+
+    /**
+     * Valida se o arquivo Markdown começa com H1
+     * @param content Conteúdo do markdown (sem frontmatter)
+     * @param frontmatter Frontmatter extraído do arquivo
+     * @returns true se válido, false caso contrário
+     */
+    private validateMarkdownStartsWithH1(content: string, frontmatter: Record<string, any>): boolean {
+        // Se há título no frontmatter, consideramos válido
+        if (frontmatter.title) {
+            return true;
+        }
+
+        // Remover linhas vazias do início
+        const trimmedContent = content.replace(/^\s*\n/, '');
+
+        // Verificar se a primeira linha não vazia é um H1
+        const firstLine = trimmedContent.split('\n')[0];
+        if (!firstLine) {
+            return false;
+        }
+
+        // Verificar se começa com # seguido de espaço e texto
+        const h1Regex = /^#\s+.+/;
+        return h1Regex.test(firstLine.trim());
     }
 } 
