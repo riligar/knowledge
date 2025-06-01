@@ -34,9 +34,6 @@ jobs:
       - name: Build binary
         run: bun run build-bin
 
-      - name: Prepare npm package
-        run: bun run prepare-npm
-
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
