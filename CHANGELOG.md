@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/riligar/knowledge/compare/v1.12.0...v1.12.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* **download:** update download ZIP button styles and SVG icon ([d1aa1eb](https://github.com/riligar/knowledge/commit/d1aa1eb510ca088bd794338c78352c20ab3e4fcf))
+
 # [1.12.0](https://github.com/riligar/knowledge/compare/v1.11.0...v1.12.0) (2025-06-01)
 
 

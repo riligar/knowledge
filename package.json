@@ -1,6 +1,6 @@
 {
   "name": "@riligar/knowledge",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.",
   "main": "index.ts",
   "type": "module",
