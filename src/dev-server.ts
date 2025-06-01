@@ -76,6 +76,32 @@ export class DevServer {
         console.log('👀 Watching for changes...');
         console.log('Press Ctrl+C to stop');
 
+        // Funções auxiliares para o servidor
+        const isStaticFile = (pathname: string): boolean => {
+            const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.eot'];
+            return staticExtensions.some(ext => pathname.toLowerCase().endsWith(ext));
+        };
+
+        const getContentType = (ext: string): string | null => {
+            const contentTypes: Record<string, string> = {
+                '.html': 'text/html',
+                '.css': 'text/css',
+                '.js': 'application/javascript',
+                '.json': 'application/json',
+                '.png': 'image/png',
+                '.jpg': 'image/jpeg',
+                '.jpeg': 'image/jpeg',
+                '.gif': 'image/gif',
+                '.svg': 'image/svg+xml',
+                '.ico': 'image/x-icon',
+                '.woff': 'font/woff',
+                '.woff2': 'font/woff2',
+                '.ttf': 'font/ttf',
+                '.eot': 'application/vnd.ms-fontobject'
+            };
+            return contentTypes[ext] || null;
+        };
+
         this.server = Bun.serve({
             port,
             hostname: host,
@@ -88,8 +114,8 @@ export class DevServer {
                     filePath = path.join(filePath, 'index.html');
                 }
 
-                // Se não existir, tentar com .html
-                if (!await fs.pathExists(filePath) && !filePath.endsWith('.html')) {
+                // Se não existir e não for um arquivo estático, tentar com .html
+                if (!await fs.pathExists(filePath) && !filePath.endsWith('.html') && !isStaticFile(url.pathname)) {
                     filePath += '.html';
                 }
 
@@ -97,6 +123,13 @@ export class DevServer {
                     if (await fs.pathExists(filePath)) {
                         const file = Bun.file(filePath);
                         const response = new Response(file);
+
+                        // Definir Content-Type correto baseado na extensão
+                        const ext = path.extname(filePath).toLowerCase();
+                        const contentType = getContentType(ext);
+                        if (contentType) {
+                            response.headers.set('Content-Type', contentType);
+                        }
 
                         // Adicionar headers para desenvolvimento
                         response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
