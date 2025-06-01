@@ -19,16 +19,8 @@
 
 ## 📦 Installation
 
-### NPM (Recommended)
-
 ```bash
 npm install -g @riligar/knowledge
-```
-
-### Direct Download
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/riligar/knowledge/main/install.sh | sh
 ```
 
 ## 🎯 Quick Start
