@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/riligar/knowledge/compare/v1.3.0...v1.4.0) (2025-06-01)
+
+
+### Bug Fixes
+
+* **cli:** correct targetDir check in project initialization steps ([1f15cdd](https://github.com/riligar/knowledge/commit/1f15cddd2d6fb2f0681478934dd00fb760e44f41))
+
+
+### Features
+
+* **config:** add resolveThemesDir function to determine themes directory path ([17f116e](https://github.com/riligar/knowledge/commit/17f116e6ef41daeb76474b6e5a6efabc415ae2cc))
+
 # [1.3.0](https://github.com/riligar/knowledge/compare/v1.2.1...v1.3.0) (2025-06-01)
 
 
