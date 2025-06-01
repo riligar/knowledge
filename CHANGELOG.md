@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/riligar/knowledge/compare/v1.4.0...v1.5.0) (2025-06-01)
+
+
+### Features
+
+* **cli:** enhance server startup with available port detection and static file handling ([b206ecb](https://github.com/riligar/knowledge/commit/b206ecb75d90cc62e2cd1f0777498e9db5638242))
+
 # [1.4.0](https://github.com/riligar/knowledge/compare/v1.3.0...v1.4.0) (2025-06-01)
 
 
