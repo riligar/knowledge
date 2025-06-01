@@ -14,6 +14,62 @@ const packageJson = JSON.parse(await fs.readFile(path.join(import.meta.dir, '../
 
 const program = new Command();
 
+// Configurar mensagens de erro personalizadas em português
+program.configureOutput({
+    writeErr: (str) => {
+        // Interceptar erros comuns e mostrar mensagens em português
+        if (str.includes('too many arguments')) {
+            console.error('❌ Revise o comando, seu parâmetro está errado.');
+            console.error('💡 Dica: Use --dir para especificar o diretório. Exemplo: knowledge init --dir meu-projeto');
+            return;
+        }
+        if (str.includes('unknown command')) {
+            console.error('❌ Revise o comando, seu parâmetro está errado.');
+            console.error('💡 Comandos disponíveis: init, dev, build, serve');
+            return;
+        }
+        if (str.includes('unknown option')) {
+            console.error('❌ Revise o comando, seu parâmetro está errado.');
+            console.error('💡 Use --help para ver as opções disponíveis');
+            return;
+        }
+        if (str.includes('required option')) {
+            console.error('❌ Revise o comando, seu parâmetro está errado.');
+            console.error('💡 Parâmetro obrigatório não foi fornecido');
+            return;
+        }
+        // Para outros erros, mostrar a mensagem original
+        process.stderr.write(str);
+    }
+});
+
+// Interceptar erros de argumentos inválidos
+program.exitOverride((err) => {
+    if (err.code === 'commander.unknownCommand') {
+        console.error('❌ Revise o comando, seu parâmetro está errado.');
+        console.error('💡 Comandos disponíveis: init, dev, build, serve');
+        console.error('💡 Use "knowledge --help" para mais informações');
+        process.exit(1);
+    }
+    if (err.code === 'commander.unknownOption') {
+        console.error('❌ Revise o comando, seu parâmetro está errado.');
+        console.error('💡 Use "knowledge <comando> --help" para ver as opções disponíveis');
+        process.exit(1);
+    }
+    if (err.code === 'commander.excessArguments') {
+        console.error('❌ Revise o comando, seu parâmetro está errado.');
+        console.error('💡 Muitos argumentos fornecidos para este comando');
+        process.exit(1);
+    }
+    if (err.code === 'commander.missingArgument') {
+        console.error('❌ Revise o comando, seu parâmetro está errado.');
+        console.error('💡 Argumento obrigatório não foi fornecido');
+        process.exit(1);
+    }
+    // Para outros erros, usar comportamento padrão
+    process.exit(err.exitCode || 1);
+});
+
 program
     .name('knowledge')
     .description(packageJson.description)
@@ -883,5 +939,19 @@ Thumbs.db
 
 // Executar CLI se este arquivo for executado diretamente
 if (import.meta.main) {
-    program.parse();
+    try {
+        program.parse();
+    } catch (error: any) {
+        // Capturar erros não tratados e mostrar mensagem em português
+        if (error.message?.includes('too many arguments') ||
+            error.message?.includes('excess arguments') ||
+            error.message?.includes('unknown command') ||
+            error.message?.includes('unknown option')) {
+            console.error('❌ Revise o comando, seu parâmetro está errado.');
+            console.error('💡 Use "knowledge --help" para ver os comandos disponíveis');
+        } else {
+            console.error('❌ Erro inesperado:', error.message);
+        }
+        process.exit(1);
+    }
 }
