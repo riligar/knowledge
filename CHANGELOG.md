@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/riligar/knowledge/compare/v1.6.0...v1.7.0) (2025-06-01)
+
+
+### Features
+
+* **cli:** enhance error handling and documentation in Portuguese ([f7435d0](https://github.com/riligar/knowledge/commit/f7435d00f3ecae1cf8c5cf7d4cf1a6fc69d95773))
+
 # [1.6.0](https://github.com/riligar/knowledge/compare/v1.5.0...v1.6.0) (2025-06-01)
 
 
