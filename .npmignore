@@ -1,0 +1,35 @@
+# Development files
+.git/
+.github/
+node_modules/
+.DS_Store
+*.log
+
+# Documentation and examples
+docs/
+README.md
+CNAME
+install.sh
+
+# Development configuration
+.gitignore
+bun.lock
+tsconfig.json
+knowledge.config.ts
+knowledge.config.example.json
+
+# Build artifacts that shouldn't be published
+dist/
+
+# Include the npm-specific README
+!README.npm.md
+
+# Only include essential files for the npm package
+# The following will be included:
+# - package.json
+# - bin/
+# - src/
+# - index.ts
+# - LICENSE
+# - themes/
+# - README.npm.md 

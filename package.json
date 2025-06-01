@@ -1,11 +1,29 @@
 {
-  "name": "knowledge",
+  "name": "@riligar/knowledge",
   "version": "1.0.0",
   "description": "A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.",
   "main": "index.ts",
   "type": "module",
   "bin": {
     "knowledge": "./bin/knowledge.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "themes/",
+    "index.ts",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riligar/knowledge.git"
+  },
+  "homepage": "https://myknowledge.click",
+  "bugs": {
+    "url": "https://github.com/riligar/knowledge/issues"
   },
   "scripts": {
     "build": "bun run src/cli.ts build",
@@ -14,14 +32,22 @@
     "start": "bun run index.ts",
     "knowledge": "bun run src/cli.ts",
     "build-bin": "bun build src/cli.ts --outdir bin --target node --format esm",
-    "prepublishOnly": "bun run build-bin"
+    "prepare-npm": "node scripts/prepare-npm.js",
+    "prepublishOnly": "bun run build-bin && npm run prepare-npm",
+    "test": "echo \"No tests specified\" && exit 0",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "documentation",
     "markdown",
     "static-site",
     "generator",
-    "knowledge"
+    "knowledge",
+    "docs",
+    "cli",
+    "documentation-generator",
+    "static-site-generator",
+    "markdown-to-html"
   ],
   "author": {
     "name": "Ciro Cesar Maciel",
@@ -42,6 +68,11 @@
     "@types/fs-extra": "^11.0.4",
     "@types/lunr": "^2.3.7",
     "@types/marked": "^6.0.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "semantic-release": "^24.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.0",
+    "@semantic-release/npm": "^12.0.1"
   }
 }

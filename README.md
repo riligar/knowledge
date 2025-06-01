@@ -8,61 +8,89 @@
 
 **Knowledge** is a modern static documentation generator that transforms Markdown files into professional documentation sites. It's the perfect tool for anyone who wants to create beautiful and functional documentation without complications.
 
-## 📦 Quick Installation
+## 🚀 Features
 
-### Global Installation (Recommended)
+- **Markdown-First**: Write documentation in familiar Markdown syntax
+- **Static Site Generation**: Fast, secure, and SEO-friendly output
+- **Modern Themes**: Beautiful, responsive themes out of the box
+- **Search Integration**: Built-in search functionality
+- **CLI Tool**: Simple command-line interface for easy management
+- **Live Development**: Hot-reload during development
 
-```bash
-# Using Bun (fastest)
-bun install -g knowledge
+## 📦 Installation
 
-# Using npm
-npm install -g knowledge
-
-# Using the install script
-curl -fsSL https://raw.githubusercontent.com/riligar/knowledge/main/install.sh | bash
-```
-
-### Quick Start
+### NPM (Recommended)
 
 ```bash
-# Create a new project
-mkdir my-docs && cd my-docs
-
-# Initialize Knowledge project
-knowledge init
-
-# Install dependencies
-bun install  # or npm install
-
-# Start development server
-knowledge dev
-
-# Build for production
-knowledge build
-
-# Serve built site
-knowledge serve
+npm install -g @riligar/knowledge
 ```
 
-## ⚡ Why use Knowledge?
+### Direct Download
 
-### ✅ **Extreme Simplicity**
-- Write in plain Markdown
-- Configure once, use always
-- Generate professional sites automatically
+```bash
+curl -fsSL https://raw.githubusercontent.com/riligar/knowledge/main/install.sh | sh
+```
 
-### ✅ **Professional Features**
-- 🔍 **Instant search** across all content
-- 📱 **Responsive design** (mobile + desktop)
-- 🌙 **Automatic dark mode**
-- 🎨 **Syntax highlighting** for code
-- 🧭 **Automatic navigation** based on folders
+## 🎯 Quick Start
 
-### ✅ **Productivity**
-- 🚀 **Fast build** with Bun.js (seconds)
-- 📦 **Simple deploy** to any hosting
-- 🔧 **Zero configuration** required
+1. **Initialize a new project**:
+   ```bash
+   knowledge init my-docs
+   cd my-docs
+   ```
+
+2. **Start development server**:
+   ```bash
+   knowledge dev
+   ```
+
+3. **Build for production**:
+   ```bash
+   knowledge build
+   ```
+
+## 📖 Documentation
+
+Visit our [official documentation](https://myknowledge.click) for detailed guides and examples.
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Commit Convention
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) for automated versioning and changelog generation. Please format your commits as:
+
+```
+feat: add new feature
+fix: resolve bug
+docs: update documentation
+```
+
+## 🔄 Release Process
+
+Releases are fully automated using semantic-release:
+
+- **Automatic versioning** based on commit messages
+- **Changelog generation** from conventional commits  
+- **NPM publishing** on every release
+- **GitHub releases** with detailed notes
+
+Simply push to the `prod` branch and let the automation handle the rest!
+
+## 📄 License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
+## 🌟 Support
+
+- 📧 Email: maciel.ciro@icloud.com
+- 🐛 Issues: [GitHub Issues](https://github.com/riligar/knowledge/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
+
+---
+
+Made with ❤️ by [Riligar](https://riligar.click)
 
 ## 🚀 How to Use (3 Steps)
 
