@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/riligar/knowledge/compare/v1.5.0...v1.6.0) (2025-06-01)
+
+
+### Features
+
+* **cli:** update installation and troubleshooting documentation ([ff25804](https://github.com/riligar/knowledge/commit/ff258049eb3ef16384a397fa7133e79cfa3cb4e4))
+
 # [1.5.0](https://github.com/riligar/knowledge/compare/v1.4.0...v1.5.0) (2025-06-01)
 
 
