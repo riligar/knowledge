@@ -178,7 +178,25 @@ export class DocumentationGenerator {
             return match;
         });
 
+        // Processar links internos para converter .md para .html
+        html = this.processInternalLinks(html);
+
         return html;
+    }
+
+    private processInternalLinks(html: string): string {
+        // Regex para encontrar links internos que apontam para arquivos .md
+        // Procura por href="./arquivo.md" ou href="arquivo.md" (links relativos)
+        // Também trata aspas simples e links com âncoras (#section)
+        return html.replace(/href=(["'])([^"']*\.md(?:#[^"']*)?)\1/g, (match, quote, href) => {
+            // Verificar se é um link interno (não começa com http:// ou https://)
+            if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('mailto:')) {
+                // Converter .md para .html, preservando âncoras se existirem
+                const htmlHref = href.replace(/\.md(#.*)?$/, '.html$1');
+                return `href=${quote}${htmlHref}${quote}`;
+            }
+            return match;
+        });
     }
 
     private async findMarkdownFiles(dir: string): Promise<string[]> {
