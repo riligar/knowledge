@@ -1,8 +1,8 @@
 import type { KnowledgeConfig } from './src/config.js';
 
 export default {
-    inputDir: './content',
-    outputDir: './docs',
+    inputDir: './docs',
+    outputDir: './dist',
     templatesDir: './templates',
     themesDir: './themes',
 
