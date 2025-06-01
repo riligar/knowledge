@@ -1,3 +1,11 @@
+# [1.11.0](https://github.com/riligar/knowledge/compare/v1.10.0...v1.11.0) (2025-06-01)
+
+
+### Features
+
+* **generator:** add HTML entity decoding for code highlighting ([4d8bf27](https://github.com/riligar/knowledge/commit/4d8bf27259a76c0096b9f82651f6357f0c76f504))
+* **generator:** add internal link processing for Markdown to HTML conversion ([1d1c275](https://github.com/riligar/knowledge/commit/1d1c2751a55df2758af2ac63c056e6a13eba23b9))
+
 # [1.10.0](https://github.com/riligar/knowledge/compare/v1.9.0...v1.10.0) (2025-06-01)
 
 
