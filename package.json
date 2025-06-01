@@ -35,7 +35,8 @@
     "prepare-npm": "node scripts/prepare-npm.js",
     "prepublishOnly": "bun run build-bin && npm run prepare-npm",
     "test": "echo \"No tests specified\" && exit 0",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "test-release": "./scripts/test-release.sh"
   },
   "keywords": [
     "documentation",
