@@ -1,6 +1,6 @@
 # Knowledge - Modern Documentation Generator
 
-[![GitHub stars](https://img.shields.io/github/stars/yourorg/knowledge)](https://github.com/yourorg/knowledge/stargazers) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Documentation](https://img.shields.io/badge/docs-knowledge.dev-blue)](https://knowledge.dev)
+[![GitHub stars](https://img.shields.io/github/stars/riligar/knowledge)](https://github.com/riligar/knowledge/stargazers) ![GitHub License](https://img.shields.io/github/license/riligar/knowledge) [![Documentation](https://img.shields.io/badge/docs-Knowledge.click-blue)](https://myknowledge.click)
 
 > Transform how your team creates, organizes, and shares knowledge
 
