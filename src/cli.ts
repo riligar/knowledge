@@ -15,7 +15,7 @@ const program = new Command();
 
 program
     .name('knowledge')
-    .description('Modern static documentation generator powered by Bun.js')
+    .description(packageJson.description)
     .version(packageJson.version);
 
 program
@@ -208,9 +208,9 @@ This is your documentation homepage. Edit this file to get started!
 ## Quick Start
 
 1. Edit files in the \`docs/\` directory
-2. Run \`bun run dev\` to start the development server  
-3. Run \`bun run build\` to build for production
-4. Run \`bun run serve\` to serve the built site
+2. Run \`knowledge dev\` to start the development server  
+3. Run \`knowledge build\` to build for production
+4. Run \`knowledge serve\` to serve the built site
 
 ## Features
 
@@ -248,25 +248,25 @@ Before you begin, make sure you have the following installed:
 ### 1. Install Dependencies
 
 \`\`\`bash
-bun install
+bun install -g @riligar/knowledge
 \`\`\`
 
 ### 2. Start Development Server
 
 \`\`\`bash
-bun run dev
+knowledge dev
 \`\`\`
 
 ### 3. Build for Production
 
 \`\`\`bash
-bun run build
+knowledge build
 \`\`\`
 
 ### 4. Serve Built Site
 
 \`\`\`bash
-bun run serve
+knowledge serve
 \`\`\`
 
 ## Configuration
