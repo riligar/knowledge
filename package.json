@@ -4,12 +4,17 @@
   "description": "A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.",
   "main": "index.ts",
   "type": "module",
+  "bin": {
+    "knowledge": "./bin/knowledge.js"
+  },
   "scripts": {
     "build": "bun run src/cli.ts build",
     "dev": "bun run src/cli.ts dev",
     "serve": "bun run src/cli.ts serve",
     "start": "bun run index.ts",
-    "knowledge": "bun run src/cli.ts"
+    "knowledge": "bun run src/cli.ts",
+    "build-bin": "bun build src/cli.ts --outdir bin --target node --format esm",
+    "prepublishOnly": "bun run build-bin"
   },
   "keywords": [
     "documentation",

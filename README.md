@@ -8,6 +8,43 @@
 
 **Knowledge** is a modern static documentation generator that transforms Markdown files into professional documentation sites. It's the perfect tool for anyone who wants to create beautiful and functional documentation without complications.
 
+## 📦 Quick Installation
+
+### Global Installation (Recommended)
+
+```bash
+# Using Bun (fastest)
+bun install -g knowledge
+
+# Using npm
+npm install -g knowledge
+
+# Using the install script
+curl -fsSL https://raw.githubusercontent.com/riligar/knowledge/main/install.sh | bash
+```
+
+### Quick Start
+
+```bash
+# Create a new project
+mkdir my-docs && cd my-docs
+
+# Initialize Knowledge project
+knowledge init
+
+# Install dependencies
+bun install  # or npm install
+
+# Start development server
+knowledge dev
+
+# Build for production
+knowledge build
+
+# Serve built site
+knowledge serve
+```
+
 ## ⚡ Why use Knowledge?
 
 ### ✅ **Extreme Simplicity**
@@ -60,11 +97,14 @@ Welcome! This is a simple example.
 
 ### 3. **Generate documentation**
 ```bash
+# Development with live reload
+knowledge dev
+
 # Production (static files)
-bun run build
+knowledge build
 
 # Serve generated files
-bun run serve
+knowledge serve
 ```
 
 ## 🎨 What you get automatically
@@ -138,12 +178,16 @@ export default {
 ## 🚀 Essential Commands
 
 ```bash
-# Production
-bun run build            # Generate static site
-bun run serve            # Serve generated files
+# Global commands (after installing Knowledge globally)
+knowledge init              # Initialize new project
+knowledge dev               # Start development server
+knowledge build             # Generate static site
+knowledge serve             # Serve generated files
 
-# Utilities
-bun run knowledge init   # Initialize new project
+# Local commands (in project directory)
+bun run dev                 # Start development server
+bun run build               # Generate static site
+bun run serve               # Serve generated files
 ```
 
 ## 💡 Tips for Efficient Documentation

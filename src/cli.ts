@@ -3,10 +3,10 @@ import { Command } from 'commander';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import chokidar from 'chokidar';
-import { defaultConfig, loadConfig, loadConfigAsync, type KnowledgeConfig } from './config.js';
-import { DocumentationGenerator } from './generator.js';
-import { DevServer } from './dev-server.js';
-import openBrowser from './open-browser.js';
+import { defaultConfig, loadConfig, loadConfigAsync, type KnowledgeConfig } from './config.ts';
+import { DocumentationGenerator } from './generator.ts';
+import { DevServer } from './dev-server.ts';
+import openBrowser from './open-browser.ts';
 
 const program = new Command();
 
@@ -158,24 +158,26 @@ async function loadConfigWithOptions(options: any): Promise<KnowledgeConfig> {
 }
 
 async function initializeProject(targetDir: string): Promise<void> {
+    console.log('🚀 Initializing Knowledge project...');
+
+    // Verificar se o diretório já tem arquivos
+    const files = await fs.readdir(targetDir).catch(() => []);
+    if (files.length > 0) {
+        console.log('⚠️  Directory is not empty. Continuing anyway...');
+    }
+
     // Criar estrutura de diretórios
-    await fs.ensureDir(path.join(targetDir, 'content'));
-    await fs.ensureDir(path.join(targetDir, 'themes/default/layouts'));
-    await fs.ensureDir(path.join(targetDir, 'themes/default/assets/css'));
-    await fs.ensureDir(path.join(targetDir, 'themes/default/assets/js'));
+    console.log('📁 Creating directory structure...');
+    await fs.ensureDir(path.join(targetDir, 'docs'));
 
     // Criar arquivo de configuração
-    const configContent = `import { KnowledgeConfig } from './src/config.js';
-
-export default {
-  inputDir: './content',
-  outputDir: './docs',
-  
+    console.log('⚙️  Creating configuration file...');
+    const configContent = `export default {
   site: {
     title: 'My Documentation',
     description: 'Beautiful documentation made simple',
-    baseUrl: '/',
-    author: 'Your Name'
+    author: 'Your Name',
+    baseUrl: '/'
   },
   
   features: {
@@ -184,43 +186,299 @@ export default {
     darkMode: true,
     tableOfContents: true,
     breadcrumbs: true
-  }
-} as KnowledgeConfig;
-`;
+  },
+  
+  inputDir: './docs',
+  outputDir: './dist'
+};`;
 
     await fs.writeFile(path.join(targetDir, 'knowledge.config.ts'), configContent);
 
-    // Criar exemplo de documentação
-    const exampleDoc = `# Welcome to Knowledge
+    // Criar package.json se não existir
+    const packageJsonPath = path.join(targetDir, 'package.json');
+    if (!await fs.pathExists(packageJsonPath)) {
+        console.log('📦 Creating package.json...');
+        const packageJson = {
+            name: path.basename(targetDir),
+            version: "1.0.0",
+            description: "Documentation project powered by Knowledge",
+            scripts: {
+                "build": "knowledge build",
+                "dev": "knowledge dev",
+                "serve": "knowledge serve",
+                "init": "knowledge init"
+            },
+            devDependencies: {
+                "knowledge": "^1.0.0"
+            }
+        };
+        await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
+    }
+
+    // Criar documentação de exemplo
+    console.log('📝 Creating example documentation...');
+
+    // Página inicial
+    const indexContent = `# Welcome to My Documentation
 
 This is your documentation homepage. Edit this file to get started!
 
+## Quick Start
+
+1. Edit files in the \`docs/\` directory
+2. Run \`bun run dev\` to start the development server  
+3. Run \`bun run build\` to build for production
+4. Run \`bun run serve\` to serve the built site
+
 ## Features
 
-- 🚀 Fast builds with Bun.js
-- 📝 Markdown support with syntax highlighting
-- 🎨 Beautiful default theme
-- 🔍 Built-in search
-- 📱 Mobile responsive
-- 🌙 Dark mode support
+- 🚀 **Fast builds** with Bun.js
+- 📝 **Markdown support** with syntax highlighting
+- 🎨 **Beautiful default theme**
+- 🔍 **Built-in search**
+- 📱 **Mobile responsive**
+- 🌙 **Dark mode support**
+- 🧭 **Automatic navigation**
 
 ## Getting Started
 
-1. Edit files in the \`content/\` directory
-2. Run \`bun run dev\` to start the development server
-3. Run \`bun run build\` to build for production
+Check out the [Installation Guide](./installation.md) to learn more.
 
 Happy documenting! 📚
 `;
 
-    await fs.writeFile(path.join(targetDir, 'content/README.md'), exampleDoc);
+    await fs.writeFile(path.join(targetDir, 'docs/index.md'), indexContent);
 
-    console.log(`📁 Created project structure in ${targetDir}`);
-    console.log('📝 Created example documentation');
-    console.log('⚙️  Created configuration file');
+    // Guia de instalação
+    const installationContent = `# Installation Guide
+
+Welcome to the installation guide for this project.
+
+## Prerequisites
+
+Before you begin, make sure you have the following installed:
+
+- [Bun.js](https://bun.sh) (latest version)
+- Node.js 18+ (for compatibility)
+
+## Installation Steps
+
+### 1. Install Dependencies
+
+\`\`\`bash
+bun install
+\`\`\`
+
+### 2. Start Development Server
+
+\`\`\`bash
+bun run dev
+\`\`\`
+
+### 3. Build for Production
+
+\`\`\`bash
+bun run build
+\`\`\`
+
+### 4. Serve Built Site
+
+\`\`\`bash
+bun run serve
+\`\`\`
+
+## Configuration
+
+Edit the \`knowledge.config.ts\` file to customize your documentation:
+
+\`\`\`typescript
+export default {
+  site: {
+    title: 'My Documentation',
+    description: 'Beautiful documentation made simple',
+    author: 'Your Name'
+  },
+  
+  features: {
+    search: true,
+    syntaxHighlight: true,
+    darkMode: true
+  }
+};
+\`\`\`
+
+## Next Steps
+
+- [API Reference](./api/README.md)
+- [Troubleshooting](./troubleshooting.md)
+`;
+
+    await fs.writeFile(path.join(targetDir, 'docs/installation.md'), installationContent);
+
+    // Criar diretório API com exemplo
+    await fs.ensureDir(path.join(targetDir, 'docs/api'));
+    const apiContent = `# API Reference
+
+This section contains the API documentation.
+
+## Authentication
+
+All API requests require authentication using an API key.
+
+\`\`\`bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \\
+     https://api.example.com/v1/users
+\`\`\`
+
+## Endpoints
+
+### GET /users
+
+Retrieve a list of users.
+
+**Response:**
+
+\`\`\`json
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com"
+    }
+  ]
+}
+\`\`\`
+
+### POST /users
+
+Create a new user.
+
+**Request:**
+
+\`\`\`json
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com"
+}
+\`\`\`
+
+**Response:**
+
+\`\`\`json
+{
+  "id": 2,
+  "name": "Jane Doe", 
+  "email": "jane@example.com",
+  "created_at": "2024-01-01T00:00:00Z"
+}
+\`\`\`
+`;
+
+    await fs.writeFile(path.join(targetDir, 'docs/api/README.md'), apiContent);
+
+    // Troubleshooting
+    const troubleshootingContent = `# Troubleshooting
+
+Common issues and their solutions.
+
+## Build Issues
+
+### "Command not found: knowledge"
+
+Make sure Knowledge is installed globally:
+
+\`\`\`bash
+bun install -g knowledge
+\`\`\`
+
+### "Config file not found"
+
+Ensure you have a \`knowledge.config.ts\` file in your project root:
+
+\`\`\`bash
+knowledge init
+\`\`\`
+
+## Development Server Issues
+
+### Port already in use
+
+Change the port using the \`-p\` flag:
+
+\`\`\`bash
+knowledge dev -p 3001
+\`\`\`
+
+### Files not updating
+
+Make sure you're editing files in the correct input directory (usually \`docs/\`).
+
+## Search Issues
+
+### Search not working
+
+Ensure search is enabled in your config:
+
+\`\`\`typescript
+export default {
+  features: {
+    search: true
+  }
+};
+\`\`\`
+
+## Getting Help
+
+If you're still having issues:
+
+1. Check the [GitHub Issues](https://github.com/riligar/knowledge/issues)
+2. Create a new issue with details about your problem
+3. Join our community discussions
+`;
+
+    await fs.writeFile(path.join(targetDir, 'docs/troubleshooting.md'), troubleshootingContent);
+
+    // Criar .gitignore se não existir
+    const gitignorePath = path.join(targetDir, '.gitignore');
+    if (!await fs.pathExists(gitignorePath)) {
+        console.log('📄 Creating .gitignore...');
+        const gitignoreContent = `# Knowledge build output
+dist/
+.knowledge/
+
+# Dependencies
+node_modules/
+bun.lockb
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+`;
+        await fs.writeFile(gitignorePath, gitignoreContent);
+    }
+
+    console.log('✅ Knowledge project initialized successfully!');
+    console.log('');
+    console.log('📋 Next steps:');
+    console.log('  1. cd ' + path.relative(process.cwd(), targetDir));
+    console.log('  2. bun install');
+    console.log('  3. bun run dev');
+    console.log('');
+    console.log('🌐 Your documentation will be available at http://localhost:3000');
 }
 
 // Executar CLI se este arquivo for executado diretamente
 if (import.meta.main) {
     program.parse();
-} 
+}
