@@ -20,7 +20,17 @@
 ## 📦 Installation
 
 ```bash
+# Global installation (recommended)
 npm install -g @riligar/knowledge
+
+# Or with bun
+bun add -g @riligar/knowledge
+
+# Or with yarn
+yarn global add @riligar/knowledge
+
+# Or with pnpm
+pnpm add -g @riligar/knowledge
 ```
 
 ## 🎯 Quick Start
@@ -45,44 +55,6 @@ npm install -g @riligar/knowledge
 
 Visit our [official documentation](https://myknowledge.click) for detailed guides and examples.
 
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Commit Convention
-
-This project uses [Conventional Commits](https://www.conventionalcommits.org/) for automated versioning and changelog generation. Please format your commits as:
-
-```
-feat: add new feature
-fix: resolve bug
-docs: update documentation
-```
-
-## 🔄 Release Process
-
-Releases are fully automated using semantic-release:
-
-- **Automatic versioning** based on commit messages
-- **Changelog generation** from conventional commits  
-- **NPM publishing** on every release
-- **GitHub releases** with detailed notes
-
-Simply push to the `prod` branch and let the automation handle the rest!
-
-## 📄 License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
-## 🌟 Support
-
-- 📧 Email: maciel.ciro@icloud.com
-- 🐛 Issues: [GitHub Issues](https://github.com/riligar/knowledge/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/riligar/knowledge/discussions)
-
----
-
-Made with ❤️ by [Riligar](https://riligar.click)
 
 ## 🚀 How to Use (3 Steps)
 
