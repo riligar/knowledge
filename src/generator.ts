@@ -13,6 +13,7 @@ export interface DocumentPage {
     frontmatter: Record<string, any>;
     relativePath: string;
     url: string;
+    markdownUrl: string;
 }
 
 interface Document {
@@ -69,6 +70,9 @@ export class DocumentationGenerator {
         // Gerar páginas HTML
         await this.generatePages();
 
+        // Copiar arquivos markdown para download
+        await this.copyMarkdownFiles();
+
         // Copiar assets
         await this.copyAssets();
 
@@ -87,6 +91,7 @@ export class DocumentationGenerator {
             const htmlContent = await this.processMarkdown(body);
             const title = this.extractTitle(body, frontmatter);
             const url = this.generateUrl(relativePath);
+            const markdownUrl = this.generateMarkdownUrl(relativePath);
 
             const page: DocumentPage = {
                 path: filePath,
@@ -94,7 +99,8 @@ export class DocumentationGenerator {
                 content: htmlContent,
                 frontmatter,
                 relativePath,
-                url
+                url,
+                markdownUrl
             };
 
             this.pages.push(page);
@@ -191,6 +197,10 @@ export class DocumentationGenerator {
         }
 
         return url;
+    }
+
+    private generateMarkdownUrl(relativePath: string): string {
+        return relativePath.replace(/\.md$/, '.md');
     }
 
     private generateNavigation(): void {
@@ -320,7 +330,8 @@ export class DocumentationGenerator {
             .replace(/\{\{site\.author\}\}/g, this.config.site.author)
             .replace(/\{\{site\.baseUrl\}\}/g, this.config.site.baseUrl)
             .replace(/\{\{navigation\}\}/g, this.renderNavigation())
-            .replace(/\{\{baseUrl\}\}/g, this.config.site.baseUrl);
+            .replace(/\{\{baseUrl\}\}/g, this.config.site.baseUrl)
+            .replace(/\{\{markdownUrl\}\}/g, this.config.site.baseUrl + page.markdownUrl);
     }
 
     private renderNavigation(): string {
@@ -423,6 +434,19 @@ export class DocumentationGenerator {
             console.log('✅ Search index generated successfully');
         } catch (error) {
             console.error('❌ Failed to generate search index:', error);
+        }
+    }
+
+    private async copyMarkdownFiles(): Promise<void> {
+        const inputDir = path.resolve(this.config.inputDir);
+        const files = await this.findMarkdownFiles(inputDir);
+
+        for (const filePath of files) {
+            const relativePath = path.relative(inputDir, filePath);
+            const outputPath = path.join(this.config.outputDir, relativePath);
+
+            await fs.ensureDir(path.dirname(outputPath));
+            await fs.copy(filePath, outputPath);
         }
     }
 } 

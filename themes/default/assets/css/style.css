@@ -257,7 +257,7 @@ body {
 
 /* Content Wrapper */
 .content-wrapper {
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     max-width: 100%;
     overflow-y: auto;
 }
@@ -607,6 +607,61 @@ body {
 .theme-toggle-header:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+/* Page Actions */
+.page-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Download Markdown Button */
+.download-markdown-btn {
+    background: none;
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-tertiary);
+    text-decoration: none;
+    padding: 6px;
+}
+
+.download-markdown-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--primary-color);
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+.download-markdown-btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.download-markdown-btn:active {
+    transform: scale(0.98);
+}
+
+.download-markdown-btn svg {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.download-text {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 /* Theme Icons */
@@ -1058,6 +1113,22 @@ body {
         padding: 8px;
     }
 
+    /* Page actions adjustments */
+    .page-actions {
+        margin-bottom: var(--space-md);
+        padding-bottom: var(--space-sm);
+    }
+
+    .download-markdown-btn {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+    }
+
+    .download-text {
+        font-size: 12px;
+    }
+
     /* Prevent body scroll when mobile menu is open */
     body.mobile-menu-open {
         overflow: hidden;
@@ -1104,5 +1175,21 @@ body {
     .navigation>ul>li .folder-header {
         font-size: 15px;
         padding: 10px 14px;
+    }
+
+    /* Page actions adjustments for small screens */
+    .page-actions {
+        margin-bottom: var(--space-sm);
+        padding-bottom: var(--space-xs);
+    }
+
+    .download-markdown-btn {
+        width: 28px;
+        height: 28px;
+        padding: 4px;
+    }
+
+    .download-text {
+        font-size: 12px;
     }
 }
