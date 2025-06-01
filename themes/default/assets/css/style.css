@@ -636,10 +636,57 @@ body {
     transform: scale(1.1);
 }
 
+/* Download ZIP Button Specific Styles */
+.download-zip-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: var(--transition);
+}
+
+.download-zip-btn:hover svg {
+    transform: scale(1.1);
+}
+
+.download-zip-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Loading state for download button */
+.download-zip-btn.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.download-zip-btn.loading svg {
+    opacity: 0.3;
+}
+
+.download-zip-btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* Theme Toggle Specific Styles */
 .theme-toggle-header .theme-icon {
     position: absolute;
-    font-size: 16px;
+    font-size: 14px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
@@ -1174,8 +1221,13 @@ body {
     }
 
     .github-link svg {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .download-zip-btn svg {
+        width: 16px;
+        height: 16px;
     }
 
     /* Page actions adjustments */
