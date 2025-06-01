@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/riligar/knowledge/compare/v1.7.0...v1.8.0) (2025-06-01)
+
+
+### Features
+
+* **generator:** implement asset copying with cache busting ([7551135](https://github.com/riligar/knowledge/commit/75511358da3e4b53ffeddb63b5e10cce00b321ee))
+
 # [1.7.0](https://github.com/riligar/knowledge/compare/v1.6.0...v1.7.0) (2025-06-01)
 
 
