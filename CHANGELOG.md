@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/riligar/knowledge/compare/v1.8.0...v1.8.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* update author name in knowledge.config.ts from 'RiliGar' to 'Ciro Cesar Maciel' ([d3f840b](https://github.com/riligar/knowledge/commit/d3f840b00fea3db6a8963975e4992dbe43117b3d))
+
 # [1.8.0](https://github.com/riligar/knowledge/compare/v1.7.0...v1.8.0) (2025-06-01)
 
 
