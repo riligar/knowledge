@@ -328,6 +328,9 @@ With Knowledge, you transform:
 **In:** Less than 30 minutes
 **With:** Zero complex configuration
 
+## Stats
+![Repo Stats](https://repobeats.axiom.co/api/embed/55571d3a82e502a0e57b6fe8c54864cd53e7e5ac.svg)
+
 ---
 
 **💡 Remember**: Knowledge is made to be simple. Focus on content, let the tool handle the presentation! 
