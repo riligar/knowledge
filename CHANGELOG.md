@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/riligar/knowledge/compare/v1.1.0...v1.2.0) (2025-06-01)
+
+
+### Features
+
+* update CLI versioning to dynamically read from package.json ([418effd](https://github.com/riligar/knowledge/commit/418effd7210aa323dba67984546d3b34229dc9d2))
+
 # [1.1.0](https://github.com/riligar/knowledge/compare/v1.0.1...v1.1.0) (2025-06-01)
 
 
