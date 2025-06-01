@@ -38,7 +38,7 @@ my-project/
 │   ├── installation.md  # Guides
 │   └── api/             # Organize in folders
 │       └── reference.md
-└── knowledge.config.ts   # ⚙️ Configuration (optional)
+└── knowledge.config.ts   # ⚙️ Configuration (required)
 ```
 
 ### 2. **Write in Markdown**
@@ -55,15 +55,12 @@ Welcome! This is a simple example.
 
 ## Links
 
-- [Installation](./installation.md)
-- [API](./api/reference.md)
+- [Installation](./docs/installation.md)
+- [API](./docs/reference.md)
 ```
 
 ### 3. **Generate documentation**
 ```bash
-# Development (with live reload)
-bun run dev
-
 # Production (static files)
 bun run build
 
@@ -142,9 +139,6 @@ export default {
 ## 🚀 Essential Commands
 
 ```bash
-# Development
-bun run dev              # Start server with live reload
-
 # Production
 bun run build            # Generate static site
 bun run serve            # Serve generated files
@@ -178,11 +172,6 @@ docs/
 # Include code examples
 ```bash
 npm install my-project
-```
-
-# Add internal links
-- [Installation](./installation.md)
-- [API](./api/reference.md)
 ```
 
 ### **4. Maintain Consistency**
