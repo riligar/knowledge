@@ -2,6 +2,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
+import { createHash } from 'crypto';
 import type { KnowledgeConfig, NavigationItem } from './config.js';
 import { resolveThemesDir } from './config.js';
 import { SearchIndexGenerator } from './search.js';
@@ -33,12 +34,17 @@ interface TemplateData {
     currentPath: string;
 }
 
+interface AssetMapping {
+    [originalPath: string]: string;
+}
+
 export class DocumentationGenerator {
     private pages: DocumentPage[] = [];
     private navigation: NavigationItem[] = [];
     private searchIndex: SearchIndexGenerator;
     private markdownProcessor: MarkdownProcessor;
     private resolvedThemesDir: string;
+    private assetMapping: AssetMapping = {};
 
     constructor(private config: KnowledgeConfig) {
         this.setupMarked();
@@ -72,14 +78,14 @@ export class DocumentationGenerator {
         // Gerar índice de busca
         await this.generateSearchIndex();
 
-        // Gerar páginas HTML
+        // Copiar assets com cache busting
+        await this.copyAssetsWithCacheBusting();
+
+        // Gerar páginas HTML (após copiar assets para ter o mapping)
         await this.generatePages();
 
         // Copiar arquivos markdown para download
         await this.copyMarkdownFiles();
-
-        // Copiar assets
-        await this.copyAssets();
 
         console.log(`✅ Documentation generated successfully in ${this.config.outputDir}`);
     }
@@ -327,7 +333,7 @@ export class DocumentationGenerator {
     }
 
     private renderTemplate(template: string, page: DocumentPage): string {
-        return template
+        let renderedTemplate = template
             .replace(/\{\{title\}\}/g, page.title)
             .replace(/\{\{content\}\}/g, page.content)
             .replace(/\{\{site\.title\}\}/g, this.config.site.title)
@@ -337,6 +343,11 @@ export class DocumentationGenerator {
             .replace(/\{\{navigation\}\}/g, this.renderNavigation())
             .replace(/\{\{baseUrl\}\}/g, this.config.site.baseUrl)
             .replace(/\{\{markdownUrl\}\}/g, this.config.site.baseUrl + page.markdownUrl);
+
+        // Aplicar cache busting nos assets
+        renderedTemplate = this.applyAssetCacheBusting(renderedTemplate);
+
+        return renderedTemplate;
     }
 
     private renderNavigation(): string {
@@ -403,19 +414,111 @@ export class DocumentationGenerator {
 </html>`;
     }
 
-    private async copyAssets(): Promise<void> {
+    private async copyAssetsWithCacheBusting(): Promise<void> {
         const themeAssetsDir = path.join(this.resolvedThemesDir, this.config.theme, 'assets');
         const outputAssetsDir = path.join(this.config.outputDir, 'assets');
 
         try {
-            await fs.copy(themeAssetsDir, outputAssetsDir);
-            console.log(`✅ Assets copied from: ${themeAssetsDir}`);
+            // Verificar se o diretório de assets do tema existe
+            if (!await fs.pathExists(themeAssetsDir)) {
+                console.warn(`Theme assets directory not found: ${themeAssetsDir}`);
+                await this.createDefaultAssets();
+                return;
+            }
+
+            // Criar diretório de saída
+            await fs.ensureDir(outputAssetsDir);
+
+            // Processar assets com cache busting
+            await this.processAssetsRecursively(themeAssetsDir, outputAssetsDir, '');
+
+            console.log(`✅ Assets copied with cache busting from: ${themeAssetsDir}`);
         } catch (err) {
             console.warn(`Could not copy theme assets from ${themeAssetsDir}`);
             console.warn('Error:', err instanceof Error ? err.message : err);
             // Criar assets padrão
             await this.createDefaultAssets();
         }
+    }
+
+    private async processAssetsRecursively(sourceDir: string, outputDir: string, relativePath: string): Promise<void> {
+        const entries = await fs.readdir(sourceDir, { withFileTypes: true });
+
+        for (const entry of entries) {
+            const sourcePath = path.join(sourceDir, entry.name);
+            const currentRelativePath = relativePath ? path.join(relativePath, entry.name) : entry.name;
+
+            if (entry.isDirectory()) {
+                // Criar subdiretório e processar recursivamente
+                const outputSubDir = path.join(outputDir, entry.name);
+                await fs.ensureDir(outputSubDir);
+                await this.processAssetsRecursively(sourcePath, outputSubDir, currentRelativePath);
+            } else if (entry.isFile()) {
+                // Verificar se é um arquivo que precisa de cache busting
+                if (this.shouldApplyCacheBusting(entry.name)) {
+                    await this.copyAssetWithHash(sourcePath, outputDir, entry.name, currentRelativePath);
+                } else {
+                    // Copiar arquivo normalmente
+                    const outputPath = path.join(outputDir, entry.name);
+                    await fs.copy(sourcePath, outputPath);
+                }
+            }
+        }
+    }
+
+    private shouldApplyCacheBusting(filename: string): boolean {
+        const extensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.woff', '.woff2', '.ttf', '.eot'];
+        return extensions.some(ext => filename.toLowerCase().endsWith(ext));
+    }
+
+    private async copyAssetWithHash(sourcePath: string, outputDir: string, filename: string, relativePath: string): Promise<void> {
+        // Ler conteúdo do arquivo
+        const content = await fs.readFile(sourcePath);
+
+        // Gerar hash do conteúdo
+        const hash = createHash('md5').update(content).digest('hex').substring(0, 8);
+
+        // Gerar novo nome com hash
+        const parsedPath = path.parse(filename);
+        const hashedFilename = `${parsedPath.name}.${hash}${parsedPath.ext}`;
+
+        // Normalizar caminhos
+        const normalizedRelativePath = relativePath.replace(/\\/g, '/');
+        const hashedRelativePath = path.join(path.dirname(normalizedRelativePath), hashedFilename).replace(/\\/g, '/');
+
+        // Salvar mapping para substituição posterior
+        const originalAssetPath = `assets/${normalizedRelativePath}`;
+        const hashedAssetPath = `assets/${hashedRelativePath}`;
+        this.assetMapping[originalAssetPath] = hashedAssetPath;
+
+        // Copiar arquivo com novo nome
+        const outputPath = path.join(outputDir, hashedFilename);
+        await fs.writeFile(outputPath, content);
+
+        console.log(`📦 Asset with cache busting: ${originalAssetPath} → ${hashedAssetPath}`);
+    }
+
+    private applyAssetCacheBusting(template: string): string {
+        let result = template;
+
+        // Substituir referências de assets pelos nomes com hash
+        for (const [originalPath, hashedPath] of Object.entries(this.assetMapping)) {
+            // Substituir em href e src attributes
+            const patterns = [
+                new RegExp(`href="([^"]*?)${originalPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g'),
+                new RegExp(`src="([^"]*?)${originalPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g'),
+                new RegExp(`href='([^']*?)${originalPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}'`, 'g'),
+                new RegExp(`src='([^']*?)${originalPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}'`, 'g')
+            ];
+
+            patterns.forEach(pattern => {
+                result = result.replace(pattern, (match, prefix) => {
+                    return match.replace(originalPath, hashedPath);
+                });
+            });
+        }
+
+        return result;
     }
 
     private async createDefaultAssets(): Promise<void> {
