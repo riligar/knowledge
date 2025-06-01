@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/riligar/knowledge/compare/v1.9.0...v1.10.0) (2025-06-01)
+
+
+### Features
+
+* **markdown:** add validation for Markdown files to start with H1 ([14ea026](https://github.com/riligar/knowledge/commit/14ea026f59a1a473b4c17975e652da91aa0d3790))
+
 # [1.9.0](https://github.com/riligar/knowledge/compare/v1.8.1...v1.9.0) (2025-06-01)
 
 
