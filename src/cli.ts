@@ -488,7 +488,7 @@ Thumbs.db
     console.log('✅ Knowledge project initialized successfully!');
     console.log('');
     console.log('📋 Next steps:');
-    if (targetDir !== '.') {
+    if (targetDir !== '') {
         console.log('  1. cd ' + path.relative(process.cwd(), targetDir));
     }
     console.log('  1. knowledge dev');
