@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Executa no push para a branch main
+  # Executa no push para a branch prod
   push:
-    branches: [ "main" ]
+    branches: [ "prod" ]
   
   # Permite execução manual do workflow
   workflow_dispatch:
