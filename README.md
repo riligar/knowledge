@@ -59,6 +59,14 @@ pnpm add -g @riligar/knowledge
    knowledge build
    ```
 
+## 🎨 What you get automatically
+
+| Category | Features | Benefits |
+|----------|----------|----------|
+| **Professional Interface** | • Modern and clean design<br>• Automatic sidebar navigation<br>• Breadcrumbs and table of contents<br>• Search with Ctrl+K | • Professional appearance<br>• Easy navigation<br>• Quick content discovery<br>• Instant search functionality |
+| **Advanced Features** | • Copy-to-clipboard in code blocks<br>• Functional internal links<br>• SEO optimized<br>• Full accessibility | • Developer-friendly<br>• Seamless navigation<br>• Better search rankings<br>• Inclusive for all users |
+| **Mobile Experience** | • Collapsible menu<br>• Touch-friendly<br>• Fast loading<br>• Smooth scrolling | • Mobile-first design<br>• Intuitive interactions<br>• Optimal performance<br>• Enhanced UX |
+
 ## 🚀 How to Use (3 Steps)
 
 ### 1. **Structure your files**
@@ -87,7 +95,7 @@ Welcome! This is a simple example.
 ## Links
 
 - [Installation](./docs/installation.md)
-- [API](./docs/reference.md)
+- [API](./api/reference.md)
 ```
 
 ### 3. **Generate documentation**
@@ -98,14 +106,6 @@ knowledge build
 # Serve generated files
 knowledge serve
 ```
-
-## 🎨 What you get automatically
-
-| Category | Features | Benefits |
-|----------|----------|----------|
-| **Professional Interface** | • Modern and clean design<br>• Automatic sidebar navigation<br>• Breadcrumbs and table of contents<br>• Search with Ctrl+K | • Professional appearance<br>• Easy navigation<br>• Quick content discovery<br>• Instant search functionality |
-| **Advanced Features** | • Copy-to-clipboard in code blocks<br>• Functional internal links<br>• SEO optimized<br>• Full accessibility | • Developer-friendly<br>• Seamless navigation<br>• Better search rankings<br>• Inclusive for all users |
-| **Mobile Experience** | • Collapsible menu<br>• Touch-friendly<br>• Fast loading<br>• Smooth scrolling | • Mobile-first design<br>• Intuitive interactions<br>• Optimal performance<br>• Enhanced UX |
 
 ## 📋 Ideal Use Cases
 
