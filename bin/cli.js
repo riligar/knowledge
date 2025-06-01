@@ -57365,6 +57365,9 @@ var lexer = _Lexer.lex;
 var import_lib = __toESM(require_lib2(), 1);
 var es_default = import_lib.default;
 
+// src/generator.ts
+import { createHash } from "crypto";
+
 // src/search.ts
 var import_lunr = __toESM(require_lunr(), 1);
 
@@ -57514,6 +57517,7 @@ class DocumentationGenerator {
   searchIndex;
   markdownProcessor;
   resolvedThemesDir;
+  assetMapping = {};
   constructor(config) {
     this.config = config;
     this.setupMarked();
@@ -57534,33 +57538,46 @@ class DocumentationGenerator {
     await this.processMarkdownFiles();
     this.generateNavigation();
     await this.generateSearchIndex();
+    await this.copyAssetsWithCacheBusting();
     await this.generatePages();
     await this.copyMarkdownFiles();
-    await this.copyAssets();
     console.log(`✅ Documentation generated successfully in ${this.config.outputDir}`);
   }
   async processMarkdownFiles() {
     const inputDir = path2.resolve(this.config.inputDir);
-    const files = await this.findMarkdownFiles(inputDir);
-    for (const filePath of files) {
-      const content = await fs2.readFile(filePath, "utf-8");
-      const relativePath = path2.relative(inputDir, filePath);
-      const { frontmatter, body } = this.extractFrontmatter(content);
-      const htmlContent = await this.processMarkdown(body);
-      const title = this.extractTitle(body, frontmatter);
-      const url = this.generateUrl(relativePath);
-      const markdownUrl = this.generateMarkdownUrl(relativePath);
-      const page = {
-        path: filePath,
-        title,
-        content: htmlContent,
-        frontmatter,
-        relativePath,
-        url,
-        markdownUrl
-      };
-      this.pages.push(page);
-      this.searchIndex.addPage(page);
+    try {
+      const files = await this.findMarkdownFiles(inputDir);
+      for (const filePath of files) {
+        const content = await fs2.readFile(filePath, "utf-8");
+        const relativePath = path2.relative(inputDir, filePath);
+        const { frontmatter, body } = this.extractFrontmatter(content);
+        const htmlContent = await this.processMarkdown(body);
+        const title = this.extractTitle(body, frontmatter);
+        const url = this.generateUrl(relativePath);
+        const markdownUrl = this.generateMarkdownUrl(relativePath);
+        const page = {
+          path: filePath,
+          title,
+          content: htmlContent,
+          frontmatter,
+          relativePath,
+          url,
+          markdownUrl
+        };
+        this.pages.push(page);
+        this.searchIndex.addPage(page);
+      }
+    } catch (error) {
+      if (error.code === "ENOENT") {
+        throw new Error(`❌ Input directory not found: '${this.config.inputDir}'
+
+` + `Please make sure the directory exists and contains your markdown files.
+` + `You can:
+` + `  • Create the directory: mkdir ${this.config.inputDir}
+` + `  • Change the input directory in your config file
+` + `  • Use the --input flag to specify a different directory`);
+      }
+      throw error;
     }
   }
   async processMarkdown(content) {
@@ -57685,6 +57702,17 @@ class DocumentationGenerator {
         return -1;
       if (!aIsFile && bIsFile)
         return 1;
+      if (aIsFile && bIsFile) {
+        const aIndexPriority = this.getIndexFilePriority(a);
+        const bIndexPriority = this.getIndexFilePriority(b);
+        if (aIndexPriority > 0 && bIndexPriority === 0)
+          return -1;
+        if (aIndexPriority === 0 && bIndexPriority > 0)
+          return 1;
+        if (aIndexPriority > 0 && bIndexPriority > 0) {
+          return bIndexPriority - aIndexPriority;
+        }
+      }
       return a.title.localeCompare(b.title, "pt-BR", {
         numeric: true,
         sensitivity: "base"
@@ -57697,6 +57725,23 @@ class DocumentationGenerator {
     for (const item of items) {
       if (item.children && item.children.length > 0) {
         item.children.sort((a, b) => {
+          const aIsFile = a.path !== "";
+          const bIsFile = b.path !== "";
+          if (aIsFile && !bIsFile)
+            return -1;
+          if (!aIsFile && bIsFile)
+            return 1;
+          if (aIsFile && bIsFile) {
+            const aIndexPriority = this.getIndexFilePriority(a);
+            const bIndexPriority = this.getIndexFilePriority(b);
+            if (aIndexPriority > 0 && bIndexPriority === 0)
+              return -1;
+            if (aIndexPriority === 0 && bIndexPriority > 0)
+              return 1;
+            if (aIndexPriority > 0 && bIndexPriority > 0) {
+              return bIndexPriority - aIndexPriority;
+            }
+          }
           return a.title.localeCompare(b.title, "pt-BR", {
             numeric: true,
             sensitivity: "base"
@@ -57705,6 +57750,25 @@ class DocumentationGenerator {
         this.sortNavigationChildren(item.children);
       }
     }
+  }
+  getIndexFilePriority(item) {
+    if (!item.path)
+      return 0;
+    const page = this.pages.find((p) => p.url === item.path);
+    if (page) {
+      const filename = path2.basename(page.relativePath, ".md").toLowerCase();
+      const normalizedFilename = filename.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (normalizedFilename === "indice") {
+        return 2;
+      }
+      if (normalizedFilename === "index") {
+        return 1;
+      }
+    }
+    return 0;
+  }
+  isIndexFile(item) {
+    return this.getIndexFilePriority(item) > 0;
   }
   async generatePages() {
     const templatePath = path2.join(this.resolvedThemesDir, this.config.theme, "layouts", `${this.config.layout}.html`);
@@ -57723,7 +57787,9 @@ class DocumentationGenerator {
     }
   }
   renderTemplate(template, page) {
-    return template.replace(/\{\{title\}\}/g, page.title).replace(/\{\{content\}\}/g, page.content).replace(/\{\{site\.title\}\}/g, this.config.site.title).replace(/\{\{site\.description\}\}/g, this.config.site.description).replace(/\{\{site\.author\}\}/g, this.config.site.author).replace(/\{\{site\.baseUrl\}\}/g, this.config.site.baseUrl).replace(/\{\{navigation\}\}/g, this.renderNavigation()).replace(/\{\{baseUrl\}\}/g, this.config.site.baseUrl).replace(/\{\{markdownUrl\}\}/g, this.config.site.baseUrl + page.markdownUrl);
+    let renderedTemplate = template.replace(/\{\{title\}\}/g, page.title).replace(/\{\{content\}\}/g, page.content).replace(/\{\{site\.title\}\}/g, this.config.site.title).replace(/\{\{site\.description\}\}/g, this.config.site.description).replace(/\{\{site\.author\}\}/g, this.config.site.author).replace(/\{\{site\.baseUrl\}\}/g, this.config.site.baseUrl).replace(/\{\{navigation\}\}/g, this.renderNavigation()).replace(/\{\{baseUrl\}\}/g, this.config.site.baseUrl).replace(/\{\{markdownUrl\}\}/g, this.config.site.baseUrl + page.markdownUrl);
+    renderedTemplate = this.applyAssetCacheBusting(renderedTemplate);
+    return renderedTemplate;
   }
   renderNavigation() {
     return this.renderNavigationItems(this.navigation);
@@ -57781,17 +57847,77 @@ class DocumentationGenerator {
 </body>
 </html>`;
   }
-  async copyAssets() {
+  async copyAssetsWithCacheBusting() {
     const themeAssetsDir = path2.join(this.resolvedThemesDir, this.config.theme, "assets");
     const outputAssetsDir = path2.join(this.config.outputDir, "assets");
     try {
-      await fs2.copy(themeAssetsDir, outputAssetsDir);
-      console.log(`✅ Assets copied from: ${themeAssetsDir}`);
+      if (!await fs2.pathExists(themeAssetsDir)) {
+        console.warn(`Theme assets directory not found: ${themeAssetsDir}`);
+        await this.createDefaultAssets();
+        return;
+      }
+      await fs2.ensureDir(outputAssetsDir);
+      await this.processAssetsRecursively(themeAssetsDir, outputAssetsDir, "");
+      console.log(`✅ Assets copied with cache busting from: ${themeAssetsDir}`);
     } catch (err) {
       console.warn(`Could not copy theme assets from ${themeAssetsDir}`);
       console.warn("Error:", err instanceof Error ? err.message : err);
       await this.createDefaultAssets();
     }
+  }
+  async processAssetsRecursively(sourceDir, outputDir, relativePath) {
+    const entries = await fs2.readdir(sourceDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const sourcePath = path2.join(sourceDir, entry.name);
+      const currentRelativePath = relativePath ? path2.join(relativePath, entry.name) : entry.name;
+      if (entry.isDirectory()) {
+        const outputSubDir = path2.join(outputDir, entry.name);
+        await fs2.ensureDir(outputSubDir);
+        await this.processAssetsRecursively(sourcePath, outputSubDir, currentRelativePath);
+      } else if (entry.isFile()) {
+        if (this.shouldApplyCacheBusting(entry.name)) {
+          await this.copyAssetWithHash(sourcePath, outputDir, entry.name, currentRelativePath);
+        } else {
+          const outputPath = path2.join(outputDir, entry.name);
+          await fs2.copy(sourcePath, outputPath);
+        }
+      }
+    }
+  }
+  shouldApplyCacheBusting(filename) {
+    const extensions = [".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".woff", ".woff2", ".ttf", ".eot"];
+    return extensions.some((ext) => filename.toLowerCase().endsWith(ext));
+  }
+  async copyAssetWithHash(sourcePath, outputDir, filename, relativePath) {
+    const content = await fs2.readFile(sourcePath);
+    const hash = createHash("md5").update(content).digest("hex").substring(0, 8);
+    const parsedPath = path2.parse(filename);
+    const hashedFilename = `${parsedPath.name}.${hash}${parsedPath.ext}`;
+    const normalizedRelativePath = relativePath.replace(/\\/g, "/");
+    const hashedRelativePath = path2.join(path2.dirname(normalizedRelativePath), hashedFilename).replace(/\\/g, "/");
+    const originalAssetPath = `assets/${normalizedRelativePath}`;
+    const hashedAssetPath = `assets/${hashedRelativePath}`;
+    this.assetMapping[originalAssetPath] = hashedAssetPath;
+    const outputPath = path2.join(outputDir, hashedFilename);
+    await fs2.writeFile(outputPath, content);
+    console.log(`\uD83D\uDCE6 Asset with cache busting: ${originalAssetPath} → ${hashedAssetPath}`);
+  }
+  applyAssetCacheBusting(template) {
+    let result = template;
+    for (const [originalPath, hashedPath] of Object.entries(this.assetMapping)) {
+      const patterns = [
+        new RegExp(`href="([^"]*?)${originalPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`, "g"),
+        new RegExp(`src="([^"]*?)${originalPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`, "g"),
+        new RegExp(`href='([^']*?)${originalPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`, "g"),
+        new RegExp(`src='([^']*?)${originalPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`, "g")
+      ];
+      patterns.forEach((pattern) => {
+        result = result.replace(pattern, (match, prefix) => {
+          return match.replace(originalPath, hashedPath);
+        });
+      });
+    }
+    return result;
   }
   async createDefaultAssets() {
     const assetsDir = path2.join(this.config.outputDir, "assets");
@@ -57979,10 +58105,10 @@ class ReaddirpStream extends Readable {
   }
   async _formatEntry(dirent, path3) {
     let entry;
-    const basename = this._isDirent ? dirent.name : dirent;
+    const basename2 = this._isDirent ? dirent.name : dirent;
     try {
-      const fullPath = presolve(pjoin(path3, basename));
-      entry = { path: prelative(this._root, fullPath), fullPath, basename };
+      const fullPath = presolve(pjoin(path3, basename2));
+      entry = { path: prelative(this._root, fullPath), fullPath, basename: basename2 };
       entry[this._statsProp] = this._isDirent ? dirent : await this._stat(fullPath);
     } catch (err) {
       this._onError(err);
@@ -58507,9 +58633,9 @@ class NodeFsHandler {
   _watchWithNodeFs(path3, listener) {
     const opts = this.fsw.options;
     const directory = sysPath.dirname(path3);
-    const basename2 = sysPath.basename(path3);
+    const basename3 = sysPath.basename(path3);
     const parent = this.fsw._getWatchedDir(directory);
-    parent.add(basename2);
+    parent.add(basename3);
     const absolutePath = sysPath.resolve(path3);
     const options2 = {
       persistent: opts.persistent
@@ -58519,7 +58645,7 @@ class NodeFsHandler {
     let closer;
     if (opts.usePolling) {
       const enableBin = opts.interval !== opts.binaryInterval;
-      options2.interval = enableBin && isBinaryPath(basename2) ? opts.binaryInterval : opts.interval;
+      options2.interval = enableBin && isBinaryPath(basename3) ? opts.binaryInterval : opts.interval;
       closer = setFsWatchFileListener(path3, absolutePath, options2, {
         listener,
         rawEmitter: this.fsw._emitRaw
@@ -58538,10 +58664,10 @@ class NodeFsHandler {
       return;
     }
     const dirname4 = sysPath.dirname(file);
-    const basename2 = sysPath.basename(file);
+    const basename3 = sysPath.basename(file);
     const parent = this.fsw._getWatchedDir(dirname4);
     let prevStats = stats;
-    if (parent.has(basename2))
+    if (parent.has(basename3))
       return;
     const listener = async (path3, newStats) => {
       if (!this.fsw._throttle(THROTTLE_MODE_WATCH, file, 5))
@@ -58566,9 +58692,9 @@ class NodeFsHandler {
             prevStats = newStats2;
           }
         } catch (error) {
-          this.fsw._remove(dirname4, basename2);
+          this.fsw._remove(dirname4, basename3);
         }
-      } else if (parent.has(basename2)) {
+      } else if (parent.has(basename3)) {
         const at = newStats.atimeMs;
         const mt = newStats.mtimeMs;
         if (!at || at <= mt || mt !== prevStats.mtimeMs) {
@@ -59662,7 +59788,11 @@ program2.command("build").description("Build the documentation site").option("-c
     const generator = new DocumentationGenerator(config);
     await generator.generate();
   } catch (error) {
-    console.error("\u274C Build failed:", error);
+    if (error.message && error.message.startsWith("\u274C")) {
+      console.error(error.message);
+    } else {
+      console.error("\u274C Build failed:", error);
+    }
     process.exit(1);
   }
 });
@@ -59857,7 +59987,7 @@ This is your documentation homepage. Edit this file to get started!
 
 ## Features
 
-- \uD83D\uDE80 **Fast builds** with Bun.js
+- \uD83D\uDE80 **Fast builds** with Bun
 - \uD83D\uDCDD **Markdown support** with syntax highlighting
 - \uD83C\uDFA8 **Beautiful default theme**
 - \uD83D\uDD0D **Built-in search**
@@ -59881,7 +60011,7 @@ Welcome to the installation guide for Knowledge.
 Before you begin, make sure you have one of the following package managers installed:
 
 - [npm](https://www.npmjs.com/) (comes with Node.js)
-- [Bun.js](https://bun.sh) (recommended for faster performance)
+- [Bun](https://bun.sh) (recommended for faster performance)
 - [Yarn](https://yarnpkg.com/)
 - [pnpm](https://pnpm.io/)
 

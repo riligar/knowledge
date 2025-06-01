@@ -86,8 +86,13 @@ program
             const config = await loadConfigWithOptions(options);
             const generator = new DocumentationGenerator(config);
             await generator.generate();
-        } catch (error) {
-            console.error('❌ Build failed:', error);
+        } catch (error: any) {
+            // Se for um erro conhecido (como diretório não encontrado), exibir apenas a mensagem
+            if (error.message && error.message.startsWith('❌')) {
+                console.error(error.message);
+            } else {
+                console.error('❌ Build failed:', error);
+            }
             process.exit(1);
         }
     });

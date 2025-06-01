@@ -92,32 +92,47 @@ export class DocumentationGenerator {
 
     private async processMarkdownFiles(): Promise<void> {
         const inputDir = path.resolve(this.config.inputDir);
-        const files = await this.findMarkdownFiles(inputDir);
 
-        for (const filePath of files) {
-            const content = await fs.readFile(filePath, 'utf-8');
-            const relativePath = path.relative(inputDir, filePath);
-            const { frontmatter, body } = this.extractFrontmatter(content);
+        try {
+            const files = await this.findMarkdownFiles(inputDir);
 
-            const htmlContent = await this.processMarkdown(body);
-            const title = this.extractTitle(body, frontmatter);
-            const url = this.generateUrl(relativePath);
-            const markdownUrl = this.generateMarkdownUrl(relativePath);
+            for (const filePath of files) {
+                const content = await fs.readFile(filePath, 'utf-8');
+                const relativePath = path.relative(inputDir, filePath);
+                const { frontmatter, body } = this.extractFrontmatter(content);
 
-            const page: DocumentPage = {
-                path: filePath,
-                title,
-                content: htmlContent,
-                frontmatter,
-                relativePath,
-                url,
-                markdownUrl
-            };
+                const htmlContent = await this.processMarkdown(body);
+                const title = this.extractTitle(body, frontmatter);
+                const url = this.generateUrl(relativePath);
+                const markdownUrl = this.generateMarkdownUrl(relativePath);
 
-            this.pages.push(page);
+                const page: DocumentPage = {
+                    path: filePath,
+                    title,
+                    content: htmlContent,
+                    frontmatter,
+                    relativePath,
+                    url,
+                    markdownUrl
+                };
 
-            // Adicionar página ao índice de busca
-            this.searchIndex.addPage(page);
+                this.pages.push(page);
+
+                // Adicionar página ao índice de busca
+                this.searchIndex.addPage(page);
+            }
+        } catch (error: any) {
+            if (error.code === 'ENOENT') {
+                throw new Error(
+                    `❌ Input directory not found: '${this.config.inputDir}'\n\n` +
+                    `Please make sure the directory exists and contains your markdown files.\n` +
+                    `You can:\n` +
+                    `  • Create the directory: mkdir ${this.config.inputDir}\n` +
+                    `  • Change the input directory in your config file\n` +
+                    `  • Use the --input flag to specify a different directory`
+                );
+            }
+            throw error;
         }
     }
 
@@ -273,7 +288,7 @@ export class DocumentationGenerator {
             }
         }
 
-        // Ordenar itens da raiz: arquivos primeiro, depois pastas (ambos em ordem alfabética)
+        // Ordenar itens da raiz com prioridade para arquivos de índice
         rootItems.sort((a, b) => {
             const aIsFile = a.path !== '';
             const bIsFile = b.path !== '';
@@ -282,7 +297,22 @@ export class DocumentationGenerator {
             if (aIsFile && !bIsFile) return -1;
             if (!aIsFile && bIsFile) return 1;
 
-            // Se ambos são do mesmo tipo, ordenar alfabeticamente
+            // Se ambos são arquivos, verificar se algum é arquivo de índice
+            if (aIsFile && bIsFile) {
+                const aIndexPriority = this.getIndexFilePriority(a);
+                const bIndexPriority = this.getIndexFilePriority(b);
+
+                // Se um tem prioridade de índice e outro não, o com prioridade vem primeiro
+                if (aIndexPriority > 0 && bIndexPriority === 0) return -1;
+                if (aIndexPriority === 0 && bIndexPriority > 0) return 1;
+
+                // Se ambos têm prioridade de índice, ordenar pela prioridade (maior número = maior prioridade)
+                if (aIndexPriority > 0 && bIndexPriority > 0) {
+                    return bIndexPriority - aIndexPriority;
+                }
+            }
+
+            // Se ambos são do mesmo tipo (ou nenhum é index), ordenar alfabeticamente
             return a.title.localeCompare(b.title, 'pt-BR', {
                 numeric: true,
                 sensitivity: 'base'
@@ -298,8 +328,31 @@ export class DocumentationGenerator {
     private sortNavigationChildren(items: NavigationItem[]): void {
         for (const item of items) {
             if (item.children && item.children.length > 0) {
-                // Ordenar filhos alfabeticamente
+                // Ordenar filhos com prioridade para arquivos de índice
                 item.children.sort((a, b) => {
+                    const aIsFile = a.path !== '';
+                    const bIsFile = b.path !== '';
+
+                    // Se um é arquivo e outro é pasta, arquivo vem primeiro
+                    if (aIsFile && !bIsFile) return -1;
+                    if (!aIsFile && bIsFile) return 1;
+
+                    // Se ambos são arquivos, verificar se algum é arquivo de índice
+                    if (aIsFile && bIsFile) {
+                        const aIndexPriority = this.getIndexFilePriority(a);
+                        const bIndexPriority = this.getIndexFilePriority(b);
+
+                        // Se um tem prioridade de índice e outro não, o com prioridade vem primeiro
+                        if (aIndexPriority > 0 && bIndexPriority === 0) return -1;
+                        if (aIndexPriority === 0 && bIndexPriority > 0) return 1;
+
+                        // Se ambos têm prioridade de índice, ordenar pela prioridade (maior número = maior prioridade)
+                        if (aIndexPriority > 0 && bIndexPriority > 0) {
+                            return bIndexPriority - aIndexPriority;
+                        }
+                    }
+
+                    // Se ambos são do mesmo tipo (ou nenhum é index), ordenar alfabeticamente
                     return a.title.localeCompare(b.title, 'pt-BR', {
                         numeric: true,
                         sensitivity: 'base'
@@ -310,6 +363,37 @@ export class DocumentationGenerator {
                 this.sortNavigationChildren(item.children);
             }
         }
+    }
+
+    private getIndexFilePriority(item: NavigationItem): number {
+        if (!item.path) return 0;
+
+        // Procurar na lista de páginas pelo item correspondente
+        const page = this.pages.find(p => p.url === item.path);
+        if (page) {
+            const filename = path.basename(page.relativePath, '.md').toLowerCase();
+
+            // Verificar se é um arquivo de índice (com ou sem acento)
+            // Remover acentos para comparação mais robusta
+            const normalizedFilename = filename.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+            // índice.md tem prioridade 2 (maior prioridade)
+            if (normalizedFilename === 'indice') {
+                return 2;
+            }
+
+            // index.md tem prioridade 1
+            if (normalizedFilename === 'index') {
+                return 1;
+            }
+        }
+
+        // Não é arquivo de índice
+        return 0;
+    }
+
+    private isIndexFile(item: NavigationItem): boolean {
+        return this.getIndexFilePriority(item) > 0;
     }
 
     private async generatePages(): Promise<void> {
