@@ -230,7 +230,7 @@ bun run build
 # Copy dist/ folder to your server
 ```
 
-## 📈 Benefits for Teams
+## 💡 Benefits for Teams
 
 | Team Role | Benefits | Impact |
 |-----------|----------|--------|
@@ -238,7 +238,7 @@ bun run build
 | **For Managers** | • Reduces onboarding time<br>• Improves team communication<br>• Always up-to-date documentation<br>• Zero infrastructure cost | • Faster team productivity<br>• Better collaboration<br>• Reliable information<br>• Cost-effective solution |
 | **For Users** | • Intuitive and fast interface<br>• Efficient search<br>• Works on any device<br>• Always available | • Enhanced user experience<br>• Quick information access<br>• Cross-platform compatibility<br>• Reliable availability |
 
-## Stats
+## 📈 Stats
 ![Repo Stats](https://repobeats.axiom.co/api/embed/55571d3a82e502a0e57b6fe8c54864cd53e7e5ac.svg)
 
 ---
