@@ -3,8 +3,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/riligar/knowledge)](https://github.com/riligar/knowledge/stargazers) ![GitHub License](https://img.shields.io/github/license/riligar/knowledge) [![Documentation](https://img.shields.io/badge/docs-Knowledge.click-blue)](https://myknowledge.click) [![NPM Version](https://img.shields.io/npm/v/%40riligar%2Fknowledge)
 ](https://www.npmjs.com/package/@riligar/knowledge)
 
-> Transform how your team creates, organizes, and shares knowledge
-
 ## 🎯 What is Knowledge?
 
 **Knowledge** is a modern static documentation generator that transforms Markdown files into professional documentation sites. It's the perfect tool for anyone who wants to create beautiful and functional documentation without complications.
@@ -85,9 +83,6 @@ Welcome! This is a simple example.
 
 ### 3. **Generate documentation**
 ```bash
-# Development with live reload
-knowledge dev
-
 # Production (static files)
 knowledge build
 
@@ -210,21 +205,6 @@ npm install my-project
 - Standard format for examples
 - Consistent tone of voice
 
-## 🎯 Recommended Workflow
-
-### **For New Projects**
-1. **Plan** the documentation structure
-2. **Create** basic files (index, installation, guide)
-3. **Start** `bun run dev` for development
-4. **Write** and see changes in real time
-5. **Publish** with `bun run build`
-
-### **For Existing Projects**
-1. **Migrate** existing documentation to Markdown
-2. **Organize** in logical folder structure
-3. **Configure** Knowledge with your preferences
-4. **Test** with `bun run dev`
-5. **Deploy** to replace old documentation
 
 ## 📊 Comparison with Other Tools
 
