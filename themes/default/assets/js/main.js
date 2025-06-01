@@ -177,10 +177,26 @@ class Knowledge {
     isCurrentPage(href, currentPath) {
         if (!href) return false;
 
-        return href === currentPath ||
-            href === currentPath.replace(/\/$/, '') ||
-            (currentPath.endsWith('/') && href === 'index.html') ||
-            currentPath.includes(href.replace('.html', ''));
+        // Normalizar paths removendo trailing slash
+        const normalizedHref = href.replace(/\/$/, '');
+        const normalizedCurrentPath = currentPath.replace(/\/$/, '');
+
+        // Verificações exatas primeiro
+        if (normalizedHref === normalizedCurrentPath) {
+            return true;
+        }
+
+        // Se currentPath termina com /, verificar se href é index.html
+        if (currentPath.endsWith('/') && href === 'index.html') {
+            return true;
+        }
+
+        // Verificar se é a página raiz
+        if (normalizedCurrentPath === '' && (normalizedHref === 'index.html' || normalizedHref === '/index.html')) {
+            return true;
+        }
+
+        return false;
     }
 
     expandParentFolders(link) {
