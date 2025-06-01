@@ -55101,6 +55101,7 @@ import * as path4 from "path";
 // src/config.ts
 var fs = __toESM(require_lib(), 1);
 import * as path from "path";
+import { fileURLToPath } from "url";
 var defaultConfig = {
   inputDir: "./docs",
   outputDir: "./dist",
@@ -55210,6 +55211,28 @@ function validateConfig(config) {
 ${errors.map((e) => `  - ${e}`).join(`
 `)}`);
   }
+}
+function resolveThemesDir(configThemesDir) {
+  if (path.isAbsolute(configThemesDir)) {
+    return configThemesDir;
+  }
+  const localThemesDir = path.resolve(configThemesDir);
+  if (fs.existsSync(localThemesDir)) {
+    return localThemesDir;
+  }
+  try {
+    const currentModuleDir = path.dirname(fileURLToPath(import.meta.url));
+    const packageRootDir = path.resolve(currentModuleDir, "..");
+    const packageThemesDir = path.join(packageRootDir, "themes");
+    if (fs.existsSync(packageThemesDir)) {
+      console.log(`\uD83D\uDCC1 Using themes from package installation: ${packageThemesDir}`);
+      return packageThemesDir;
+    }
+  } catch (error) {
+    console.warn("⚠️  Could not resolve package themes directory:", error);
+  }
+  console.warn(`⚠️  Themes directory not found, using fallback: ${localThemesDir}`);
+  return localThemesDir;
 }
 
 // src/generator.ts
@@ -57490,11 +57513,13 @@ class DocumentationGenerator {
   navigation = [];
   searchIndex;
   markdownProcessor;
+  resolvedThemesDir;
   constructor(config) {
     this.config = config;
     this.setupMarked();
     this.searchIndex = new SearchIndexGenerator;
     this.markdownProcessor = new MarkdownProcessor(config);
+    this.resolvedThemesDir = resolveThemesDir(config.themesDir);
   }
   setupMarked() {
     marked.setOptions({
@@ -57510,6 +57535,7 @@ class DocumentationGenerator {
     this.generateNavigation();
     await this.generateSearchIndex();
     await this.generatePages();
+    await this.copyMarkdownFiles();
     await this.copyAssets();
     console.log(`✅ Documentation generated successfully in ${this.config.outputDir}`);
   }
@@ -57523,13 +57549,15 @@ class DocumentationGenerator {
       const htmlContent = await this.processMarkdown(body);
       const title = this.extractTitle(body, frontmatter);
       const url = this.generateUrl(relativePath);
+      const markdownUrl = this.generateMarkdownUrl(relativePath);
       const page = {
         path: filePath,
         title,
         content: htmlContent,
         frontmatter,
         relativePath,
-        url
+        url,
+        markdownUrl
       };
       this.pages.push(page);
       this.searchIndex.addPage(page);
@@ -57601,6 +57629,9 @@ class DocumentationGenerator {
       url = "documentation-index.html";
     }
     return url;
+  }
+  generateMarkdownUrl(relativePath) {
+    return relativePath.replace(/\.md$/, ".md");
   }
   generateNavigation() {
     if (!this.config.navigation.auto) {
@@ -57676,7 +57707,7 @@ class DocumentationGenerator {
     }
   }
   async generatePages() {
-    const templatePath = path2.join(this.config.themesDir, this.config.theme, "layouts", `${this.config.layout}.html`);
+    const templatePath = path2.join(this.resolvedThemesDir, this.config.theme, "layouts", `${this.config.layout}.html`);
     let template = "";
     try {
       template = await fs2.readFile(templatePath, "utf-8");
@@ -57692,7 +57723,7 @@ class DocumentationGenerator {
     }
   }
   renderTemplate(template, page) {
-    return template.replace(/\{\{title\}\}/g, page.title).replace(/\{\{content\}\}/g, page.content).replace(/\{\{site\.title\}\}/g, this.config.site.title).replace(/\{\{site\.description\}\}/g, this.config.site.description).replace(/\{\{site\.author\}\}/g, this.config.site.author).replace(/\{\{site\.baseUrl\}\}/g, this.config.site.baseUrl).replace(/\{\{navigation\}\}/g, this.renderNavigation()).replace(/\{\{baseUrl\}\}/g, this.config.site.baseUrl);
+    return template.replace(/\{\{title\}\}/g, page.title).replace(/\{\{content\}\}/g, page.content).replace(/\{\{site\.title\}\}/g, this.config.site.title).replace(/\{\{site\.description\}\}/g, this.config.site.description).replace(/\{\{site\.author\}\}/g, this.config.site.author).replace(/\{\{site\.baseUrl\}\}/g, this.config.site.baseUrl).replace(/\{\{navigation\}\}/g, this.renderNavigation()).replace(/\{\{baseUrl\}\}/g, this.config.site.baseUrl).replace(/\{\{markdownUrl\}\}/g, this.config.site.baseUrl + page.markdownUrl);
   }
   renderNavigation() {
     return this.renderNavigationItems(this.navigation);
@@ -57751,12 +57782,14 @@ class DocumentationGenerator {
 </html>`;
   }
   async copyAssets() {
-    const themeAssetsDir = path2.join(this.config.themesDir, this.config.theme, "assets");
+    const themeAssetsDir = path2.join(this.resolvedThemesDir, this.config.theme, "assets");
     const outputAssetsDir = path2.join(this.config.outputDir, "assets");
     try {
       await fs2.copy(themeAssetsDir, outputAssetsDir);
+      console.log(`✅ Assets copied from: ${themeAssetsDir}`);
     } catch (err) {
       console.warn(`Could not copy theme assets from ${themeAssetsDir}`);
+      console.warn("Error:", err instanceof Error ? err.message : err);
       await this.createDefaultAssets();
     }
   }
@@ -57774,6 +57807,16 @@ class DocumentationGenerator {
       console.log("✅ Search index generated successfully");
     } catch (error) {
       console.error("❌ Failed to generate search index:", error);
+    }
+  }
+  async copyMarkdownFiles() {
+    const inputDir = path2.resolve(this.config.inputDir);
+    const files = await this.findMarkdownFiles(inputDir);
+    for (const filePath of files) {
+      const relativePath = path2.relative(inputDir, filePath);
+      const outputPath = path2.join(this.config.outputDir, relativePath);
+      await fs2.ensureDir(path2.dirname(outputPath));
+      await fs2.copy(filePath, outputPath);
     }
   }
 }
@@ -58494,9 +58537,9 @@ class NodeFsHandler {
     if (this.fsw.closed) {
       return;
     }
-    const dirname3 = sysPath.dirname(file);
+    const dirname4 = sysPath.dirname(file);
     const basename2 = sysPath.basename(file);
-    const parent = this.fsw._getWatchedDir(dirname3);
+    const parent = this.fsw._getWatchedDir(dirname4);
     let prevStats = stats;
     if (parent.has(basename2))
       return;
@@ -58523,7 +58566,7 @@ class NodeFsHandler {
             prevStats = newStats2;
           }
         } catch (error) {
-          this.fsw._remove(dirname3, basename2);
+          this.fsw._remove(dirname4, basename2);
         }
       } else if (parent.has(basename2)) {
         const at = newStats.atimeMs;
@@ -59410,6 +59453,29 @@ class DevServer {
     console.log(`\uD83D\uDCC1 Serving from: ${outputDir}`);
     console.log("\uD83D\uDC40 Watching for changes...");
     console.log("Press Ctrl+C to stop");
+    const isStaticFile = (pathname) => {
+      const staticExtensions = [".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico", ".woff", ".woff2", ".ttf", ".eot"];
+      return staticExtensions.some((ext) => pathname.toLowerCase().endsWith(ext));
+    };
+    const getContentType = (ext) => {
+      const contentTypes = {
+        ".html": "text/html",
+        ".css": "text/css",
+        ".js": "application/javascript",
+        ".json": "application/json",
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".gif": "image/gif",
+        ".svg": "image/svg+xml",
+        ".ico": "image/x-icon",
+        ".woff": "font/woff",
+        ".woff2": "font/woff2",
+        ".ttf": "font/ttf",
+        ".eot": "application/vnd.ms-fontobject"
+      };
+      return contentTypes[ext] || null;
+    };
     this.server = Bun.serve({
       port,
       hostname: host,
@@ -59419,13 +59485,18 @@ class DevServer {
         if (await fs3.pathExists(filePath) && (await fs3.stat(filePath)).isDirectory()) {
           filePath = path3.join(filePath, "index.html");
         }
-        if (!await fs3.pathExists(filePath) && !filePath.endsWith(".html")) {
+        if (!await fs3.pathExists(filePath) && !filePath.endsWith(".html") && !isStaticFile(url.pathname)) {
           filePath += ".html";
         }
         try {
           if (await fs3.pathExists(filePath)) {
             const file = Bun.file(filePath);
             const response = new Response(file);
+            const ext = path3.extname(filePath).toLowerCase();
+            const contentType = getContentType(ext);
+            if (contentType) {
+              response.headers.set("Content-Type", contentType);
+            }
             response.headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
             response.headers.set("Pragma", "no-cache");
             response.headers.set("Expires", "0");
@@ -59496,9 +59567,46 @@ async function openBrowser(url) {
   });
 }
 
+// src/port-utils.ts
+async function isPortAvailable(port, host = "localhost") {
+  try {
+    const server = Bun.serve({
+      port,
+      hostname: host,
+      fetch() {
+        return new Response("test");
+      }
+    });
+    server.stop();
+    return true;
+  } catch (error) {
+    if (error.code === "EADDRINUSE" || error.message?.includes("port") || error.message?.includes("use")) {
+      return false;
+    }
+    return false;
+  }
+}
+async function findAvailablePort(startPort, host = "localhost", maxAttempts = 10) {
+  for (let i = 0;i < maxAttempts; i++) {
+    const port = startPort + i;
+    if (await isPortAvailable(port, host)) {
+      return port;
+    }
+  }
+  throw new Error(`Não foi possível encontrar uma porta disponível a partir da porta ${startPort} (tentativas: ${maxAttempts})`);
+}
+async function getAvailablePort(preferredPort, host = "localhost") {
+  if (await isPortAvailable(preferredPort, host)) {
+    return { port: preferredPort, isPreferred: true };
+  }
+  const availablePort = await findAvailablePort(preferredPort + 1, host);
+  return { port: availablePort, isPreferred: false };
+}
+
 // src/cli.ts
+var packageJson = JSON.parse(await fs4.readFile(path4.join(import.meta.dir, "../package.json"), "utf-8"));
 var program2 = new Command;
-program2.name("knowledge").description("Modern static documentation generator powered by Bun.js").version("1.0.0");
+program2.name("knowledge").description(packageJson.description).version(packageJson.version);
 program2.command("build").description("Build the documentation site").option("-c, --config <path>", "Path to config file").option("-i, --input <path>", "Input directory containing markdown files").option("-o, --output <path>", "Output directory for generated site").action(async (options2) => {
   try {
     const config = await loadConfigWithOptions(options2);
@@ -59512,10 +59620,18 @@ program2.command("build").description("Build the documentation site").option("-c
 program2.command("dev").description("Start development server with live reload").option("-c, --config <path>", "Path to config file").option("-p, --port <number>", "Port for development server", "3000").option("-h, --host <string>", "Host for development server", "localhost").action(async (options2) => {
   try {
     const config = await loadConfigWithOptions(options2);
-    if (options2.port)
-      config.dev.port = parseInt(options2.port);
+    const preferredPort = parseInt(options2.port || "3000");
+    const host = options2.host || "localhost";
+    console.log(`\uD83D\uDD0D Tentando iniciar servidor na porta ${preferredPort}...`);
+    const { port, isPreferred } = await getAvailablePort(preferredPort);
+    if (!isPreferred) {
+      console.log(`\u26A0\uFE0F  Porta ${preferredPort} j\xE1 est\xE1 em uso. Usando porta ${port} em vez disso.`);
+    } else {
+      console.log(`\u2705 Servidor iniciado na porta ${port}`);
+    }
+    config.dev.port = port;
     if (options2.host)
-      config.dev.host = options2.host;
+      config.dev.host = host;
     const devServer = new DevServer(config);
     await devServer.start();
   } catch (error) {
@@ -59526,38 +59642,93 @@ program2.command("dev").description("Start development server with live reload")
 program2.command("serve").description("Serve the built documentation").option("-c, --config <path>", "Path to config file").option("-p, --port <number>", "Port for server", "8080").option("-d, --dir <path>", "Directory to serve").option("--no-open", "Do not open browser automatically").action(async (options2) => {
   try {
     const config = await loadConfigWithOptions(options2);
-    const port = parseInt(options2.port || "8080");
+    const preferredPort = parseInt(options2.port || "8080");
     const dir = path4.resolve(options2.dir || config.outputDir);
     if (!await fs4.pathExists(dir)) {
       console.error(`\u274C Directory ${dir} does not exist. Run 'knowledge build' first.`);
       process.exit(1);
     }
-    console.log(`\uD83D\uDE80 Serving documentation at http://localhost:${port}`);
-    console.log(`\uD83D\uDCC1 Serving from: ${dir}`);
-    const server = Bun.serve({
-      port,
-      async fetch(req) {
-        const url = new URL(req.url);
-        let filePath = path4.join(dir, url.pathname);
-        if (await fs4.pathExists(filePath) && (await fs4.stat(filePath)).isDirectory()) {
-          filePath = path4.join(filePath, "index.html");
-        }
-        if (!await fs4.pathExists(filePath) && !filePath.endsWith(".html")) {
-          filePath += ".html";
-        }
-        try {
-          if (await fs4.pathExists(filePath)) {
-            const file = Bun.file(filePath);
-            return new Response(file);
-          } else {
-            return new Response("404 Not Found", { status: 404 });
+    const isStaticFile = (pathname) => {
+      const staticExtensions = [".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico", ".woff", ".woff2", ".ttf", ".eot"];
+      return staticExtensions.some((ext) => pathname.toLowerCase().endsWith(ext));
+    };
+    const getContentType = (ext) => {
+      const contentTypes = {
+        ".html": "text/html",
+        ".css": "text/css",
+        ".js": "application/javascript",
+        ".json": "application/json",
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".gif": "image/gif",
+        ".svg": "image/svg+xml",
+        ".ico": "image/x-icon",
+        ".woff": "font/woff",
+        ".woff2": "font/woff2",
+        ".ttf": "font/ttf",
+        ".eot": "application/vnd.ms-fontobject"
+      };
+      return contentTypes[ext] || null;
+    };
+    console.log(`\uD83D\uDD0D Tentando iniciar servidor na porta ${preferredPort}...`);
+    let port = preferredPort;
+    let server;
+    let attempts = 0;
+    const maxAttempts = 10;
+    while (attempts < maxAttempts) {
+      try {
+        server = Bun.serve({
+          port,
+          async fetch(req) {
+            const url = new URL(req.url);
+            let filePath = path4.join(dir, url.pathname);
+            if (await fs4.pathExists(filePath) && (await fs4.stat(filePath)).isDirectory()) {
+              filePath = path4.join(filePath, "index.html");
+            }
+            if (!await fs4.pathExists(filePath) && !filePath.endsWith(".html") && !isStaticFile(url.pathname)) {
+              filePath += ".html";
+            }
+            try {
+              if (await fs4.pathExists(filePath)) {
+                const file = Bun.file(filePath);
+                const response = new Response(file);
+                const ext = path4.extname(filePath).toLowerCase();
+                const contentType = getContentType(ext);
+                if (contentType) {
+                  response.headers.set("Content-Type", contentType);
+                }
+                return response;
+              } else {
+                return new Response("404 Not Found", { status: 404 });
+              }
+            } catch (error) {
+              return new Response("500 Internal Server Error", { status: 500 });
+            }
           }
-        } catch (error) {
-          return new Response("500 Internal Server Error", { status: 500 });
+        });
+        if (port !== preferredPort) {
+          console.log(`\u26A0\uFE0F  Porta ${preferredPort} j\xE1 est\xE1 em uso. Usando porta ${port} em vez disso.`);
+        } else {
+          console.log(`\u2705 Servidor iniciado na porta ${port}`);
+        }
+        break;
+      } catch (error) {
+        if (error.code === "EADDRINUSE" || error.message?.includes("port") || error.message?.includes("use")) {
+          attempts++;
+          port = preferredPort + attempts;
+          console.log(`\u26A0\uFE0F  Porta ${port - 1} j\xE1 est\xE1 em uso. Tentando porta ${port}...`);
+          continue;
+        } else {
+          throw error;
         }
       }
-    });
-    await new Promise((resolve7) => setTimeout(resolve7, 500));
+    }
+    if (attempts >= maxAttempts) {
+      throw new Error(`N\xE3o foi poss\xEDvel encontrar uma porta dispon\xEDvel a partir da porta ${preferredPort} (tentativas: ${maxAttempts})`);
+    }
+    console.log(`\uD83D\uDE80 Serving documentation at http://localhost:${port}`);
+    console.log(`\uD83D\uDCC1 Serving from: ${dir}`);
     if (options2.open !== false) {
       const url = `http://localhost:${port}`;
       console.log(`\uD83C\uDF10 Opening browser at ${url}`);
@@ -59623,25 +59794,6 @@ async function initializeProject(targetDir) {
   outputDir: './dist'
 };`;
   await fs4.writeFile(path4.join(targetDir, "knowledge.config.ts"), configContent);
-  const packageJsonPath = path4.join(targetDir, "package.json");
-  if (!await fs4.pathExists(packageJsonPath)) {
-    console.log("\uD83D\uDCE6 Creating package.json...");
-    const packageJson = {
-      name: path4.basename(targetDir),
-      version: "1.0.0",
-      description: "Documentation project powered by Knowledge",
-      scripts: {
-        build: "knowledge build",
-        dev: "knowledge dev",
-        serve: "knowledge serve",
-        init: "knowledge init"
-      },
-      devDependencies: {
-        knowledge: "^1.0.0"
-      }
-    };
-    await fs4.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
-  }
   console.log("\uD83D\uDCDD Creating example documentation...");
   const indexContent = `# Welcome to My Documentation
 
@@ -59650,9 +59802,9 @@ This is your documentation homepage. Edit this file to get started!
 ## Quick Start
 
 1. Edit files in the \`docs/\` directory
-2. Run \`bun run dev\` to start the development server  
-3. Run \`bun run build\` to build for production
-4. Run \`bun run serve\` to serve the built site
+2. Run \`knowledge dev\` to start the development server  
+3. Run \`knowledge build\` to build for production
+4. Run \`knowledge serve\` to serve the built site
 
 ## Features
 
@@ -59687,25 +59839,25 @@ Before you begin, make sure you have the following installed:
 ### 1. Install Dependencies
 
 \`\`\`bash
-bun install
+bun install -g @riligar/knowledge
 \`\`\`
 
 ### 2. Start Development Server
 
 \`\`\`bash
-bun run dev
+knowledge dev
 \`\`\`
 
 ### 3. Build for Production
 
 \`\`\`bash
-bun run build
+knowledge build
 \`\`\`
 
 ### 4. Serve Built Site
 
 \`\`\`bash
-bun run serve
+knowledge serve
 \`\`\`
 
 ## Configuration
@@ -59882,9 +60034,12 @@ Thumbs.db
   console.log("\u2705 Knowledge project initialized successfully!");
   console.log("");
   console.log("\uD83D\uDCCB Next steps:");
-  console.log("  1. cd " + path4.relative(process.cwd(), targetDir));
-  console.log("  2. bun install");
-  console.log("  3. bun run dev");
+  if (targetDir !== "") {
+    console.log("  1. cd " + path4.relative(process.cwd(), targetDir));
+  }
+  console.log("  1. knowledge dev");
+  console.log("  2. knowledge build");
+  console.log("  4. knowledge serve");
   console.log("");
   console.log("\uD83C\uDF10 Your documentation will be available at http://localhost:3000");
 }

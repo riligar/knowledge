@@ -7,6 +7,7 @@ import { defaultConfig, loadConfig, loadConfigAsync, type KnowledgeConfig } from
 import { DocumentationGenerator } from './generator.ts';
 import { DevServer } from './dev-server.ts';
 import openBrowser from './open-browser.ts';
+import { getAvailablePort } from './port-utils.ts';
 
 // Importar versão do package.json
 const packageJson = JSON.parse(await fs.readFile(path.join(import.meta.dir, '../package.json'), 'utf-8'));
@@ -44,8 +45,22 @@ program
     .action(async (options) => {
         try {
             const config = await loadConfigWithOptions(options);
-            if (options.port) config.dev.port = parseInt(options.port);
-            if (options.host) config.dev.host = options.host;
+            const preferredPort = parseInt(options.port || '3000');
+            const host = options.host || 'localhost';
+
+            // Encontrar uma porta disponível
+            console.log(`🔍 Tentando iniciar servidor na porta ${preferredPort}...`);
+            const { port, isPreferred } = await getAvailablePort(preferredPort);
+
+            if (!isPreferred) {
+                console.log(`⚠️  Porta ${preferredPort} já está em uso. Usando porta ${port} em vez disso.`);
+            } else {
+                console.log(`✅ Servidor iniciado na porta ${port}`);
+            }
+
+            // Atualizar configuração com a porta disponível
+            config.dev.port = port;
+            if (options.host) config.dev.host = host;
 
             const devServer = new DevServer(config);
             await devServer.start();
@@ -67,16 +82,13 @@ program
             // Carregar configuração para obter o outputDir correto
             const config = await loadConfigWithOptions(options);
 
-            const port = parseInt(options.port || '8080');
+            const preferredPort = parseInt(options.port || '8080');
             const dir = path.resolve(options.dir || config.outputDir);
 
             if (!await fs.pathExists(dir)) {
                 console.error(`❌ Directory ${dir} does not exist. Run 'knowledge build' first.`);
                 process.exit(1);
             }
-
-            console.log(`🚀 Serving documentation at http://localhost:${port}`);
-            console.log(`📁 Serving from: ${dir}`);
 
             // Funções auxiliares para o servidor
             const isStaticFile = (pathname: string): boolean => {
@@ -104,47 +116,80 @@ program
                 return contentTypes[ext] || null;
             };
 
-            // Usar Bun.serve para servir arquivos estáticos
-            const server = Bun.serve({
-                port,
-                async fetch(req) {
-                    const url = new URL(req.url);
-                    let filePath = path.join(dir, url.pathname);
+            // Encontrar uma porta disponível
+            console.log(`🔍 Tentando iniciar servidor na porta ${preferredPort}...`);
+            let port = preferredPort;
+            let server: any;
+            let attempts = 0;
+            const maxAttempts = 10;
 
-                    // Se for um diretório, tentar servir index.html
-                    if (await fs.pathExists(filePath) && (await fs.stat(filePath)).isDirectory()) {
-                        filePath = path.join(filePath, 'index.html');
-                    }
+            while (attempts < maxAttempts) {
+                try {
+                    // Usar Bun.serve para servir arquivos estáticos
+                    server = Bun.serve({
+                        port,
+                        async fetch(req) {
+                            const url = new URL(req.url);
+                            let filePath = path.join(dir, url.pathname);
 
-                    // Se não existir e não for um arquivo estático, tentar com .html
-                    if (!await fs.pathExists(filePath) && !filePath.endsWith('.html') && !isStaticFile(url.pathname)) {
-                        filePath += '.html';
-                    }
-
-                    try {
-                        if (await fs.pathExists(filePath)) {
-                            const file = Bun.file(filePath);
-                            const response = new Response(file);
-
-                            // Definir Content-Type correto baseado na extensão
-                            const ext = path.extname(filePath).toLowerCase();
-                            const contentType = getContentType(ext);
-                            if (contentType) {
-                                response.headers.set('Content-Type', contentType);
+                            // Se for um diretório, tentar servir index.html
+                            if (await fs.pathExists(filePath) && (await fs.stat(filePath)).isDirectory()) {
+                                filePath = path.join(filePath, 'index.html');
                             }
 
-                            return response;
-                        } else {
-                            return new Response('404 Not Found', { status: 404 });
+                            // Se não existir e não for um arquivo estático, tentar com .html
+                            if (!await fs.pathExists(filePath) && !filePath.endsWith('.html') && !isStaticFile(url.pathname)) {
+                                filePath += '.html';
+                            }
+
+                            try {
+                                if (await fs.pathExists(filePath)) {
+                                    const file = Bun.file(filePath);
+                                    const response = new Response(file);
+
+                                    // Definir Content-Type correto baseado na extensão
+                                    const ext = path.extname(filePath).toLowerCase();
+                                    const contentType = getContentType(ext);
+                                    if (contentType) {
+                                        response.headers.set('Content-Type', contentType);
+                                    }
+
+                                    return response;
+                                } else {
+                                    return new Response('404 Not Found', { status: 404 });
+                                }
+                            } catch (error) {
+                                return new Response('500 Internal Server Error', { status: 500 });
+                            }
                         }
-                    } catch (error) {
-                        return new Response('500 Internal Server Error', { status: 500 });
+                    });
+
+                    // Se chegou até aqui, o servidor foi iniciado com sucesso
+                    if (port !== preferredPort) {
+                        console.log(`⚠️  Porta ${preferredPort} já está em uso. Usando porta ${port} em vez disso.`);
+                    } else {
+                        console.log(`✅ Servidor iniciado na porta ${port}`);
+                    }
+                    break;
+
+                } catch (error: any) {
+                    if (error.code === 'EADDRINUSE' || error.message?.includes('port') || error.message?.includes('use')) {
+                        attempts++;
+                        port = preferredPort + attempts;
+                        console.log(`⚠️  Porta ${port - 1} já está em uso. Tentando porta ${port}...`);
+                        continue;
+                    } else {
+                        throw error;
                     }
                 }
-            });
+            }
 
-            // Aguardar um pouco para garantir que o servidor está rodando
-            await new Promise(resolve => setTimeout(resolve, 500));
+            if (attempts >= maxAttempts) {
+                throw new Error(`Não foi possível encontrar uma porta disponível a partir da porta ${preferredPort} (tentativas: ${maxAttempts})`);
+            }
+
+            console.log(`🚀 Serving documentation at http://localhost:${port}`);
+            console.log(`📁 Serving from: ${dir}`);
 
             // Abrir browser automaticamente se não foi desabilitado
             if (options.open !== false) {
