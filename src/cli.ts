@@ -314,21 +314,70 @@ Happy documenting! 📚
     // Guia de instalação
     const installationContent = `# Installation Guide
 
-Welcome to the installation guide for this project.
+Welcome to the installation guide for Knowledge.
 
 ## Prerequisites
 
-Before you begin, make sure you have the following installed:
+Before you begin, make sure you have one of the following package managers installed:
 
-- [Bun.js](https://bun.sh) (latest version)
-- Node.js 18+ (for compatibility)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [Bun.js](https://bun.sh) (recommended for faster performance)
+- [Yarn](https://yarnpkg.com/)
+- [pnpm](https://pnpm.io/)
 
-## Installation Steps
+## Installation
 
-### 1. Install Dependencies
+### Global Installation (Recommended)
+
+Install Knowledge globally to use it from anywhere:
 
 \`\`\`bash
-bun install -g @riligar/knowledge
+# With npm
+npm install -g @riligar/knowledge
+
+# With bun (recommended)
+bun add -g @riligar/knowledge
+
+# With yarn
+yarn global add @riligar/knowledge
+
+# With pnpm
+pnpm add -g @riligar/knowledge
+\`\`\`
+
+### Local Installation
+
+For project-specific installation:
+
+\`\`\`bash
+# With npm
+npm install @riligar/knowledge
+
+# With bun
+bun add @riligar/knowledge
+
+# With yarn
+yarn add @riligar/knowledge
+
+# With pnpm
+pnpm add @riligar/knowledge
+\`\`\`
+
+## Quick Start
+
+### 1. Initialize a New Project
+
+\`\`\`bash
+# Create a new directory and initialize
+mkdir my-docs
+cd my-docs
+knowledge init
+\`\`\`
+
+Or initialize in an existing directory:
+
+\`\`\`bash
+knowledge init .
 \`\`\`
 
 ### 2. Start Development Server
@@ -337,42 +386,78 @@ bun install -g @riligar/knowledge
 knowledge dev
 \`\`\`
 
+Your documentation will be available at \`http://localhost:3000\`
+
 ### 3. Build for Production
 
 \`\`\`bash
 knowledge build
 \`\`\`
 
-### 4. Serve Built Site
+### 4. Serve Built Documentation
 
 \`\`\`bash
 knowledge serve
 \`\`\`
 
+## Available Commands
+
+| Command | Description | Options |
+|---------|-------------|---------|
+| \`knowledge init [dir]\` | Initialize a new project | \`-d, --dir <path>\` |
+| \`knowledge dev\` | Start development server | \`-p, --port <number>\`, \`-h, --host <string>\` |
+| \`knowledge build\` | Build for production | \`-c, --config <path>\`, \`-i, --input <path>\`, \`-o, --output <path>\` |
+| \`knowledge serve\` | Serve built documentation | \`-p, --port <number>\`, \`-d, --dir <path>\`, \`--no-open\` |
+
 ## Configuration
 
-Edit the \`knowledge.config.ts\` file to customize your documentation:
+Knowledge uses a \`knowledge.config.ts\` file for configuration:
 
 \`\`\`typescript
 export default {
   site: {
     title: 'My Documentation',
     description: 'Beautiful documentation made simple',
-    author: 'Your Name'
+    author: 'Your Name',
+    baseUrl: '/'
   },
   
   features: {
     search: true,
     syntaxHighlight: true,
-    darkMode: true
-  }
+    darkMode: true,
+    tableOfContents: true,
+    breadcrumbs: true
+  },
+  
+  inputDir: './docs',
+  outputDir: './dist'
 };
+\`\`\`
+
+## Project Structure
+
+After initialization, your project will have this structure:
+
+\`\`\`
+my-docs/
+├── docs/                    # Your markdown files
+│   ├── index.md            # Homepage
+│   ├── installation.md     # This guide
+│   ├── troubleshooting.md  # Common issues
+│   └── api/                # API documentation
+│       └── README.md
+├── knowledge.config.ts     # Configuration file
+├── .gitignore             # Git ignore rules
+└── dist/                  # Built site (after build)
 \`\`\`
 
 ## Next Steps
 
-- [API Reference](./api/README.md)
-- [Troubleshooting](./troubleshooting.md)
+- [API Reference](./api/README.md) - Learn about available APIs
+- [Troubleshooting](./troubleshooting.md) - Common issues and solutions
+- [GitHub Repository](https://github.com/riligar/knowledge) - Source code and issues
+- [Documentation Site](https://myknowledge.click) - Full documentation
 `;
 
     await fs.writeFile(path.join(targetDir, 'docs/installation.md'), installationContent);
@@ -444,59 +529,306 @@ Create a new user.
 
 Common issues and their solutions.
 
-## Build Issues
+## Installation Issues
 
 ### "Command not found: knowledge"
 
-Make sure Knowledge is installed globally:
+**Problem:** The \`knowledge\` command is not recognized.
 
+**Solutions:**
+
+1. **Global installation missing:**
+   \`\`\`bash
+   npm install -g @riligar/knowledge
+   # or
+   bun add -g @riligar/knowledge
+   \`\`\`
+
+2. **PATH not updated:** Restart your terminal or run:
+   \`\`\`bash
+   source ~/.bashrc
+   # or
+   source ~/.zshrc
+   \`\`\`
+
+3. **Permission issues (macOS/Linux):**
+   \`\`\`bash
+   sudo npm install -g @riligar/knowledge
+   \`\`\`
+
+### "Cannot find module '@riligar/knowledge'"
+
+**Problem:** Package not found or corrupted installation.
+
+**Solution:**
 \`\`\`bash
-bun install -g knowledge
+# Uninstall and reinstall
+npm uninstall -g @riligar/knowledge
+npm install -g @riligar/knowledge
 \`\`\`
+
+## Project Setup Issues
 
 ### "Config file not found"
 
-Ensure you have a \`knowledge.config.ts\` file in your project root:
+**Problem:** Missing \`knowledge.config.ts\` file.
 
+**Solution:**
 \`\`\`bash
+# Initialize project to create config
 knowledge init
+
+# Or create manually
+touch knowledge.config.ts
+\`\`\`
+
+### "Input directory does not exist"
+
+**Problem:** The \`docs/\` directory is missing.
+
+**Solution:**
+\`\`\`bash
+# Create docs directory
+mkdir docs
+echo "# Welcome" > docs/index.md
 \`\`\`
 
 ## Development Server Issues
 
-### Port already in use
+### "Port already in use"
 
-Change the port using the \`-p\` flag:
+**Problem:** Default port 3000 is occupied.
 
+**Solutions:**
+
+1. **Use different port:**
+   \`\`\`bash
+   knowledge dev -p 3001
+   \`\`\`
+
+2. **Kill process using port:**
+   \`\`\`bash
+   # Find process
+   lsof -i :3000
+   
+   # Kill process (replace PID)
+   kill -9 <PID>
+   \`\`\`
+
+### "Files not updating in browser"
+
+**Problem:** Changes not reflected during development.
+
+**Solutions:**
+
+1. **Hard refresh:** Press \`Ctrl+F5\` or \`Cmd+Shift+R\`
+2. **Check file location:** Ensure files are in the correct \`inputDir\`
+3. **Restart dev server:** Stop with \`Ctrl+C\` and run \`knowledge dev\` again
+
+### "EACCES permission denied"
+
+**Problem:** Permission issues on macOS/Linux.
+
+**Solutions:**
+
+1. **Use sudo (not recommended):**
+   \`\`\`bash
+   sudo knowledge dev
+   \`\`\`
+
+2. **Fix npm permissions (recommended):**
+   \`\`\`bash
+   # Create global directory
+   mkdir ~/.npm-global
+   
+   # Configure npm
+   npm config set prefix '~/.npm-global'
+   
+   # Add to PATH in ~/.bashrc or ~/.zshrc
+   export PATH=~/.npm-global/bin:$PATH
+   \`\`\`
+
+## Build Issues
+
+### "Build failed: Cannot read config"
+
+**Problem:** Invalid configuration file.
+
+**Solution:**
 \`\`\`bash
-knowledge dev -p 3001
+# Check config syntax
+node -c knowledge.config.ts
+
+# Or recreate config
+knowledge init --force
 \`\`\`
 
-### Files not updating
+### "Out of memory" during build
 
-Make sure you're editing files in the correct input directory (usually \`docs/\`).
+**Problem:** Large documentation causing memory issues.
+
+**Solutions:**
+
+1. **Increase Node.js memory:**
+   \`\`\`bash
+   NODE_OPTIONS="--max-old-space-size=4096" knowledge build
+   \`\`\`
+
+2. **Split large files** into smaller sections
+3. **Remove unused assets** from docs directory
 
 ## Search Issues
 
-### Search not working
+### "Search not working"
 
-Ensure search is enabled in your config:
+**Problem:** Search functionality not available.
 
-\`\`\`typescript
-export default {
-  features: {
-    search: true
-  }
-};
-\`\`\`
+**Solutions:**
+
+1. **Enable search in config:**
+   \`\`\`typescript
+   export default {
+     features: {
+       search: true
+     }
+   };
+   \`\`\`
+
+2. **Rebuild site:**
+   \`\`\`bash
+   knowledge build
+   \`\`\`
+
+### "Search results incomplete"
+
+**Problem:** Some content not appearing in search.
+
+**Solutions:**
+
+1. **Check file format:** Ensure files are valid Markdown
+2. **Rebuild search index:**
+   \`\`\`bash
+   rm -rf dist/
+   knowledge build
+   \`\`\`
+
+## Performance Issues
+
+### "Slow build times"
+
+**Solutions:**
+
+1. **Use Bun instead of Node:**
+   \`\`\`bash
+   bun add -g @riligar/knowledge
+   \`\`\`
+
+2. **Optimize images:** Compress large images in docs
+3. **Remove unused files** from input directory
+
+### "Large bundle size"
+
+**Solutions:**
+
+1. **Disable unused features:**
+   \`\`\`typescript
+   export default {
+     features: {
+       search: false,        // If not needed
+       syntaxHighlight: false // If not needed
+     }
+   };
+   \`\`\`
+
+2. **Optimize assets:** Use smaller images and remove unused files
+
+## Browser Issues
+
+### "Styles not loading"
+
+**Problem:** CSS not applied correctly.
+
+**Solutions:**
+
+1. **Clear browser cache:** Hard refresh with \`Ctrl+F5\`
+2. **Check baseUrl in config:**
+   \`\`\`typescript
+   export default {
+     site: {
+       baseUrl: '/' // Ensure correct base URL
+     }
+   };
+   \`\`\`
+
+### "JavaScript errors in console"
+
+**Problem:** Client-side functionality not working.
+
+**Solutions:**
+
+1. **Check browser compatibility:** Use modern browser
+2. **Disable browser extensions** temporarily
+3. **Check console for specific errors**
 
 ## Getting Help
 
 If you're still having issues:
 
-1. Check the [GitHub Issues](https://github.com/riligar/knowledge/issues)
-2. Create a new issue with details about your problem
-3. Join our community discussions
+1. **Check existing issues:** [GitHub Issues](https://github.com/riligar/knowledge/issues)
+2. **Create detailed bug report** with:
+   - Operating system and version
+   - Node.js/Bun version
+   - Knowledge version (\`knowledge --version\`)
+   - Full error message
+   - Steps to reproduce
+3. **Join community discussions** on GitHub
+4. **Check documentation:** [myknowledge.click](https://myknowledge.click)
+
+## Version Information
+
+Check your versions:
+
+\`\`\`bash
+# Knowledge version
+knowledge --version
+
+# Node.js version
+node --version
+
+# npm version
+npm --version
+
+# Bun version (if using)
+bun --version
+\`\`\`
+
+## Common Environment Setup
+
+### Recommended Setup
+
+\`\`\`bash
+# 1. Install Bun (recommended)
+curl -fsSL https://bun.sh/install | bash
+
+# 2. Install Knowledge globally
+bun add -g @riligar/knowledge
+
+# 3. Verify installation
+knowledge --version
+\`\`\`
+
+### Alternative Setup (Node.js)
+
+\`\`\`bash
+# 1. Ensure Node.js 18+ is installed
+node --version
+
+# 2. Install Knowledge globally
+npm install -g @riligar/knowledge
+
+# 3. Verify installation
+knowledge --version
+\`\`\`
 `;
 
     await fs.writeFile(path.join(targetDir, 'docs/troubleshooting.md'), troubleshootingContent);
@@ -533,14 +865,20 @@ Thumbs.db
     console.log('✅ Knowledge project initialized successfully!');
     console.log('');
     console.log('📋 Next steps:');
-    if (targetDir !== '') {
-        console.log('  1. cd ' + path.relative(process.cwd(), targetDir));
+    if (targetDir !== process.cwd()) {
+        console.log(`  1. cd ${path.relative(process.cwd(), targetDir)}`);
+        console.log('  2. knowledge dev');
+        console.log('  3. knowledge build');
+        console.log('  4. knowledge serve');
+    } else {
+        console.log('  1. knowledge dev');
+        console.log('  2. knowledge build');
+        console.log('  3. knowledge serve');
     }
-    console.log('  1. knowledge dev');
-    console.log('  2. knowledge build');
-    console.log('  4. knowledge serve');
     console.log('');
     console.log('🌐 Your documentation will be available at http://localhost:3000');
+    console.log('📚 Visit https://myknowledge.click for full documentation');
+    console.log('🐛 Report issues at https://github.com/riligar/knowledge/issues');
 }
 
 // Executar CLI se este arquivo for executado diretamente
