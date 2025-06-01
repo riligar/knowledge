@@ -142,6 +142,18 @@ export class DocumentationGenerator {
         }
     }
 
+    private decodeHtmlEntities(text: string): string {
+        const entities: Record<string, string> = {
+            '&quot;': '"',
+            '&#39;': "'",
+            '&lt;': '<',
+            '&gt;': '>',
+            '&amp;': '&'
+        };
+
+        return text.replace(/&(?:quot|#39|lt|gt|amp);/g, (match) => entities[match] || match);
+    }
+
     private async processMarkdown(content: string): Promise<string> {
         // Processar markdown com syntax highlighting manual
         let html = await marked(content);
@@ -150,8 +162,15 @@ export class DocumentationGenerator {
         html = html.replace(/<pre><code class="language-(\w+)">([\s\S]*?)<\/code><\/pre>/g, (match, lang, code) => {
             if (hljs.getLanguage(lang)) {
                 try {
-                    const highlighted = hljs.highlight(code, { language: lang }).value;
-                    return `<pre><code class="hljs language-${lang}">${highlighted}</code></pre>`;
+                    // Decodificar entidades HTML antes de aplicar highlight
+                    const decodedCode = this.decodeHtmlEntities(code);
+
+                    const highlighted = hljs.highlight(decodedCode, { language: lang }).value;
+
+                    // Decodificar entidades HTML no resultado do highlight.js também
+                    const finalHighlighted = this.decodeHtmlEntities(highlighted);
+
+                    return `<pre><code class="hljs language-${lang}">${finalHighlighted}</code></pre>`;
                 } catch (err) {
                     console.warn(`Failed to highlight code with language "${lang}":`, err);
                 }

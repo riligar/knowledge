@@ -1,4 +1,4 @@
-# 📚 Knowledge - Modern Documentation Generator
+# 📚 Knowledge
 
 ## 🎯 What is Knowledge?
 
