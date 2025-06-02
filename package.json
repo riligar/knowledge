@@ -1,7 +1,7 @@
 {
   "name": "@riligar/knowledge",
   "version": "1.12.1",
-  "description": "A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.",
+  "description": "Knowledge is a modern static documentation generator that transforms Markdown files into professional documentation sites.",
   "main": "index.ts",
   "type": "module",
   "bin": {
