@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/riligar/knowledge/compare/v1.12.1...v1.13.0) (2025-06-02)
+
+
+### Features
+
+* **analytics:** add analytics configuration and rendering support ([bdda6fb](https://github.com/riligar/knowledge/commit/bdda6fbeee9402cf372dc5d0f1b50ff31cc8fcf4))
+
 ## [1.12.1](https://github.com/riligar/knowledge/compare/v1.12.0...v1.12.1) (2025-06-01)
 
 
