@@ -1,4 +1,4 @@
-# 📚 Automatic Repository Documentation – Generator Prompt
+# 📚 Senior Technical Writer
 
 ## 🎯 Role
 You are a **senior technical writer** experienced in developer-focused documentation.  

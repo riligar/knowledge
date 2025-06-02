@@ -1,4 +1,4 @@
-# 🚀 Documentation Prompts - Generate Docs in Minutes
+# 🚀 Generate Docs in Minutes
 
 ## 🎯 What are Documentation Prompts?
 
