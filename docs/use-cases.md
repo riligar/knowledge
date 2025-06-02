@@ -1,276 +1,276 @@
 # 📋 Ideal Use Cases
 
-Este documento apresenta os principais casos de uso e estruturas recomendadas para diferentes tipos de projetos de documentação.
+This document presents the main use cases and recommended structures for different types of documentation projects.
 
-## 🎯 Visão Geral
+## 🎯 Overview
 
-A organização eficiente da documentação é crucial para o sucesso de qualquer projeto. Este guia apresenta estruturas testadas e aprovadas para diferentes cenários.
+Efficient documentation organization is crucial for the success of any project. This guide presents tested and approved structures for different scenarios.
 
 ---
 
 ## 📚 Project Documentation
 
-### **Estrutura Básica**
+### **Basic Structure**
 ```
 docs/
-├── README.md              # Visão geral do projeto
-├── CONTRIBUTING.md        # Guia de contribuição
-├── CHANGELOG.md           # Histórico de mudanças
+├── README.md              # Project overview
+├── CONTRIBUTING.md        # Contribution guide
+├── CHANGELOG.md           # Change history
 ├── installation/
-│   ├── index.md          # Guia de instalação principal
-│   ├── requirements.md   # Pré-requisitos
-│   ├── docker.md         # Instalação via Docker
-│   └── troubleshooting.md # Problemas comuns
+│   ├── index.md          # Main installation guide
+│   ├── requirements.md   # Prerequisites
+│   ├── docker.md         # Docker installation
+│   └── troubleshooting.md # Common issues
 ├── guides/
-│   ├── getting-started.md # Primeiros passos
-│   ├── configuration.md  # Configuração
-│   ├── deployment.md     # Deploy
-│   └── best-practices.md # Melhores práticas
+│   ├── getting-started.md # Getting started
+│   ├── configuration.md  # Configuration
+│   ├── deployment.md     # Deployment
+│   └── best-practices.md # Best practices
 ├── api/
-│   ├── overview.md       # Visão geral da API
-│   ├── reference/        # Referência completa
-│   └── examples/         # Exemplos práticos
+│   ├── overview.md       # API overview
+│   ├── reference/        # Complete reference
+│   └── examples/         # Practical examples
 └── assets/
-    ├── images/           # Imagens e diagramas
-    └── videos/           # Vídeos tutoriais
+    ├── images/           # Images and diagrams
+    └── videos/           # Tutorial videos
 ```
 
-### **Casos de Uso Ideais:**
-- ✅ Projetos open source
-- ✅ Bibliotecas e frameworks
-- ✅ Aplicações corporativas
-- ✅ Ferramentas de desenvolvimento
+### **Ideal Use Cases:**
+- ✅ Open source projects
+- ✅ Libraries and frameworks
+- ✅ Corporate applications
+- ✅ Development tools
 
 ---
 
 ## 🔌 API Documentation
 
-### **Estrutura Completa**
+### **Complete Structure**
 ```
 docs/
-├── index.md               # Introdução à API
+├── index.md               # API introduction
 ├── authentication/
-│   ├── overview.md       # Métodos de autenticação
-│   ├── api-keys.md       # Chaves de API
+│   ├── overview.md       # Authentication methods
+│   ├── api-keys.md       # API keys
 │   ├── oauth.md          # OAuth 2.0
 │   └── jwt.md            # JSON Web Tokens
 ├── quick-start/
-│   ├── first-request.md  # Primeira requisição
-│   ├── postman.md        # Coleção Postman
-│   └── curl-examples.md  # Exemplos cURL
+│   ├── first-request.md  # First request
+│   ├── postman.md        # Postman collection
+│   └── curl-examples.md  # cURL examples
 ├── endpoints/
-│   ├── users/            # Endpoints de usuários
-│   ├── products/         # Endpoints de produtos
-│   ├── orders/           # Endpoints de pedidos
+│   ├── users/            # User endpoints
+│   ├── products/         # Product endpoints
+│   ├── orders/           # Order endpoints
 │   └── webhooks/         # Webhooks
 ├── sdks/
-│   ├── javascript.md     # SDK JavaScript
-│   ├── python.md         # SDK Python
-│   ├── php.md            # SDK PHP
-│   └── mobile.md         # SDKs Mobile
+│   ├── javascript.md     # JavaScript SDK
+│   ├── python.md         # Python SDK
+│   ├── php.md            # PHP SDK
+│   └── mobile.md         # Mobile SDKs
 ├── examples/
-│   ├── use-cases/        # Casos de uso reais
-│   ├── integrations/     # Integrações
-│   └── code-samples/     # Amostras de código
+│   ├── use-cases/        # Real use cases
+│   ├── integrations/     # Integrations
+│   └── code-samples/     # Code samples
 ├── errors/
-│   ├── codes.md          # Códigos de erro
-│   └── handling.md       # Tratamento de erros
+│   ├── codes.md          # Error codes
+│   └── handling.md       # Error handling
 └── changelog/
-    ├── v1.md             # Versão 1.x
-    ├── v2.md             # Versão 2.x
-    └── migration.md      # Guias de migração
+    ├── v1.md             # Version 1.x
+    ├── v2.md             # Version 2.x
+    └── migration.md      # Migration guides
 ```
 
-### **Casos de Uso Ideais:**
-- ✅ APIs REST e GraphQL
-- ✅ Microserviços
-- ✅ Plataformas de integração
-- ✅ Serviços SaaS
+### **Ideal Use Cases:**
+- ✅ REST and GraphQL APIs
+- ✅ Microservices
+- ✅ Integration platforms
+- ✅ SaaS services
 
 ---
 
 ## 📖 Knowledge Base
 
-### **Estrutura Organizacional**
+### **Organizational Structure**
 ```
 docs/
-├── index.md               # Portal principal
+├── index.md               # Main portal
 ├── getting-started/
-│   ├── overview.md       # Visão geral
-│   ├── account-setup.md  # Configuração de conta
-│   └── first-steps.md    # Primeiros passos
+│   ├── overview.md       # Overview
+│   ├── account-setup.md  # Account setup
+│   └── first-steps.md    # First steps
 ├── tutorials/
-│   ├── beginner/         # Nível iniciante
-│   ├── intermediate/     # Nível intermediário
-│   ├── advanced/         # Nível avançado
-│   └── video-guides/     # Guias em vídeo
+│   ├── beginner/         # Beginner level
+│   ├── intermediate/     # Intermediate level
+│   ├── advanced/         # Advanced level
+│   └── video-guides/     # Video guides
 ├── how-to/
-│   ├── common-tasks/     # Tarefas comuns
-│   ├── integrations/     # Integrações
-│   └── customization/    # Personalização
+│   ├── common-tasks/     # Common tasks
+│   ├── integrations/     # Integrations
+│   └── customization/    # Customization
 ├── troubleshooting/
-│   ├── common-issues.md  # Problemas comuns
-│   ├── error-messages.md # Mensagens de erro
+│   ├── common-issues.md  # Common issues
+│   ├── error-messages.md # Error messages
 │   ├── performance.md    # Performance
-│   └── debugging.md      # Debug
+│   └── debugging.md      # Debugging
 ├── faq/
-│   ├── general.md        # Perguntas gerais
-│   ├── technical.md      # Perguntas técnicas
-│   ├── billing.md        # Faturamento
-│   └── security.md       # Segurança
+│   ├── general.md        # General questions
+│   ├── technical.md      # Technical questions
+│   ├── billing.md        # Billing
+│   └── security.md       # Security
 ├── resources/
-│   ├── tools.md          # Ferramentas úteis
-│   ├── links.md          # Links externos
-│   ├── glossary.md       # Glossário
+│   ├── tools.md          # Useful tools
+│   ├── links.md          # External links
+│   ├── glossary.md       # Glossary
 │   └── downloads.md      # Downloads
 └── community/
-    ├── forums.md         # Fóruns
+    ├── forums.md         # Forums
     ├── discord.md        # Discord/Slack
-    └── events.md         # Eventos
+    └── events.md         # Events
 ```
 
-### **Casos de Uso Ideais:**
-- ✅ Suporte ao cliente
-- ✅ Documentação de produto
-- ✅ Bases de conhecimento internas
-- ✅ Wikis corporativos
+### **Ideal Use Cases:**
+- ✅ Customer support
+- ✅ Product documentation
+- ✅ Internal knowledge bases
+- ✅ Corporate wikis
 
 ---
 
 ## 🏢 Enterprise Documentation
 
-### **Estrutura Corporativa**
+### **Corporate Structure**
 ```
 docs/
 ├── governance/
-│   ├── policies.md       # Políticas
-│   ├── standards.md      # Padrões
-│   └── compliance.md     # Conformidade
+│   ├── policies.md       # Policies
+│   ├── standards.md      # Standards
+│   └── compliance.md     # Compliance
 ├── architecture/
-│   ├── overview.md       # Visão geral
-│   ├── diagrams/         # Diagramas
+│   ├── overview.md       # Overview
+│   ├── diagrams/         # Diagrams
 │   ├── decisions/        # ADRs (Architecture Decision Records)
-│   └── patterns/         # Padrões arquiteturais
+│   └── patterns/         # Architectural patterns
 ├── processes/
-│   ├── development.md    # Processo de desenvolvimento
-│   ├── deployment.md     # Processo de deploy
-│   ├── testing.md        # Processo de testes
-│   └── security.md       # Processo de segurança
+│   ├── development.md    # Development process
+│   ├── deployment.md     # Deployment process
+│   ├── testing.md        # Testing process
+│   └── security.md       # Security process
 ├── teams/
-│   ├── frontend/         # Time frontend
-│   ├── backend/          # Time backend
-│   ├── devops/           # Time DevOps
-│   └── qa/               # Time QA
+│   ├── frontend/         # Frontend team
+│   ├── backend/          # Backend team
+│   ├── devops/           # DevOps team
+│   └── qa/               # QA team
 └── training/
     ├── onboarding/       # Onboarding
     ├── workshops/        # Workshops
-    └── certifications/   # Certificações
+    └── certifications/   # Certifications
 ```
 
 ---
 
 ## 🎓 Educational Content
 
-### **Estrutura Educacional**
+### **Educational Structure**
 ```
 docs/
 ├── courses/
-│   ├── fundamentals/     # Fundamentos
-│   ├── intermediate/     # Intermediário
-│   └── advanced/         # Avançado
+│   ├── fundamentals/     # Fundamentals
+│   ├── intermediate/     # Intermediate
+│   └── advanced/         # Advanced
 ├── lessons/
-│   ├── theory/           # Teoria
-│   ├── practice/         # Prática
-│   └── exercises/        # Exercícios
+│   ├── theory/           # Theory
+│   ├── practice/         # Practice
+│   └── exercises/        # Exercises
 ├── projects/
-│   ├── beginner/         # Projetos iniciantes
-│   ├── portfolio/        # Projetos para portfólio
-│   └── capstone/         # Projetos finais
+│   ├── beginner/         # Beginner projects
+│   ├── portfolio/        # Portfolio projects
+│   └── capstone/         # Capstone projects
 └── assessments/
-    ├── quizzes/          # Questionários
-    ├── assignments/      # Tarefas
-    └── rubrics/          # Critérios de avaliação
+    ├── quizzes/          # Quizzes
+    ├── assignments/      # Assignments
+    └── rubrics/          # Assessment criteria
 ```
 
 ---
 
 ## 🛠️ Technical Specifications
 
-### **Estrutura Técnica**
+### **Technical Structure**
 ```
 docs/
 ├── specifications/
-│   ├── requirements.md   # Requisitos
+│   ├── requirements.md   # Requirements
 │   ├── design.md         # Design
-│   └── implementation.md # Implementação
+│   └── implementation.md # Implementation
 ├── protocols/
-│   ├── communication.md  # Protocolos de comunicação
-│   ├── data-formats.md   # Formatos de dados
-│   └── security.md       # Protocolos de segurança
+│   ├── communication.md  # Communication protocols
+│   ├── data-formats.md   # Data formats
+│   └── security.md       # Security protocols
 ├── standards/
-│   ├── coding.md         # Padrões de código
-│   ├── naming.md         # Convenções de nomenclatura
-│   └── documentation.md  # Padrões de documentação
+│   ├── coding.md         # Coding standards
+│   ├── naming.md         # Naming conventions
+│   └── documentation.md  # Documentation standards
 └── testing/
-    ├── unit-tests.md     # Testes unitários
-    ├── integration.md    # Testes de integração
-    └── e2e.md            # Testes end-to-end
+    ├── unit-tests.md     # Unit tests
+    ├── integration.md    # Integration tests
+    └── e2e.md            # End-to-end tests
 ```
 
 ---
 
 ## 📊 Best Practices
 
-### **🎯 Princípios Fundamentais**
+### **🎯 Fundamental Principles**
 
-1. **Clareza e Simplicidade**
-   - Use linguagem clara e direta
-   - Evite jargões desnecessários
-   - Estruture o conteúdo logicamente
+1. **Clarity and Simplicity**
+   - Use clear and direct language
+   - Avoid unnecessary jargon
+   - Structure content logically
 
-2. **Navegação Intuitiva**
-   - Organize por tópicos relacionados
-   - Use índices e sumários
-   - Implemente busca eficiente
+2. **Intuitive Navigation**
+   - Organize by related topics
+   - Use indexes and summaries
+   - Implement efficient search
 
-3. **Manutenibilidade**
-   - Mantenha a documentação atualizada
-   - Use versionamento adequado
-   - Estabeleça processos de revisão
+3. **Maintainability**
+   - Keep documentation up to date
+   - Use proper versioning
+   - Establish review processes
 
-4. **Acessibilidade**
-   - Considere diferentes níveis de conhecimento
-   - Forneça múltiplos formatos (texto, vídeo, diagramas)
-   - Garanta compatibilidade com leitores de tela
+4. **Accessibility**
+   - Consider different knowledge levels
+   - Provide multiple formats (text, video, diagrams)
+   - Ensure screen reader compatibility
 
-### **🔧 Ferramentas Recomendadas**
+### **🔧 Recommended Tools**
 
-- **Geradores de Site**: VitePress, Docusaurus, GitBook
-- **Diagramas**: Mermaid, Draw.io, Lucidchart
-- **Versionamento**: Git, GitHub/GitLab
-- **Colaboração**: Notion, Confluence, Obsidian
-
----
-
-## 📈 Métricas de Sucesso
-
-### **KPIs para Documentação**
-
-- **Uso**: Visualizações, tempo na página, páginas mais acessadas
-- **Qualidade**: Feedback dos usuários, taxa de resolução de problemas
-- **Manutenção**: Frequência de atualizações, tempo para correções
-- **Adoção**: Número de contribuidores, pull requests de documentação
+- **Site Generators**: VitePress, Docusaurus, GitBook
+- **Diagrams**: Mermaid, Draw.io, Lucidchart
+- **Version Control**: Git, GitHub/GitLab
+- **Collaboration**: Notion, Confluence, Obsidian
 
 ---
 
-## 🚀 Próximos Passos
+## 📈 Success Metrics
 
-1. **Avalie seu caso de uso** específico
-2. **Escolha a estrutura** mais adequada
-3. **Adapte conforme necessário** para seu contexto
-4. **Implemente gradualmente** começando pelo essencial
-5. **Colete feedback** e itere continuamente
+### **Documentation KPIs**
+
+- **Usage**: Page views, time on page, most accessed pages
+- **Quality**: User feedback, problem resolution rate
+- **Maintenance**: Update frequency, time to corrections
+- **Adoption**: Number of contributors, documentation pull requests
 
 ---
 
-*💡 **Dica**: Comece simples e evolua conforme a necessidade. A melhor documentação é aquela que é realmente usada e mantida.*
+## 🚀 Next Steps
+
+1. **Evaluate your specific use case**
+2. **Choose the most suitable structure**
+3. **Adapt as needed** for your context
+4. **Implement gradually** starting with essentials
+5. **Collect feedback** and iterate continuously
+
+---
+
+*💡 **Tip**: Start simple and evolve as needed. The best documentation is the one that is actually used and maintained.*
