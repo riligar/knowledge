@@ -29,6 +29,10 @@ export default {
         editOnGithub: 'https://github.com/riligar/knowledge'
     },
 
+    analytics: {
+        script: '<script defer src="https://analytics.riligar.click/script.js" data-website-id="02351e3d-4e59-4c69-8e6d-5624abdff94e"></script>'
+    },
+
     markdown: {
         breaks: true,
         linkify: true,

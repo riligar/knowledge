@@ -469,7 +469,8 @@ export class DocumentationGenerator {
             .replace(/\{\{site\.baseUrl\}\}/g, this.config.site.baseUrl)
             .replace(/\{\{navigation\}\}/g, this.renderNavigation())
             .replace(/\{\{baseUrl\}\}/g, this.config.site.baseUrl)
-            .replace(/\{\{markdownUrl\}\}/g, this.config.site.baseUrl + page.markdownUrl);
+            .replace(/\{\{markdownUrl\}\}/g, this.config.site.baseUrl + page.markdownUrl)
+            .replace(/\{\{analytics\}\}/g, this.renderAnalytics());
 
         // Aplicar cache busting nos assets
         renderedTemplate = this.applyAssetCacheBusting(renderedTemplate);
@@ -513,6 +514,7 @@ export class DocumentationGenerator {
     <meta name="description" content="{{site.description}}">
     <link rel="stylesheet" href="{{baseUrl}}assets/css/style.css">
     <link rel="stylesheet" href="{{baseUrl}}assets/css/highlight.css">
+    {{analytics}}
 </head>
 <body>
     <header class="header">
@@ -711,5 +713,13 @@ export class DocumentationGenerator {
         // Verificar se começa com # seguido de espaço e texto
         const h1Regex = /^#\s+.+/;
         return h1Regex.test(firstLine.trim());
+    }
+
+    private renderAnalytics(): string {
+        if (!this.config.analytics?.script) {
+            return '';
+        }
+
+        return this.config.analytics.script;
     }
 } 

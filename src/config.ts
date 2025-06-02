@@ -38,6 +38,11 @@ export interface KnowledgeConfig {
         editOnGithub?: string;
     };
 
+    // Analytics
+    analytics?: {
+        script: string;
+    };
+
     // Markdown options
     markdown: {
         breaks: boolean;
@@ -85,6 +90,10 @@ export const defaultConfig: KnowledgeConfig = {
         darkMode: true,
         tableOfContents: true,
         breadcrumbs: true
+    },
+
+    analytics: {
+        script: ''
     },
 
     markdown: {
