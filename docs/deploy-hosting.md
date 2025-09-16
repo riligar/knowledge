@@ -182,7 +182,7 @@ docker run -p 80:80 my-app
 Create `.github/workflows/deploy.yml`:
 
 ```yaml
-name: Deploy with @riligar/knowledge
+name: Deploy with @riligar/documentation
 
 on:
   push:
@@ -203,8 +203,8 @@ jobs:
     - name: Install project dependencies
       run: bun install
     
-    - name: Build with @riligar/knowledge
-      run: bunx @riligar/knowledge build
+    - name: Build with @riligar/documentation
+      run: bunx @riligar/documentation build
     
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
@@ -216,7 +216,7 @@ jobs:
 **Alternative workflow for different hosting platforms:**
 
 ```yaml
-name: Deploy with @riligar/knowledge
+name: Deploy with @riligar/documentation
 
 on:
   push:
@@ -237,8 +237,8 @@ jobs:
     - name: Install dependencies
       run: bun install
     
-    - name: Build documentation with @riligar/knowledge
-      run: bunx @riligar/knowledge build
+    - name: Build documentation with @riligar/documentation
+      run: bunx @riligar/documentation build
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
@@ -273,7 +273,7 @@ jobs:
 **For environments without Bun, using npx:**
 
 ```yaml
-name: Deploy with @riligar/knowledge (Node.js)
+name: Deploy with @riligar/documentation (Node.js)
 
 on:
   push:
@@ -295,8 +295,8 @@ jobs:
     - name: Install dependencies
       run: npm install
     
-    - name: Build with @riligar/knowledge
-      run: npx @riligar/knowledge build
+    - name: Build with @riligar/documentation
+      run: npx @riligar/documentation build
     
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
@@ -311,14 +311,14 @@ jobs:
 
 **Build Fails:**
 - Check if all dependencies are installed: `bun install`
-- Verify @riligar/knowledge is accessible: `bunx @riligar/knowledge --help`
+- Verify @riligar/documentation is accessible: `bunx @riligar/documentation --help`
 - Check for TypeScript/linting errors in your content files
-- Ensure your content structure follows @riligar/knowledge requirements
+- Ensure your content structure follows @riligar/documentation requirements
 
 **404 Errors on Refresh:**
 - Configure server for SPA routing (see server configs above)
 - Ensure `index.html` is in the root of your dist folder
-- Check if @riligar/knowledge generated the correct file structure
+- Check if @riligar/documentation generated the correct file structure
 
 **Assets Not Loading:**
 - Check base URL configuration in your content
@@ -326,11 +326,11 @@ jobs:
 - Ensure assets are included in the build output
 - Check if images and media files are in the correct directories
 
-**@riligar/knowledge Specific Issues:**
+**@riligar/documentation Specific Issues:**
 - Verify your content directory structure
 - Check markdown syntax and frontmatter
 - Ensure all required configuration files are present
-- Test build locally before deploying: `bunx @riligar/knowledge build`
+- Test build locally before deploying: `bunx @riligar/documentation build`
 
 **Environment Variables:**
 - Set production environment variables in hosting platform
@@ -342,7 +342,7 @@ jobs:
 ### **Before Deployment:**
 ```bash
 # Build and test locally
-bunx @riligar/knowledge build
+bunx @riligar/documentation build
 
 # Test build locally
 cd dist && python -m http.server 8000
@@ -369,11 +369,11 @@ cd dist && bun --port 8000 .
 - Always use HTTPS in production
 - Set up proper CORS headers if needed
 - Configure security headers (CSP, HSTS, etc.)
-- Keep @riligar/knowledge updated: `bunx @riligar/knowledge@latest build`
+- Keep @riligar/documentation updated: `bunx @riligar/documentation@latest build`
 - Use environment variables for sensitive configuration
 - Regular security audits: `bun audit`
 - Sanitize user-generated content if accepting contributions
 
 ---
 
-**Need help?** Check the [@riligar/knowledge documentation](https://github.com/riligar/knowledge) or consult their support resources.
+**Need help?** Check the [@riligar/documentation documentation](https://github.com/riligar/documentation) or consult their support resources.

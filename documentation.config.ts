@@ -1,4 +1,4 @@
-import type { KnowledgeConfig } from './src/config.js';
+import type { DocumentationConfig } from './src/config.js';
 
 export default {
     inputDir: './docs',
@@ -44,4 +44,4 @@ export default {
         host: 'localhost',
         livereload: true
     }
-} as KnowledgeConfig; 
+} as DocumentationConfig; 

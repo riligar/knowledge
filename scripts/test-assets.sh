@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🧪 Testing Knowledge Assets Loading"
+echo "🧪 Testing Documentation Assets Loading"
 echo "=================================="
 
 # Verificar se o build existe

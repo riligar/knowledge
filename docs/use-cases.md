@@ -89,7 +89,7 @@ docs/
 
 ---
 
-## 📖 Knowledge Base
+## 📖 Documentation Base
 
 ### **Organizational Structure**
 ```

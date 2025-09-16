@@ -3,7 +3,7 @@ import { Command } from 'commander';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import chokidar from 'chokidar';
-import { defaultConfig, loadConfig, loadConfigAsync, type KnowledgeConfig } from './config.ts';
+import { defaultConfig, loadConfig, loadConfigAsync, type DocumentationConfig } from './config.ts';
 import { DocumentationGenerator } from './generator.ts';
 import { DevServer } from './dev-server.ts';
 import openBrowser from './open-browser.ts';
@@ -20,7 +20,7 @@ program.configureOutput({
         // Interceptar erros comuns e mostrar mensagens em português
         if (str.includes('too many arguments')) {
             console.error('❌ Revise o comando, seu parâmetro está errado.');
-            console.error('💡 Dica: Use --dir para especificar o diretório. Exemplo: knowledge init --dir meu-projeto');
+            console.error('💡 Dica: Use --dir para especificar o diretório. Exemplo: documentation init --dir meu-projeto');
             return;
         }
         if (str.includes('unknown command')) {
@@ -48,12 +48,12 @@ program.exitOverride((err) => {
     if (err.code === 'commander.unknownCommand') {
         console.error('❌ Revise o comando, seu parâmetro está errado.');
         console.error('💡 Comandos disponíveis: init, dev, build, serve');
-        console.error('💡 Use "knowledge --help" para mais informações');
+        console.error('💡 Use "documentation --help" para mais informações');
         process.exit(1);
     }
     if (err.code === 'commander.unknownOption') {
         console.error('❌ Revise o comando, seu parâmetro está errado.');
-        console.error('💡 Use "knowledge <comando> --help" para ver as opções disponíveis');
+        console.error('💡 Use "documentation <comando> --help" para ver as opções disponíveis');
         process.exit(1);
     }
     if (err.code === 'commander.excessArguments') {
@@ -71,7 +71,7 @@ program.exitOverride((err) => {
 });
 
 program
-    .name('knowledge')
+    .name('documentation')
     .description(packageJson.description)
     .version(packageJson.version);
 
@@ -147,7 +147,7 @@ program
             const dir = path.resolve(options.dir || config.outputDir);
 
             if (!await fs.pathExists(dir)) {
-                console.error(`❌ Directory ${dir} does not exist. Run 'knowledge build' first.`);
+                console.error(`❌ Directory ${dir} does not exist. Run 'documentation build' first.`);
                 process.exit(1);
             }
 
@@ -277,20 +277,20 @@ program
 
 program
     .command('init')
-    .description('Initialize a new Knowledge project')
+    .description('Initialize a new Documentation project')
     .option('-d, --dir <path>', 'Directory to initialize', '.')
     .action(async (options) => {
         try {
             const targetDir = path.resolve(options.dir || '.');
             await initializeProject(targetDir);
-            console.log('✅ Knowledge project initialized successfully!');
+            console.log('✅ Documentation project initialized successfully!');
         } catch (error) {
             console.error('❌ Initialization failed:', error);
             process.exit(1);
         }
     });
 
-async function loadConfigWithOptions(options: any): Promise<KnowledgeConfig> {
+async function loadConfigWithOptions(options: any): Promise<DocumentationConfig> {
     // Usar a nova função loadConfigAsync que já faz o merge e validação
     let config = await loadConfigAsync(options.config);
 
@@ -302,7 +302,7 @@ async function loadConfigWithOptions(options: any): Promise<KnowledgeConfig> {
 }
 
 async function initializeProject(targetDir: string): Promise<void> {
-    console.log('🚀 Initializing Knowledge project...');
+    console.log('🚀 Initializing Documentation project...');
 
     // Verificar se o diretório já tem arquivos
     const files = await fs.readdir(targetDir).catch(() => []);
@@ -336,7 +336,7 @@ async function initializeProject(targetDir: string): Promise<void> {
   outputDir: './dist'
 };`;
 
-    await fs.writeFile(path.join(targetDir, 'knowledge.config.ts'), configContent);
+    await fs.writeFile(path.join(targetDir, 'documentation.config.ts'), configContent);
 
     // Criar documentação de exemplo
     console.log('📝 Creating example documentation...');
@@ -349,9 +349,9 @@ This is your documentation homepage. Edit this file to get started!
 ## Quick Start
 
 1. Edit files in the \`docs/\` directory
-2. Run \`knowledge dev\` to start the development server  
-3. Run \`knowledge build\` to build for production
-4. Run \`knowledge serve\` to serve the built site
+2. Run \`documentation dev\` to start the development server  
+3. Run \`documentation build\` to build for production
+4. Run \`documentation serve\` to serve the built site
 
 ## Features
 
@@ -375,7 +375,7 @@ Happy documenting! 📚
     // Guia de instalação
     const installationContent = `# Installation Guide
 
-Welcome to the installation guide for Knowledge.
+Welcome to the installation guide for Documentation.
 
 ## Prerequisites
 
@@ -390,20 +390,20 @@ Before you begin, make sure you have one of the following package managers insta
 
 ### Global Installation (Recommended)
 
-Install Knowledge globally to use it from anywhere:
+Install Documentation globally to use it from anywhere:
 
 \`\`\`bash
 # With npm
-npm install -g @riligar/knowledge
+npm install -g @riligar/documentation
 
 # With bun (recommended)
-bun add -g @riligar/knowledge
+bun add -g @riligar/documentation
 
 # With yarn
-yarn global add @riligar/knowledge
+yarn global add @riligar/documentation
 
 # With pnpm
-pnpm add -g @riligar/knowledge
+pnpm add -g @riligar/documentation
 \`\`\`
 
 ### Local Installation
@@ -412,16 +412,16 @@ For project-specific installation:
 
 \`\`\`bash
 # With npm
-npm install @riligar/knowledge
+npm install @riligar/documentation
 
 # With bun
-bun add @riligar/knowledge
+bun add @riligar/documentation
 
 # With yarn
-yarn add @riligar/knowledge
+yarn add @riligar/documentation
 
 # With pnpm
-pnpm add @riligar/knowledge
+pnpm add @riligar/documentation
 \`\`\`
 
 ## Quick Start
@@ -432,19 +432,19 @@ pnpm add @riligar/knowledge
 # Create a new directory and initialize
 mkdir my-docs
 cd my-docs
-knowledge init
+documentation init
 \`\`\`
 
 Or initialize in an existing directory:
 
 \`\`\`bash
-knowledge init .
+documentation init .
 \`\`\`
 
 ### 2. Start Development Server
 
 \`\`\`bash
-knowledge dev
+documentation dev
 \`\`\`
 
 Your documentation will be available at \`http://localhost:3000\`
@@ -452,27 +452,27 @@ Your documentation will be available at \`http://localhost:3000\`
 ### 3. Build for Production
 
 \`\`\`bash
-knowledge build
+documentation build
 \`\`\`
 
 ### 4. Serve Built Documentation
 
 \`\`\`bash
-knowledge serve
+documentation serve
 \`\`\`
 
 ## Available Commands
 
 | Command | Description | Options |
 |---------|-------------|---------|
-| \`knowledge init [dir]\` | Initialize a new project | \`-d, --dir <path>\` |
-| \`knowledge dev\` | Start development server | \`-p, --port <number>\`, \`-h, --host <string>\` |
-| \`knowledge build\` | Build for production | \`-c, --config <path>\`, \`-i, --input <path>\`, \`-o, --output <path>\` |
-| \`knowledge serve\` | Serve built documentation | \`-p, --port <number>\`, \`-d, --dir <path>\`, \`--no-open\` |
+| \`documentation init [dir]\` | Initialize a new project | \`-d, --dir <path>\` |
+| \`documentation dev\` | Start development server | \`-p, --port <number>\`, \`-h, --host <string>\` |
+| \`documentation build\` | Build for production | \`-c, --config <path>\`, \`-i, --input <path>\`, \`-o, --output <path>\` |
+| \`documentation serve\` | Serve built documentation | \`-p, --port <number>\`, \`-d, --dir <path>\`, \`--no-open\` |
 
 ## Configuration
 
-Knowledge uses a \`knowledge.config.ts\` file for configuration:
+Documentation uses a \`documentation.config.ts\` file for configuration:
 
 \`\`\`typescript
 export default {
@@ -508,7 +508,7 @@ my-docs/
 │   ├── troubleshooting.md  # Common issues
 │   └── api/                # API documentation
 │       └── README.md
-├── knowledge.config.ts     # Configuration file
+├── documentation.config.ts     # Configuration file
 ├── .gitignore             # Git ignore rules
 └── dist/                  # Built site (after build)
 \`\`\`
@@ -517,8 +517,8 @@ my-docs/
 
 - [API Reference](./api/README.md) - Learn about available APIs
 - [Troubleshooting](./troubleshooting.md) - Common issues and solutions
-- [GitHub Repository](https://github.com/riligar/knowledge) - Source code and issues
-- [Documentation Site](https://myknowledge.click) - Full documentation
+- [GitHub Repository](https://github.com/riligar/documentation) - Source code and issues
+- [Documentation Site](https://mydocumentation.click) - Full documentation
 `;
 
     await fs.writeFile(path.join(targetDir, 'docs/installation.md'), installationContent);
@@ -592,17 +592,17 @@ Common issues and their solutions.
 
 ## Installation Issues
 
-### "Command not found: knowledge"
+### "Command not found: documentation"
 
-**Problem:** The \`knowledge\` command is not recognized.
+**Problem:** The \`documentation\` command is not recognized.
 
 **Solutions:**
 
 1. **Global installation missing:**
    \`\`\`bash
-   npm install -g @riligar/knowledge
+   npm install -g @riligar/documentation
    # or
-   bun add -g @riligar/knowledge
+   bun add -g @riligar/documentation
    \`\`\`
 
 2. **PATH not updated:** Restart your terminal or run:
@@ -614,33 +614,33 @@ Common issues and their solutions.
 
 3. **Permission issues (macOS/Linux):**
    \`\`\`bash
-   sudo npm install -g @riligar/knowledge
+   sudo npm install -g @riligar/documentation
    \`\`\`
 
-### "Cannot find module '@riligar/knowledge'"
+### "Cannot find module '@riligar/documentation'"
 
 **Problem:** Package not found or corrupted installation.
 
 **Solution:**
 \`\`\`bash
 # Uninstall and reinstall
-npm uninstall -g @riligar/knowledge
-npm install -g @riligar/knowledge
+npm uninstall -g @riligar/documentation
+npm install -g @riligar/documentation
 \`\`\`
 
 ## Project Setup Issues
 
 ### "Config file not found"
 
-**Problem:** Missing \`knowledge.config.ts\` file.
+**Problem:** Missing \`documentation.config.ts\` file.
 
 **Solution:**
 \`\`\`bash
 # Initialize project to create config
-knowledge init
+documentation init
 
 # Or create manually
-touch knowledge.config.ts
+touch documentation.config.ts
 \`\`\`
 
 ### "Input directory does not exist"
@@ -664,7 +664,7 @@ echo "# Welcome" > docs/index.md
 
 1. **Use different port:**
    \`\`\`bash
-   knowledge dev -p 3001
+   documentation dev -p 3001
    \`\`\`
 
 2. **Kill process using port:**
@@ -684,7 +684,7 @@ echo "# Welcome" > docs/index.md
 
 1. **Hard refresh:** Press \`Ctrl+F5\` or \`Cmd+Shift+R\`
 2. **Check file location:** Ensure files are in the correct \`inputDir\`
-3. **Restart dev server:** Stop with \`Ctrl+C\` and run \`knowledge dev\` again
+3. **Restart dev server:** Stop with \`Ctrl+C\` and run \`documentation dev\` again
 
 ### "EACCES permission denied"
 
@@ -694,7 +694,7 @@ echo "# Welcome" > docs/index.md
 
 1. **Use sudo (not recommended):**
    \`\`\`bash
-   sudo knowledge dev
+   sudo documentation dev
    \`\`\`
 
 2. **Fix npm permissions (recommended):**
@@ -718,10 +718,10 @@ echo "# Welcome" > docs/index.md
 **Solution:**
 \`\`\`bash
 # Check config syntax
-node -c knowledge.config.ts
+node -c documentation.config.ts
 
 # Or recreate config
-knowledge init --force
+documentation init --force
 \`\`\`
 
 ### "Out of memory" during build
@@ -732,7 +732,7 @@ knowledge init --force
 
 1. **Increase Node.js memory:**
    \`\`\`bash
-   NODE_OPTIONS="--max-old-space-size=4096" knowledge build
+   NODE_OPTIONS="--max-old-space-size=4096" documentation build
    \`\`\`
 
 2. **Split large files** into smaller sections
@@ -757,7 +757,7 @@ knowledge init --force
 
 2. **Rebuild site:**
    \`\`\`bash
-   knowledge build
+   documentation build
    \`\`\`
 
 ### "Search results incomplete"
@@ -770,7 +770,7 @@ knowledge init --force
 2. **Rebuild search index:**
    \`\`\`bash
    rm -rf dist/
-   knowledge build
+   documentation build
    \`\`\`
 
 ## Performance Issues
@@ -781,7 +781,7 @@ knowledge init --force
 
 1. **Use Bun instead of Node:**
    \`\`\`bash
-   bun add -g @riligar/knowledge
+   bun add -g @riligar/documentation
    \`\`\`
 
 2. **Optimize images:** Compress large images in docs
@@ -835,23 +835,23 @@ knowledge init --force
 
 If you're still having issues:
 
-1. **Check existing issues:** [GitHub Issues](https://github.com/riligar/knowledge/issues)
+1. **Check existing issues:** [GitHub Issues](https://github.com/riligar/documentation/issues)
 2. **Create detailed bug report** with:
    - Operating system and version
    - Node.js/Bun version
-   - Knowledge version (\`knowledge --version\`)
+   - Documentation version (\`documentation --version\`)
    - Full error message
    - Steps to reproduce
 3. **Join community discussions** on GitHub
-4. **Check documentation:** [myknowledge.click](https://myknowledge.click)
+4. **Check documentation:** [mydocumentation.click](https://mydocumentation.click)
 
 ## Version Information
 
 Check your versions:
 
 \`\`\`bash
-# Knowledge version
-knowledge --version
+# Documentation version
+documentation --version
 
 # Node.js version
 node --version
@@ -871,11 +871,11 @@ bun --version
 # 1. Install Bun (recommended)
 curl -fsSL https://bun.sh/install | bash
 
-# 2. Install Knowledge globally
-bun add -g @riligar/knowledge
+# 2. Install Documentation globally
+bun add -g @riligar/documentation
 
 # 3. Verify installation
-knowledge --version
+documentation --version
 \`\`\`
 
 ### Alternative Setup (Node.js)
@@ -884,11 +884,11 @@ knowledge --version
 # 1. Ensure Node.js 18+ is installed
 node --version
 
-# 2. Install Knowledge globally
-npm install -g @riligar/knowledge
+# 2. Install Documentation globally
+npm install -g @riligar/documentation
 
 # 3. Verify installation
-knowledge --version
+documentation --version
 \`\`\`
 `;
 
@@ -898,9 +898,9 @@ knowledge --version
     const gitignorePath = path.join(targetDir, '.gitignore');
     if (!await fs.pathExists(gitignorePath)) {
         console.log('📄 Creating .gitignore...');
-        const gitignoreContent = `# Knowledge build output
+        const gitignoreContent = `# Documentation build output
 dist/
-.knowledge/
+.documentation/
 
 # Dependencies
 node_modules/
@@ -923,23 +923,23 @@ Thumbs.db
         await fs.writeFile(gitignorePath, gitignoreContent);
     }
 
-    console.log('✅ Knowledge project initialized successfully!');
+    console.log('✅ Documentation project initialized successfully!');
     console.log('');
     console.log('📋 Next steps:');
     if (targetDir !== process.cwd()) {
         console.log(`  1. cd ${path.relative(process.cwd(), targetDir)}`);
-        console.log('  2. knowledge dev');
-        console.log('  3. knowledge build');
-        console.log('  4. knowledge serve');
+        console.log('  2. documentation dev');
+        console.log('  3. documentation build');
+        console.log('  4. documentation serve');
     } else {
-        console.log('  1. knowledge dev');
-        console.log('  2. knowledge build');
-        console.log('  3. knowledge serve');
+        console.log('  1. documentation dev');
+        console.log('  2. documentation build');
+        console.log('  3. documentation serve');
     }
     console.log('');
     console.log('🌐 Your documentation will be available at http://localhost:3000');
-    console.log('📚 Visit https://myknowledge.click for full documentation');
-    console.log('🐛 Report issues at https://github.com/riligar/knowledge/issues');
+    console.log('📚 Visit https://mydocumentation.click for full documentation');
+    console.log('🐛 Report issues at https://github.com/riligar/documentation/issues');
 }
 
 // Executar CLI se este arquivo for executado diretamente
@@ -953,7 +953,7 @@ if (import.meta.main) {
             error.message?.includes('unknown command') ||
             error.message?.includes('unknown option')) {
             console.error('❌ Revise o comando, seu parâmetro está errado.');
-            console.error('💡 Use "knowledge --help" para ver os comandos disponíveis');
+            console.error('💡 Use "documentation --help" para ver os comandos disponíveis');
         } else {
             console.error('❌ Erro inesperado:', error.message);
         }

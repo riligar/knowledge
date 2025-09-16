@@ -2,7 +2,7 @@
 
 ## Project Structure
 
-Understanding the Knowledge codebase structure will help you contribute effectively:
+Understanding the Documentation codebase structure will help you contribute effectively:
 
 ```
 knowledge/
@@ -24,7 +24,7 @@ knowledge/
 ├── scripts/                 # 🔨 Build and utility scripts
 ├── .github/                 # 🤖 GitHub workflows and templates
 ├── dist/                    # 📁 Built documentation output
-├── knowledge.config.ts      # ⚙️ Project configuration
+├── documentation.config.ts      # ⚙️ Project configuration
 ├── package.json            # 📋 Dependencies and scripts
 ├── tsconfig.json           # 🔧 TypeScript configuration
 └── README.md               # 📖 Project overview
@@ -77,7 +77,7 @@ curl -fsSL https://bun.sh/install | bash
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/riligar/knowledge.git
+git clone https://github.com/riligar/documentation.git
 cd knowledge
 ```
 
@@ -105,7 +105,7 @@ npm run build-bin
 npm link
 
 # Now you can use 'knowledge' command locally
-knowledge --version
+documentation --version
 ```
 
 5. **Start development**:
@@ -114,7 +114,7 @@ knowledge --version
 bun run src/cli.ts dev
 
 # Or use the built binary
-knowledge dev
+documentation dev
 ```
 
 ### Development Workflow
@@ -137,7 +137,7 @@ bun run src/cli.ts dev
 
 # Test with real documentation
 cd test-project
-knowledge dev
+documentation dev
 ```
 
 4. **Build and test the binary**:
@@ -155,20 +155,20 @@ When working on the documentation generator:
 
 ```bash
 # Use the project's own docs for testing
-knowledge dev
+documentation dev
 
 # Test with different configurations
-cp knowledge.config.ts knowledge.config.backup.ts
-# Modify knowledge.config.ts
-knowledge build
-knowledge serve
+cp documentation.config.ts documentation.config.backup.ts
+# Modify documentation.config.ts
+documentation build
+documentation serve
 ```
 
 ## Code Standards
 
 ### TypeScript Guidelines
 
-Knowledge uses strict TypeScript with the following conventions:
+Documentation uses strict TypeScript with the following conventions:
 
 #### **Type Definitions**
 ```typescript
@@ -193,7 +193,7 @@ enum BuildMode {
 #### **Function Signatures**
 ```typescript
 // Use explicit return types for public functions
-export function generateSite(config: KnowledgeConfig): Promise<void> {
+export function generateSite(config: DocumentationConfig): Promise<void> {
     // Implementation
 }
 
@@ -263,22 +263,22 @@ git commit -m "feat(config)!: change configuration file format"
 
 ### Manual Testing
 
-Since Knowledge is a CLI tool, most testing is done manually:
+Since Documentation is a CLI tool, most testing is done manually:
 
 #### **Test CLI Commands**
 ```bash
 # Test initialization
-knowledge init test-docs
+documentation init test-docs
 cd test-docs
 
 # Test development server
-knowledge dev --port 3001
+documentation dev --port 3001
 
 # Test building
-knowledge build --verbose
+documentation build --verbose
 
 # Test serving
-knowledge serve --port 8080
+documentation serve --port 8080
 ```
 
 #### **Test Different Configurations**
@@ -313,7 +313,7 @@ export default {
 # Test with empty docs directory
 mkdir empty-docs
 cd empty-docs
-knowledge init .
+documentation init .
 
 # Test with large documentation
 # Create many markdown files and test performance
@@ -332,7 +332,7 @@ Test Knowledge with real-world scenarios:
 # Test with a typical project structure
 mkdir test-project
 cd test-project
-knowledge init .
+documentation init .
 
 # Create realistic documentation structure
 mkdir -p docs/{getting-started,guides,api,examples}
@@ -340,19 +340,19 @@ echo "# Getting Started" > docs/getting-started/index.md
 echo "# API Reference" > docs/api/index.md
 
 # Test build and serve
-knowledge build
-knowledge serve
+documentation build
+documentation serve
 ```
 
 #### **Test Deployment Scenarios**
 ```bash
 # Test GitHub Pages deployment
-knowledge build
+documentation build
 # Check that dist/ contains proper files
 
 # Test with different base URLs
-# Modify knowledge.config.ts baseUrl
-knowledge build
+# Modify documentation.config.ts baseUrl
+documentation build
 # Verify links work correctly
 ```
 
@@ -360,7 +360,7 @@ knowledge build
 
 ### Semantic Versioning
 
-Knowledge follows semantic versioning (semver):
+Documentation follows semantic versioning (semver):
 
 - **Major** (1.0.0): Breaking changes
 - **Minor** (1.1.0): New features, backward compatible
@@ -413,7 +413,7 @@ Before major releases, test the release process:
 # Test npm package
 npm pack
 npm install -g riligar-knowledge-*.tgz
-knowledge --version
+documentation --version
 ```
 
 ## Contributing Guidelines
@@ -497,4 +497,4 @@ Brief description of changes
 
 ---
 
-**Ready to contribute?** Check out our [open issues](https://github.com/riligar/knowledge/issues) or start with the [good first issue](https://github.com/riligar/knowledge/labels/good%20first%20issue) label! 
+**Ready to contribute?** Check out our [open issues](https://github.com/riligar/documentation/issues) or start with the [good first issue](https://github.com/riligar/documentation/labels/good%20first%20issue) label! 

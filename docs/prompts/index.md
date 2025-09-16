@@ -2,7 +2,7 @@
 
 ## 🎯 What are Documentation Prompts?
 
-Documentation prompts are **pre-engineered AI instructions** designed to automatically analyze your codebase and generate comprehensive, professional documentation using the Knowledge tool. Think of them as expert technical writers that work 24/7, understanding your project structure and creating documentation that follows industry best practices.
+Documentation prompts are **pre-engineered AI instructions** designed to automatically analyze your codebase and generate comprehensive, professional documentation using the Documentation tool. Think of them as expert technical writers that work 24/7, understanding your project structure and creating documentation that follows industry best practices.
 
 ## ⚡ The Speed Revolution
 
@@ -88,16 +88,16 @@ Paste the prompt into your AI assistant (Claude, ChatGPT, etc.) along with:
 ### Step 4: Review and Refine
 The AI will generate complete documentation. Review the output and ask for adjustments if needed.
 
-### Step 5: Deploy with Knowledge
+### Step 5: Deploy with Documentation
 ```bash
-# Install Knowledge globally
-npm install -g @riligar/knowledge
+# Install Documentation globally
+npm install -g @riligar/documentation
 
 # Build your documentation
-knowledge build
+documentation build
 
 # Preview locally
-knowledge serve
+documentation serve
 ```
 
 ## 💡 Pro Tips for Maximum Efficiency
@@ -181,7 +181,7 @@ knowledge serve
 1. **Choose a prompt** that matches your project type
 2. **Gather your project files** for analysis
 3. **Run the prompt** with your AI assistant
-4. **Deploy with Knowledge** for instant professional documentation
+4. **Deploy with Documentation** for instant professional documentation
 5. **Share and iterate** based on user feedback
 
 **Remember**: Great documentation is not just about explaining what your code does—it's about empowering others to succeed with your project. These prompts help you create documentation that truly serves your users and grows your project's impact.

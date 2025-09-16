@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🧪 Testing Knowledge Cache Busting"
+echo "🧪 Testing Documentation Cache Busting"
 echo "=================================="
 
 # Função para extrair hash de um arquivo
@@ -80,10 +80,10 @@ echo ""
 echo "4. Testing cache busting behavior..."
 
 # Salvar hashes atuais
-echo "Current asset hashes:" > /tmp/knowledge_hashes_before.txt
+echo "Current asset hashes:" > /tmp/documentation_hashes_before.txt
 find dist/assets -name "*.css" -o -name "*.js" | while read file; do
     hash=$(extract_hash "$file")
-    echo "$(basename "$file" | sed 's/\.[a-f0-9]\{8\}\./ /') $hash" >> /tmp/knowledge_hashes_before.txt
+    echo "$(basename "$file" | sed 's/\.[a-f0-9]\{8\}\./ /') $hash" >> /tmp/documentation_hashes_before.txt
 done
 
 # Modificar um arquivo CSS para testar mudança de hash

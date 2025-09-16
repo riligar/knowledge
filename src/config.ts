@@ -2,7 +2,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 
-export interface KnowledgeConfig {
+export interface DocumentationConfig {
     // Diretórios
     inputDir: string;
     outputDir: string;
@@ -64,14 +64,14 @@ export interface NavigationItem {
     children?: NavigationItem[];
 }
 
-export const defaultConfig: KnowledgeConfig = {
+export const defaultConfig: DocumentationConfig = {
     inputDir: './docs',
     outputDir: './dist',
     templatesDir: './templates',
     themesDir: './themes',
 
     site: {
-        title: 'Knowledge',
+        title: 'Documentation',
         description: 'A modern, open-source documentation platform that transforms how teams create, organize, and share knowledge.',
         baseUrl: '/',
         author: 'Ciro Cesar Maciel'
@@ -109,12 +109,20 @@ export const defaultConfig: KnowledgeConfig = {
     }
 };
 
-export async function loadConfigAsync(configPath?: string): Promise<KnowledgeConfig> {
+export async function loadConfigAsync(configPath?: string): Promise<DocumentationConfig> {
     let config = { ...defaultConfig };
 
     // Lista de possíveis arquivos de configuração em ordem de prioridade
     const possibleConfigFiles = [
         configPath,
+        'documentation.config.ts',
+        'documentation.config.js',
+        'documentation.config.mjs',
+        'documentation.config.json',
+        '.documentation.config.ts',
+        '.documentation.config.js',
+        '.documentation.config.mjs',
+        '.documentation.config.json',
         'knowledge.config.ts',
         'knowledge.config.js',
         'knowledge.config.mjs',
@@ -134,7 +142,7 @@ export async function loadConfigAsync(configPath?: string): Promise<KnowledgeCon
                 continue;
             }
 
-            let userConfig: Partial<KnowledgeConfig>;
+            let userConfig: Partial<DocumentationConfig>;
 
             if (configFile.endsWith('.json')) {
                 // Carregar arquivo JSON
@@ -168,12 +176,20 @@ export async function loadConfigAsync(configPath?: string): Promise<KnowledgeCon
  * Versão síncrona da função loadConfig
  * Recomenda-se usar loadConfigAsync quando possível
  */
-export function loadConfig(configPath?: string): KnowledgeConfig {
+export function loadConfig(configPath?: string): DocumentationConfig {
     try {
         // Para compatibilidade, tenta carregar de forma síncrona
         // Primeiro verifica se existe um arquivo de configuração
         const possibleConfigFiles = [
             configPath,
+            'documentation.config.ts',
+            'documentation.config.js',
+            'documentation.config.mjs',
+            'documentation.config.json',
+            '.documentation.config.ts',
+            '.documentation.config.js',
+            '.documentation.config.mjs',
+            '.documentation.config.json',
             'knowledge.config.ts',
             'knowledge.config.js',
             'knowledge.config.mjs',
@@ -193,7 +209,7 @@ export function loadConfig(configPath?: string): KnowledgeConfig {
                     continue;
                 }
 
-                let userConfig: Partial<KnowledgeConfig>;
+                let userConfig: Partial<DocumentationConfig>;
 
                 if (configFile.endsWith('.json')) {
                     // Carregar arquivo JSON
@@ -235,20 +251,20 @@ export function loadConfig(configPath?: string): KnowledgeConfig {
 /**
  * Faz merge profundo de duas configurações
  */
-function mergeConfig(base: KnowledgeConfig, override: Partial<KnowledgeConfig>): KnowledgeConfig {
+function mergeConfig(base: DocumentationConfig, override: Partial<DocumentationConfig>): DocumentationConfig {
     const result = { ...base };
 
     for (const [key, value] of Object.entries(override)) {
         if (value !== undefined) {
             if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
                 // Merge profundo para objetos
-                result[key as keyof KnowledgeConfig] = {
-                    ...result[key as keyof KnowledgeConfig] as any,
+                result[key as keyof DocumentationConfig] = {
+                    ...result[key as keyof DocumentationConfig] as any,
                     ...value
                 };
             } else {
                 // Substituição direta para valores primitivos e arrays
-                result[key as keyof KnowledgeConfig] = value as any;
+                result[key as keyof DocumentationConfig] = value as any;
             }
         }
     }
@@ -259,7 +275,7 @@ function mergeConfig(base: KnowledgeConfig, override: Partial<KnowledgeConfig>):
 /**
  * Valida a configuração carregada
  */
-function validateConfig(config: KnowledgeConfig): void {
+function validateConfig(config: DocumentationConfig): void {
     const errors: string[] = [];
 
     // Validar campos obrigatórios

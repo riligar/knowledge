@@ -2,12 +2,12 @@
 
 ## Configuration API
 
-The `knowledge.config.ts` file is the central configuration for your documentation site. This reference covers all available options.
+The `documentation.config.ts` file is the central configuration for your documentation site. This reference covers all available options.
 
 ### Basic Configuration
 
 ```typescript
-import type { KnowledgeConfig } from '@riligar/knowledge';
+import type { DocumentationConfig } from '@riligar/documentation';
 
 export default {
     // Required: Input directory containing Markdown files
@@ -22,7 +22,7 @@ export default {
         description: 'Project documentation',
         author: 'Your Name'
     }
-} as KnowledgeConfig;
+} as DocumentationConfig;
 ```
 
 ### Complete Configuration Reference
@@ -229,12 +229,12 @@ dev: {
 
 ### Command Reference
 
-#### **`knowledge init`**
+#### **`documentation init`**
 
 Initialize a new documentation project.
 
 ```bash
-knowledge init [directory] [options]
+documentation init [directory] [options]
 ```
 
 **Arguments:**
@@ -248,24 +248,24 @@ knowledge init [directory] [options]
 **Examples:**
 ```bash
 # Initialize in current directory
-knowledge init
+documentation init
 
 # Create new project directory
-knowledge init my-docs
+documentation init my-docs
 
 # Use specific template
-knowledge init --template minimal
+documentation init --template minimal
 
 # Force overwrite existing files
-knowledge init --force
+documentation init --force
 ```
 
-#### **`knowledge dev`**
+#### **`documentation dev`**
 
 Start development server with hot reload.
 
 ```bash
-knowledge dev [options]
+documentation dev [options]
 ```
 
 **Options:**
@@ -278,24 +278,24 @@ knowledge dev [options]
 **Examples:**
 ```bash
 # Start with default settings
-knowledge dev
+documentation dev
 
 # Use custom port
-knowledge dev --port 8080
+documentation dev --port 8080
 
 # Bind to all interfaces
-knowledge dev --host 0.0.0.0
+documentation dev --host 0.0.0.0
 
 # Enable verbose logging
-knowledge dev --verbose
+documentation dev --verbose
 ```
 
-#### **`knowledge build`**
+#### **`documentation build`**
 
 Build static documentation site.
 
 ```bash
-knowledge build [options]
+documentation build [options]
 ```
 
 **Options:**
@@ -307,24 +307,24 @@ knowledge build [options]
 **Examples:**
 ```bash
 # Build with default settings
-knowledge build
+documentation build
 
 # Clean build
-knowledge build --clean
+documentation build --clean
 
 # Custom output directory
-knowledge build --output ./public
+documentation build --output ./public
 
 # Verbose build
-knowledge build --verbose
+documentation build --verbose
 ```
 
-#### **`knowledge serve`**
+#### **`documentation serve`**
 
 Serve built documentation.
 
 ```bash
-knowledge serve [options]
+documentation serve [options]
 ```
 
 **Options:**
@@ -336,16 +336,16 @@ knowledge serve [options]
 **Examples:**
 ```bash
 # Serve built documentation
-knowledge serve
+documentation serve
 
 # Use custom port
-knowledge serve --port 3000
+documentation serve --port 3000
 
 # Serve custom directory
-knowledge serve --dir ./public
+documentation serve --dir ./public
 
 # Auto-open browser
-knowledge serve --open
+documentation serve --open
 ```
 
 ### Environment Variables
@@ -560,7 +560,7 @@ Extend Knowledge functionality with custom plugins:
 
 ```typescript
 // plugins/my-plugin.ts
-import type { KnowledgePlugin } from '@riligar/knowledge';
+import type { KnowledgePlugin } from '@riligar/documentation';
 
 export default {
     name: 'my-plugin',
@@ -592,7 +592,7 @@ export default {
 
 ### Using Plugins
 
-Configure plugins in your `knowledge.config.ts`:
+Configure plugins in your `documentation.config.ts`:
 
 ```typescript
 import myPlugin from './plugins/my-plugin.js';
@@ -611,9 +611,9 @@ export default {
             }
         }
     ]
-} as KnowledgeConfig;
+} as DocumentationConfig;
 ```
 
 ---
 
-**Need more customization?** Check out the [source code](https://github.com/riligar/knowledge) or [create an issue](https://github.com/riligar/knowledge/issues) for feature requests! 
+**Need more customization?** Check out the [source code](https://github.com/riligar/documentation) or [create an issue](https://github.com/riligar/documentation/issues) for feature requests! 

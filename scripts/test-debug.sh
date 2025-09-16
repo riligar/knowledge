@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🔍 Knowledge Debug Script"
+echo "🔍 Documentation Debug Script"
 echo "========================="
 
 # Verificar se o build funciona

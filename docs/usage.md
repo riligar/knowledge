@@ -2,25 +2,25 @@
 
 ## Main Commands
 
-Knowledge provides a simple yet powerful CLI interface. Here are all the commands you need to know:
+Documentation provides a simple yet powerful CLI interface. Here are all the commands you need to know:
 
 ### Core Commands
 
 ```bash
 # Initialize a new documentation project
-knowledge init [project-name]
+documentation init [project-name]
 
 # Start development server with hot reload
-knowledge dev [options]
+documentation dev [options]
 
 # Build static documentation site
-knowledge build [options]
+documentation build [options]
 
 # Serve built documentation
-knowledge serve [options]
+documentation serve [options]
 
 # Display version information
-knowledge --version
+documentation --version
 
 # Show help information
 knowledge --help
@@ -28,36 +28,36 @@ knowledge --help
 
 ### Command Options
 
-#### `knowledge init`
+#### `documentation init`
 ```bash
-knowledge init my-docs          # Create project in ./my-docs
-knowledge init .                # Initialize in current directory
-knowledge init --template basic # Use specific template
+documentation init my-docs          # Create project in ./my-docs
+documentation init .                # Initialize in current directory
+documentation init --template basic # Use specific template
 ```
 
-#### `knowledge dev`
+#### `documentation dev`
 ```bash
-knowledge dev                   # Start on default port (3000)
-knowledge dev --port 8080      # Use custom port
-knowledge dev --host 0.0.0.0   # Bind to all interfaces
-knowledge dev --no-open        # Don't auto-open browser
-knowledge dev --verbose        # Enable verbose logging
+documentation dev                   # Start on default port (3000)
+documentation dev --port 8080      # Use custom port
+documentation dev --host 0.0.0.0   # Bind to all interfaces
+documentation dev --no-open        # Don't auto-open browser
+documentation dev --verbose        # Enable verbose logging
 ```
 
-#### `knowledge build`
+#### `documentation build`
 ```bash
-knowledge build                 # Build to default output directory
-knowledge build --output ./public  # Custom output directory
-knowledge build --clean         # Clean output directory first
-knowledge build --verbose       # Show detailed build information
+documentation build                 # Build to default output directory
+documentation build --output ./public  # Custom output directory
+documentation build --clean         # Clean output directory first
+documentation build --verbose       # Show detailed build information
 ```
 
-#### `knowledge serve`
+#### `documentation serve`
 ```bash
-knowledge serve                 # Serve on default port (8080)
-knowledge serve --port 3000     # Use custom port
-knowledge serve --host 0.0.0.0  # Bind to all interfaces
-knowledge serve --dir ./public  # Serve custom directory
+documentation serve                 # Serve on default port (8080)
+documentation serve --port 3000     # Use custom port
+documentation serve --host 0.0.0.0  # Bind to all interfaces
+documentation serve --dir ./public  # Serve custom directory
 ```
 
 ## Practical Examples
@@ -66,7 +66,7 @@ knowledge serve --dir ./public  # Serve custom directory
 
 1. **Initialize a new project**:
 ```bash
-knowledge init my-project-docs
+documentation init my-project-docs
 cd my-project-docs
 ```
 
@@ -106,7 +106,7 @@ This is the main documentation for my awesome project.
 
 4. **Start development**:
 ```bash
-knowledge dev
+documentation dev
 # Opens http://localhost:3000 automatically
 ```
 
@@ -145,7 +145,7 @@ docs/
 └── migration-guide.md          # Version migration
 ```
 
-#### **Team Knowledge Base**
+#### **Team Documentation Base**
 ```
 docs/
 ├── index.md                    # Welcome page
@@ -163,7 +163,7 @@ docs/
 
 ### Advanced Markdown Features
 
-Knowledge supports enhanced Markdown with additional features:
+Documentation supports enhanced Markdown with additional features:
 
 #### **Code Blocks with Syntax Highlighting**
 ```markdown
@@ -220,7 +220,7 @@ npm run dev
 
 ### Configuration Options
 
-Customize your documentation by modifying `knowledge.config.ts`:
+Customize your documentation by modifying `documentation.config.ts`:
 
 #### **Site Metadata**
 ```typescript
@@ -332,11 +332,11 @@ jobs:
       with:
         node-version: '18'
         
-    - name: Install Knowledge
-      run: npm install -g @riligar/knowledge
+    - name: Install Documentation
+      run: npm install -g @riligar/documentation
       
     - name: Build documentation
-      run: knowledge build
+      run: documentation build
       
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
@@ -349,7 +349,7 @@ jobs:
 
 1. **Connect your repository** to Netlify
 2. **Set build settings**:
-   - Build command: `npm install -g @riligar/knowledge && knowledge build`
+   - Build command: `npm install -g @riligar/documentation && documentation build`
    - Publish directory: `dist`
 
 ### Vercel
@@ -357,7 +357,7 @@ jobs:
 1. **Connect your repository** to Vercel
 2. **Configure build settings**:
    - Framework: Other
-   - Build command: `npm install -g @riligar/knowledge && knowledge build`
+   - Build command: `npm install -g @riligar/documentation && documentation build`
    - Output directory: `dist`
 
 ## Troubleshooting
@@ -367,7 +367,7 @@ jobs:
 #### **Port Already in Use**
 ```bash
 # Error: Port 3000 is already in use
-knowledge dev --port 3001
+documentation dev --port 3001
 
 # Or find and kill the process
 lsof -ti:3000 | xargs kill -9  # macOS/Linux
@@ -381,7 +381,7 @@ npm config set prefix ~/.npm-global
 export PATH=~/.npm-global/bin:$PATH
 
 # Or use sudo (not recommended)
-sudo npm install -g @riligar/knowledge
+sudo npm install -g @riligar/documentation
 ```
 
 #### **Module Not Found**
@@ -390,20 +390,20 @@ sudo npm install -g @riligar/knowledge
 npm cache clean --force
 
 # Reinstall Knowledge
-npm uninstall -g @riligar/knowledge
-npm install -g @riligar/knowledge
+npm uninstall -g @riligar/documentation
+npm install -g @riligar/documentation
 ```
 
 #### **Build Failures**
 ```bash
 # Enable verbose logging
-knowledge build --verbose
+documentation build --verbose
 
 # Clean output directory
-knowledge build --clean
+documentation build --clean
 
 # Check configuration file
-node -c knowledge.config.ts
+node -c documentation.config.ts
 ```
 
 ### Performance Optimization
@@ -435,7 +435,7 @@ export default {
 #### **Slow Build Times**
 ```bash
 # Use incremental builds during development
-knowledge dev --incremental
+documentation dev --incremental
 
 # Exclude large directories
 # Add to .gitignore and navigation.exclude
@@ -446,9 +446,9 @@ knowledge dev --incremental
 If you're still having issues:
 
 1. **Check the logs**: Use `--verbose` flag for detailed output
-2. **Search existing issues**: [GitHub Issues](https://github.com/riligar/knowledge/issues)
+2. **Search existing issues**: [GitHub Issues](https://github.com/riligar/documentation/issues)
 3. **Create a new issue**: Include your configuration and error messages
-4. **Join the community**: [Discussions](https://github.com/riligar/knowledge/discussions)
+4. **Join the community**: [Discussions](https://github.com/riligar/documentation/discussions)
 
 ---
 

@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import chokidar, { type FSWatcher } from 'chokidar';
-import type { KnowledgeConfig } from './config.js';
+import type { DocumentationConfig } from './config.js';
 import { DocumentationGenerator } from './generator.js';
 
 export class DevServer {
@@ -9,12 +9,12 @@ export class DevServer {
     private watcher?: FSWatcher;
     private server?: any;
 
-    constructor(private config: KnowledgeConfig) {
+    constructor(private config: DocumentationConfig) {
         this.generator = new DocumentationGenerator(config);
     }
 
     public async start(): Promise<void> {
-        console.log('🚀 Starting Knowledge development server...');
+        console.log('🚀 Starting Documentation development server...');
         console.log(`📁 Watching: ${this.config.inputDir}`);
         console.log(`🌐 Server: http://${this.config.dev.host}:${this.config.dev.port}`);
 

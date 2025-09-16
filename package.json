@@ -1,11 +1,11 @@
 {
-  "name": "@riligar/knowledge",
+  "name": "@riligar/documentation",
   "version": "1.13.0",
-  "description": "Knowledge is a modern static documentation generator that transforms Markdown files into professional documentation sites.",
+  "description": "Documentation is a modern static documentation generator that transforms Markdown files into professional documentation sites.",
   "main": "index.ts",
   "type": "module",
   "bin": {
-    "knowledge": "./bin/knowledge.js"
+    "documentation": "./bin/documentation.js"
   },
   "files": [
     "bin/",
@@ -22,18 +22,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/riligar/knowledge.git"
+    "url": "git+https://github.com/riligar/documentation.git"
   },
-  "homepage": "https://myknowledge.click",
+  "homepage": "https://documentation.riligar.click",
   "bugs": {
-    "url": "https://github.com/riligar/knowledge/issues"
+    "url": "https://github.com/riligar/documentation/issues"
   },
   "scripts": {
     "build": "bun run src/cli.ts build",
     "dev": "bun run src/cli.ts dev",
     "serve": "bun run src/cli.ts serve",
     "start": "bun run index.ts",
-    "knowledge": "bun run src/cli.ts",
+    "documentation": "bun run src/cli.ts",
     "build-bin": "bun build src/cli.ts --outdir bin --target node --format esm",
     "semantic-release": "semantic-release",
     "test-release": "./scripts/test-release.sh"
@@ -43,7 +43,7 @@
     "markdown",
     "static-site",
     "generator",
-    "knowledge",
+    "documentation",
     "docs",
     "cli",
     "documentation-generator",

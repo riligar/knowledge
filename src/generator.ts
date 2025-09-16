@@ -3,7 +3,7 @@ import * as path from 'path';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
 import { createHash } from 'crypto';
-import type { KnowledgeConfig, NavigationItem } from './config.js';
+import type { DocumentationConfig, NavigationItem } from './config.js';
 import { resolveThemesDir } from './config.js';
 import { SearchIndexGenerator } from './search.js';
 import { MarkdownProcessor } from './markdown.js';
@@ -30,7 +30,7 @@ interface TemplateData {
     title: string;
     content: string;
     navigation: NavigationItem[];
-    config: KnowledgeConfig;
+    config: DocumentationConfig;
     currentPath: string;
 }
 
@@ -46,7 +46,7 @@ export class DocumentationGenerator {
     private resolvedThemesDir: string;
     private assetMapping: AssetMapping = {};
 
-    constructor(private config: KnowledgeConfig) {
+    constructor(private config: DocumentationConfig) {
         this.setupMarked();
         this.searchIndex = new SearchIndexGenerator();
         this.markdownProcessor = new MarkdownProcessor(config);

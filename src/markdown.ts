@@ -1,5 +1,5 @@
 import { marked } from 'marked';
-import type { KnowledgeConfig } from './config.js';
+import type { DocumentationConfig } from './config.js';
 import hljs from 'highlight.js';
 
 interface ProcessedMarkdown {
@@ -19,7 +19,7 @@ interface FrontMatter {
 }
 
 export class MarkdownProcessor {
-    constructor(private config: KnowledgeConfig) {
+    constructor(private config: DocumentationConfig) {
         this.configureMarked();
     }
 

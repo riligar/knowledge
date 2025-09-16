@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'bun:test';
 import { DocumentationGenerator } from '../src/generator.js';
-import type { KnowledgeConfig } from '../src/config.js';
+import type { DocumentationConfig } from '../src/config.js';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
@@ -24,7 +24,7 @@ describe('Analytics Feature', () => {
     });
 
     it('should include analytics script when configured', async () => {
-        const config: KnowledgeConfig = {
+        const config: DocumentationConfig = {
             inputDir: docsDir,
             outputDir: testDir,
             templatesDir: './templates',
@@ -77,7 +77,7 @@ describe('Analytics Feature', () => {
     });
 
     it('should not include analytics script when not configured', async () => {
-        const config: KnowledgeConfig = {
+        const config: DocumentationConfig = {
             inputDir: docsDir,
             outputDir: testDir,
             templatesDir: './templates',
@@ -127,7 +127,7 @@ describe('Analytics Feature', () => {
     });
 
     it('should handle empty analytics script', async () => {
-        const config: KnowledgeConfig = {
+        const config: DocumentationConfig = {
             inputDir: docsDir,
             outputDir: testDir,
             templatesDir: './templates',
