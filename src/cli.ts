@@ -9,7 +9,7 @@ import { DevServer } from './dev-server.ts';
 import openBrowser from './open-browser.ts';
 import { getAvailablePort } from './port-utils.ts';
 
-// Importar versão do package.json
+// Importar versão do package.json para exibir na versão do CLI
 const packageJson = JSON.parse(await fs.readFile(path.join(import.meta.dir, '../package.json'), 'utf-8'));
 
 const program = new Command();
