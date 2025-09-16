@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/riligar/documentation/compare/v1.13.0...v1.13.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* **cli:** clarify comment for package.json import in CLI ([2897016](https://github.com/riligar/documentation/commit/289701657b24a0324a6728e45c00e2895c5e2778))
+
 # [1.13.0](https://github.com/riligar/documentation/compare/v1.12.1...v1.13.0) (2025-06-02)
 
 

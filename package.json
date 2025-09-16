@@ -1,6 +1,6 @@
 {
   "name": "@riligar/documentation",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "Documentation is a modern static documentation generator that transforms Markdown files into professional documentation sites.",
   "main": "index.ts",
   "type": "module",
